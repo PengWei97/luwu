@@ -37,7 +37,7 @@ public:
     // 可以认为是一个数据类型
 
 protected:
-  RankFourTensor newGrain(unsigned int new_grain_id);
+  // RankFourTensor newGrain(unsigned int new_grain_id);
   // 这句话不是很理解，对于new_grain_id
 
   RankTwoTensor newGrain(unsigned int new_grain_id);
