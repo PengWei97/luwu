@@ -239,7 +239,7 @@
     file_name = test.tex
   [../]
   [./grain_tracker]
-    type = GrainTrackerElasticityPW
+    type = GrainTrackerElasticity
     # The elastic modulus after rotation is assigned to the grain
     # postprocessor why ?
     # Manage a list of elasticity tensors for the grains

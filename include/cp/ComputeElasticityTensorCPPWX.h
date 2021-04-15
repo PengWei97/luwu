@@ -6,27 +6,31 @@
 //*
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
+// crystal.i
 
 #pragma once
 
-#include "ComputeElasticityTensorBase.h"
+#include "ComputeElasticityTensor.h"
 #include "GrainDataTracker.h"
+#include "RankTwoTensor.h"
+#include "RotationTensor.h"
 
 // Forward Declarations
 class EulerAngleProvider;
 
 /**
- * Compute an evolving elasticity tensor coupled to a grain growth phase field model.
+ * ComputeElasticityTensorCPPW defines an elasticity tensor material object for crystal plasticity.
  */
-class ComputePolycrystalElasticityTensorPW : public ComputeElasticityTensorBase
+class ComputeElasticityTensorCPPW : public ComputeElasticityTensor
 {
 public:
   static InputParameters validParams();
 
-  ComputePolycrystalElasticityTensorPW(const InputParameters & parameters);
+  ComputeElasticityTensorCPPW(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpElasticityTensor();
+  virtual void computeQpElasticityTensor() override;
+  // 主要是用于覆盖掉基类中
 
   Real _length_scale;
   Real _pressure_scale;
@@ -41,11 +45,16 @@ protected:
   /// Order parameters
   const std::vector<const VariableValue *> _vals;
   // gr0,gr1
-
+  
   /// vector of elasticity tensor material properties
   std::vector<MaterialProperty<RankFourTensor> *> _D_elastic_tensor;
   // _D_elastic_tensor = dElasticity_Tensor/dgr0_ijkl,dElasticity_Tensor/dgr2_ijkl
 
   /// Conversion factor from J to eV
   const Real _JtoeV;
+  /// Crystal Rotation Matrix
+  MaterialProperty<RankTwoTensor> & _crysrot;
+
+  /// Rotation matrix
+  RotationTensor _R;
 };
