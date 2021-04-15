@@ -27,6 +27,7 @@ public:
 
 protected:
   virtual void computeQpElasticityTensor() override;
+  // 主要是用于覆盖掉基类中
 
   virtual void assignEulerAngles();
 
