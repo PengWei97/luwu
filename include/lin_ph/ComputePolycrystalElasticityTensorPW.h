@@ -48,6 +48,8 @@ protected:
   std::vector<MaterialProperty<RankFourTensor> *> _D_elastic_tensor;
   // _D_elastic_tensor = dElasticity_Tensor/dgr0_ijkl,dElasticity_Tensor/dgr2_ijkl
 
+  MaterialProperty<RankTwoTensor> & _crysrot;
+  
   /// Conversion factor from J to eV
   const Real _JtoeV;
 };
