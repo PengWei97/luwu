@@ -28,6 +28,8 @@ GrainTrackerElasticityPW::GrainTrackerElasticityPW(const InputParameters & param
 {
 }
 // 初始化构造函数
+// 成员初始值设定项列表
+
 
 RankTwoTensor
 GrainTrackerElasticityPW::newGrain(unsigned int new_grain_id)

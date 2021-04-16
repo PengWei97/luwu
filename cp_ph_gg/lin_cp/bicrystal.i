@@ -255,6 +255,16 @@
     # output:C_ijkl rotationed for every grain
     output = exodus
   [../]
+  [./grain_tracker_euler]
+    type = GrainTrackerElasticityPW
+    
+    connecting_threshold = 0.05
+    compute_var_to_feature_map = true
+    flood_entity_type = elemental
+    execute_on = 'initial timestep_begin'
+
+    euler_angle_provider = euler_angle_file
+  [../]
   # [./grain_tracker_rot]
   #   type = GrainTrackerElasticityPWRot
   #   # The elastic modulus after rotation is assigned to the grain
