@@ -15,15 +15,16 @@
 #include "RankTwoTensor.h"
 #include "RotationTensor.h"
 
+
 /**
- * ComputeElasticityTensorCPPW defines an elasticity tensor material object for crystal plasticity.
+ * ComputeElasticityTensorCPPWX defines an elasticity tensor material object for crystal plasticity.
  */
-class ComputeElasticityTensorCPPW : public ComputeElasticityTensor
+class ComputeElasticityTensorCPPWX : public ComputeElasticityTensor
 {
 public:
   static InputParameters validParams();
 
-  ComputeElasticityTensorCPPW(const InputParameters & parameters);
+  ComputeElasticityTensorCPPWX(const InputParameters & parameters);
 
 protected:
   virtual void computeQpElasticityTensor() override;
