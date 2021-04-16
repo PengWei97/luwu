@@ -46,6 +46,7 @@ ComputePolycrystalElasticityTensorPW::ComputePolycrystalElasticityTensorPW(
     _vals(coupledValues("v")),
     // Vector of VariableValue pointers for each component of var_name
     _D_elastic_tensor(_op_num),
+    _crysrot(declareProperty<RankTwoTensor>("crysrot")),
     _JtoeV(6.24150974e18)
 {
   // Loop over variables (ops)
