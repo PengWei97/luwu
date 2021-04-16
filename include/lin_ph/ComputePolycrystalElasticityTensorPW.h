@@ -35,7 +35,7 @@ protected:
   const GrainDataTracker<RankFourTensor> & _grain_tracker;
   // 定义四阶张量
 
-  const GrainDataTracker<RankTWOTensor> & _grain_tracker_euler;
+  const GrainDataTracker<RankTwoTensor> & _grain_tracker_euler;
   
   /// Number of order parameters
   const unsigned int _op_num;
@@ -49,7 +49,7 @@ protected:
   // _D_elastic_tensor = dElasticity_Tensor/dgr0_ijkl,dElasticity_Tensor/dgr2_ijkl
 
   MaterialProperty<RankTwoTensor> & _crysrot;
-  
+
   /// Conversion factor from J to eV
   const Real _JtoeV;
 };
