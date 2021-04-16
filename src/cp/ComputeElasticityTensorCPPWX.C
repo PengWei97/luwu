@@ -40,7 +40,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
     // Vector of VariableValue pointers for each component of var_name
     _D_elastic_tensor(_op_num),
     _crysrot(declareProperty<RankTwoTensor>("crysrot")),
-    _JtoeV(6.24150974e18)
+    _JtoeV(6.24150974e18),
     _crysrot(declareProperty<RankTwoTensor>("crysrot")),
     // _R(_Euler_angles)
     // Obtain the rotation matrix by Euler angles
@@ -81,15 +81,6 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
 // void
 ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
 {
-//   // Properties assigned at the beginning of every call to material calculation
-//   assignEulerAngles();
-
-//   _R.update(_Euler_angles_mat_prop[_qp]);
-
-//   _crysrot[_qp] = _R.transpose();
-//   _elasticity_tensor[_qp] = _Cijkl;
-//   _elasticity_tensor[_qp].rotate(_crysrot[_qp]);.
-
 
      // Get list of active order parameters from grain tracker
   const auto & op_to_grains = _grain_tracker.getVarToFeatureVector(_current_elem->id());
@@ -122,7 +113,7 @@ ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
   sum_h = std::max(sum_h, tol);
   _elasticity_tensor[_qp] /= sum_h;
   _crysrot[_qp] /= sum_h;
-  
+
 // Calculate elasticity tensor derivative: Cderiv = dhdopi/sum_h * (Cop - _Cijkl)
   for (MooseIndex(_op_num) op_index = 0; op_index < _op_num; ++op_index)
     (*_D_elastic_tensor[op_index])[_qp].zero();
