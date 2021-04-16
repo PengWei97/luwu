@@ -35,6 +35,8 @@ protected:
   const GrainDataTracker<RankFourTensor> & _grain_tracker;
   // 定义四阶张量
 
+  const GrainDataTracker<RankTWOTensor> & _grain_tracker_euler;
+  
   /// Number of order parameters
   const unsigned int _op_num;
 

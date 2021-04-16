@@ -20,6 +20,8 @@ ComputePolycrystalElasticityTensorPW::validParams()
       "Compute an evolving elasticity tensor coupled to a grain growth phase field model.");
   params.addRequiredParam<UserObjectName>(
       "grain_tracker", "Name of GrainTracker user object that provides RankFourTensors");
+  params.addRequiredParam<UserObjectName>(
+      "grain_tracker_euler", "Name of GrainTracker user object that provides RankFourTensors");
   params.addParam<Real>("length_scale", 1.0e-9, "Length scale of the problem, in meters");
   params.addParam<Real>("pressure_scale", 1.0e6, "Pressure scale of the problem, in pa");
   params.addRequiredCoupledVarWithAutoBuild(
@@ -38,6 +40,7 @@ ComputePolycrystalElasticityTensorPW::ComputePolycrystalElasticityTensorPW(
     _length_scale(getParam<Real>("length_scale")),
     _pressure_scale(getParam<Real>("pressure_scale")),
     _grain_tracker(getUserObject<GrainDataTracker<RankFourTensor>>("grain_tracker")),
+    _grain_tracker_euler(getUserObject<GrainDataTracker<RankTwoTensor>>("grain_tracker_euler")),
     _op_num(coupledComponents("v")),
     // coupledComponents:number of components this variable has (usually 1)
     _vals(coupledValues("v")),
@@ -65,6 +68,7 @@ ComputePolycrystalElasticityTensorPW::computeQpElasticityTensor()
 
   // Calculate elasticity tensor
   _elasticity_tensor[_qp].zero();
+  _crysrot[_qp].zero();
   Real sum_h = 0.0;
   for (MooseIndex(op_to_grains) op_index = 0; op_index < op_to_grains.size(); ++op_index)
   {
@@ -80,6 +84,7 @@ ComputePolycrystalElasticityTensorPW::computeQpElasticityTensor()
 
     // Sum all rotated elasticity tensors
     _elasticity_tensor[_qp] += _grain_tracker.getData(grain_id) * h;
+    _crysrot[_qp] += _grain_tracker_euler.getData(grain_id) * h;
     // Used to transition the elastic tensor at the grain boundary
     sum_h += h;
   }
@@ -87,6 +92,7 @@ ComputePolycrystalElasticityTensorPW::computeQpElasticityTensor()
   const Real tol = 1.0e-10;
   sum_h = std::max(sum_h, tol);
   _elasticity_tensor[_qp] /= sum_h;
+  _crysrot[_qp] /= sum_h;
   
 
   // Calculate elasticity tensor derivative: Cderiv = dhdopi/sum_h * (Cop - _Cijkl)
