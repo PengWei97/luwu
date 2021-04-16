@@ -7,7 +7,7 @@
   ymax = 1000
   elem_type = QUAD4
   uniform_refine = 2
-  skip_partitioning = true
+  # skip_partitioning = true
 []
 
 [GlobalParams]
@@ -211,68 +211,26 @@
     grain_tracker_euler = grain_tracker_euler
     # Input the elasticity modulus after rotation
       # Name of GrainTracker user object that provides RankFourTensors  
+    outputs = exodus
 
     # input: c_ijkl rotationed <--grain_tracker
     # output: elasticity_tensor_ijkl,dElasticity_Tensor/dgr0_ijkl，dElasticity_Tensor/dgr1_ijkl
   [../]
   [./strain]
-    type = ComputeFiniteStrain
-    block = 0
+    type = ComputeSmallStrain # ComputeFiniteStrain
+    # Input: grad_tensor 
+    # Output: mechanical_strain_ij,total_strain_ij
+      # _total_strain[_qp] = (grad_tensor + grad_tensor.transpose()) / 2.0;
+      # _mechanical_strain[_qp] = _total_strain[_qp];
 
+    block = 0
     displacements = 'disp_x disp_y'
     # outputs = exodus
   [../]
   [./stress]
-    type = FiniteStrainCrystalPlasticity
-    # /**
-    # * FiniteStrainCrystalPlasticity uses the multiplicative decomposition of deformation gradient
-    # * and solves the PK2 stress residual equation at the intermediate configuration to evolve the
-    # * material state.
-    # * The internal variables are updated using an interative predictor-corrector algorithm.
-    # * Backward Euler integration rule is used for the rate equations.
-    # */
-    # power law flow rule
-    #     _slip_incr(i) = _a0(i) * std::pow(std::abs(_tau(i) / _gss_tmp[i]), 1.0 / _xm(i)) *
-                    # std::copysign(1.0, _tau(i)) * _dt;
-    # https://mooseframework.inl.gov/bison/source/materials/FiniteStrainCPSlipRateRes.html
-
-    block = 0 # The list of block ids (SubdomainID) that this object will be applied
-    gtol = 1e-2 # Constitutive slip system resistance residual tolerance  
-    slip_sys_file_name = input_slip_sys.txt # 12 slip system for fcc
-    nss = 12 # Number of slip systems
-    num_slip_sys_flowrate_props = 2 # Number of properties in a slip system
-    # Number of flow rate properties for a slip system
-    # Used for reading flow rate parameters
-
-    flowprops = '1 4 0.001 0.1 5 8 0.001 0.1 9 12 0.001 0.1'
-    # 1-4,a0,xm
-    # 1-4,alpha_0,m
-    # Parameters used in slip rate equations
-
-    hprops = '1.0 541.5 60.8 109.8 2.5'
-    # Hardening properties
-    # -r _h0 tau_init tau_sat a
-    # q h0 tau_c tau_s alpha
-
-    gprops = '1 4 60.8 5 8 60.8 9 12 60.8'
-    # _gss,tau_c_init
-    # Initial values of slip system resistances
-
-    # slip_sys_res_prop_file_name = input_slip_sys_res.txt
-    # intvar_read_type = slip_sys_res_file
-
-    tan_mod_type = exact
-    # Type of tangent moduli for preconditioner: default elastic
-    # gen_random_stress_flag = true
-    # # Flag to generate random stress to perform time cutback on constitutive failure
-    
-    # use_line_search = true
-    # min_line_search_step_size = 0.01
-    # Use line search in constitutive update
-
-    # maximum_substep_iteration = 2
-    # Maximum number of substep iteration    
-    # outputs = exodus
+    type = ComputeLinearElasticStress # ComputeFiniteStrainElasticStress
+      # output:elastic_strain_ij,stress_ij,jocabian_mult_ij(dstress_dstrain)
+    block = 0
   [../]
 []
 
