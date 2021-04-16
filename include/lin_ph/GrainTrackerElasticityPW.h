@@ -18,7 +18,7 @@ class EulerAngleProvider;
 /**
  * Manage a list of elasticity tensors for the grains
  */
-class GrainTrackerElasticityPW : public GrainDataTracker<RankFourTensor>
+class GrainTrackerElasticityPW : public GrainDataTracker<RankTwoTensor>
 // GrainDataTracker: GrainTracker派生的类模板，以对象为基础，这些对象维护每个晶粒的物理参数
 {
 public:
@@ -37,17 +37,9 @@ public:
     // 可以认为是一个数据类型
 
 protected:
-  // RankFourTensor newGrain(unsigned int new_grain_id);
-  // 这句话不是很理解，对于new_grain_id
 
   RankTwoTensor newGrain(unsigned int new_grain_id);
   // 设置为旋转张量
-
-  /// generate random rotations when the Euler Angle provider runs out of data (otherwise error out)
-  const bool _random_rotations;
-
-  /// unrotated elasticity tensor
-  RankFourTensor _C_ijkl;
 
   /// object providing the Euler angles
   const EulerAngleProvider & _euler;
