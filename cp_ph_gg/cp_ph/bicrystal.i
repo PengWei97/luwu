@@ -202,13 +202,13 @@
     # length_scale = 1.0e-9 # nm
   [../]
   [./ElasticityTensor]
-    type = ComputePolycrystalElasticityTensorPW
+    type = ComputePolycrystalElasticityTensor
       # Compute an evolving elasticity tensor coupled to a grain growth phase field model.
       # public: ComputeElasticityTensorBase
     # length_scale = 1.0e-9
     # pressure_scale = 1.0e6
     grain_tracker = grain_tracker
-    grain_tracker_euler = grain_tracker_euler
+    # grain_tracker_euler = grain_tracker_euler
     # Input the elasticity modulus after rotation
       # Name of GrainTracker user object that provides RankFourTensors  
     outputs = exodus
@@ -256,16 +256,16 @@
     # output:C_ijkl rotationed for every grain
     output = exodus
   [../]
-  [./grain_tracker_euler]
-    type = GrainTrackerElasticityPW
+  # [./grain_tracker_euler]
+  #   type = GrainTrackerElasticityPW
     
-    connecting_threshold = 0.05
-    compute_var_to_feature_map = true
-    flood_entity_type = elemental
-    execute_on = 'initial timestep_begin'
+  #   connecting_threshold = 0.05
+  #   compute_var_to_feature_map = true
+  #   flood_entity_type = elemental
+  #   execute_on = 'initial timestep_begin'
 
-    euler_angle_provider = euler_angle_file
-  [../]
+  #   euler_angle_provider = euler_angle_file
+  # [../]
   # [./grain_tracker_rot]
   #   type = GrainTrackerElasticityPWRot
   #   # The elastic modulus after rotation is assigned to the grain

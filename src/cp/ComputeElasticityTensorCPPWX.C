@@ -16,11 +16,11 @@ InputParameters
 ComputeElasticityTensorCPPWX::validParams()
 {
   InputParameters params = ComputeElasticityTensor::validParams();
-  params.addClassDescription("Compute an elasticity tensor for crystal plasticity.");
+  params.addClassDescription("Compute an evolving elasticity tensor for crystal plastic and coupled to a grain growth phase field model.");
   params.addRequiredParam<UserObjectName>(
       "grain_tracker", "Name of GrainTracker user object that provides RankFourTensors");
   params.addRequiredParam<UserObjectName>(
-      "grain_tracker_euler", "Name of GrainTracker user object that provides RankFourTensors");
+      "grain_tracker_euler", "Name of GrainTracker user object that provides RankTwoTensors");
   params.addParam<Real>("length_scale", 1.0e-9, "Length scale of the problem, in meters");
   params.addParam<Real>("pressure_scale", 1.0e6, "Pressure scale of the problem, in pa");
   params.addRequiredCoupledVarWithAutoBuild(
@@ -41,7 +41,6 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
     _D_elastic_tensor(_op_num),
     _crysrot(declareProperty<RankTwoTensor>("crysrot")),
     _JtoeV(6.24150974e18)
-    _crysrot(declareProperty<RankTwoTensor>("crysrot")),
     // _R(_Euler_angles)
     // Obtain the rotation matrix by Euler angles
 {
@@ -65,31 +64,9 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
   }
 }
 
-// void
-// ComputeElasticityTensorCPPWX::assignEulerAngles()
-// {
-//   if (_read_prop_user_object)
-//   {
-//     _Euler_angles_mat_prop[_qp](0) = _read_prop_user_object->getData(_current_elem, 0);
-//     _Euler_angles_mat_prop[_qp](1) = _read_prop_user_object->getData(_current_elem, 1);
-//     _Euler_angles_mat_prop[_qp](2) = _read_prop_user_object->getData(_current_elem, 2);
-//   }
-//   else
-//     _Euler_angles_mat_prop[_qp] = _Euler_angles;
-// }
-
-// void
+void
 ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
 {
-//   // Properties assigned at the beginning of every call to material calculation
-//   assignEulerAngles();
-
-//   _R.update(_Euler_angles_mat_prop[_qp]);
-
-//   _crysrot[_qp] = _R.transpose();
-//   _elasticity_tensor[_qp] = _Cijkl;
-//   _elasticity_tensor[_qp].rotate(_crysrot[_qp]);.
-
 
      // Get list of active order parameters from grain tracker
   const auto & op_to_grains = _grain_tracker.getVarToFeatureVector(_current_elem->id());

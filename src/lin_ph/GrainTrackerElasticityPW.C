@@ -9,6 +9,7 @@
 
 #include "GrainTrackerElasticityPW.h"
 #include "EulerAngleProvider.h"
+#include "RotationTensor.h"
 
 registerMooseObject("PhaseFieldApp", GrainTrackerElasticityPW);
 
@@ -24,7 +25,7 @@ GrainTrackerElasticityPW::validParams()
 
 GrainTrackerElasticityPW::GrainTrackerElasticityPW(const InputParameters & parameters)
   : GrainDataTracker<RankTwoTensor>(parameters),
-    _euler(getUserObject<EulerAngleProvider>("euler_angle_provider"))
+    _euler_rot(getUserObject<EulerAngleProvider>("euler_angle_provider"))
 {
 }
 // 初始化构造函数
@@ -38,7 +39,7 @@ GrainTrackerElasticityPW::newGrain(unsigned int new_grain_id)
   // Public Member Functions
   // return RealVectorValue(phi1, Phi, phi2)
 
-  angles = _euler.getEulerAngles(new_grain_id);
+  angles = _euler_rot.getEulerAngles(new_grain_id);
 
   RankTwoTensor crysrot = RotationTensor(RealVectorValue(angles));
   

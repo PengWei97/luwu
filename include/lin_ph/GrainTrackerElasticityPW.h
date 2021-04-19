@@ -10,7 +10,6 @@
 #pragma once
 
 #include "GrainDataTracker.h"
-#include "RankFourTensor.h"
 #include "RankTwoTensor.h"
 
 class EulerAngleProvider;
@@ -42,5 +41,5 @@ protected:
   // 设置为旋转张量
 
   /// object providing the Euler angles
-  const EulerAngleProvider & _euler;
+  const EulerAngleProvider & _euler_rot;
 };

@@ -37,10 +37,10 @@
 []
 
 [AuxVariables]
-  # [./bnds]
-  #   order = FIRST
-  #   family = LAGRANGE
-  # [../]
+  [./bnds]
+    order = FIRST
+    family = LAGRANGE
+  [../]
   # [./elastic_strain11]
   #   order = CONSTANT
   #   family = MONOMIAL
@@ -61,10 +61,10 @@
   #   order = CONSTANT
   #   family = MONOMIAL
   # [../]
-  # [./C1111]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
+  [./C1111]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
   # [./active_bounds_elemental]
   #   # ？？
   #   order = CONSTANT
@@ -92,15 +92,16 @@
   [../]
   [./TensorMechanics]
     displacements = 'disp_x disp_y'
+    use_displaced_mesh = true
   [../]
 []
 
 [AuxKernels]
-  # [./bnds_aux]
-  #   type = BndsCalcAux
-  #   variable = bnds
-  #   execute_on = timestep_end
-  # [../]
+  [./bnds_aux]
+    type = BndsCalcAux
+    variable = bnds
+    execute_on = timestep_end
+  [../]
   # [./elastic_strain11]
   #   type = RankTwoAux
   #   variable = elastic_strain11
@@ -139,16 +140,16 @@
   #   execute_on = 'initial timestep_begin'
   #   field_display = VARIABLE_COLORING
   # [../]
-  # [./C1111]
-  #   type = RankFourAux
-  #   variable = C1111
-  #   rank_four_tensor = elasticity_tensor
-  #   index_l = 0
-  #   index_j = 0
-  #   index_k = 0
-  #   index_i = 0
-  #   execute_on = timestep_end
-  # [../]
+  [./C1111]
+    type = RankFourAux
+    variable = C1111
+    rank_four_tensor = elasticity_tensor
+    index_l = 0
+    index_j = 0
+    index_k = 0
+    index_i = 0
+    execute_on = timestep_end
+  [../]
   # [./active_bounds_elemental]
   #   type = FeatureFloodCountAux
   #   variable = active_bounds_elemental
@@ -170,10 +171,10 @@
 
 [BCs]
   [./top_displacement]
-    type = DirichletBC
+    type = FunctionDirichletBC
     variable = disp_y
     boundary = top
-    value = -10.0
+    function = tdisp
   [../]
   [./x_anchor]
     type = DirichletBC
@@ -272,7 +273,7 @@
 
     # maximum_substep_iteration = 2
     # Maximum number of substep iteration    
-    # outputs = exodus
+    outputs = exodus
   [../]
 []
 
@@ -296,7 +297,7 @@
     fill_method = symmetric9
     C_ijkl = '1.27e5 0.708e5 0.708e5 1.27e5 0.708e5 1.27e5 0.7355e5 0.7355e5 0.7355e5'
     # output:C_ijkl rotationed for every grain
-    output = exodus
+    # output = exodus
   [../]
   [./grain_tracker_euler]
     type = GrainTrackerElasticityPW
@@ -380,7 +381,7 @@
   nl_rel_tol = 1e-9
 
   start_time = 0.0
-  num_steps = 3
+  num_steps = 500
   dt = 0.2
 
   [./Adaptivity]
@@ -394,5 +395,12 @@
 [Outputs]
   execute_on = 'timestep_end'
   exodus = true
+[]
+
+[Functions]
+  [./tdisp]
+    type = ParsedFunction
+    value = 0.01*t
+  [../]
 []
 
