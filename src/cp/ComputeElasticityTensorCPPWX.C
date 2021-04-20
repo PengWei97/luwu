@@ -40,8 +40,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
     // Vector of VariableValue pointers for each component of var_name
     _D_elastic_tensor(_op_num),
     _crysrot(declareProperty<RankTwoTensor>("crysrot")),
-    _JtoeV(6.24150974e18),
-    _crysrot(declareProperty<RankTwoTensor>("crysrot")),
+    _JtoeV(6.24150974e18)
     // _R(_Euler_angles)
     // Obtain the rotation matrix by Euler angles
 {
@@ -78,7 +77,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
 //     _Euler_angles_mat_prop[_qp] = _Euler_angles;
 // }
 
-// void
+void
 ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
 {
 
@@ -109,6 +108,7 @@ ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
     // Used to transition the elastic tensor at the grain boundary
     sum_h += h;
   } 
+
   const Real tol = 1.0e-10;
   sum_h = std::max(sum_h, tol);
   _elasticity_tensor[_qp] /= sum_h;
