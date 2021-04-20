@@ -89,6 +89,7 @@ ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
   // Calculate elasticity tensor
   _elasticity_tensor[_qp].zero();
   _crysrot[_qp].zero();
+  
   Real sum_h = 0.0;
   for (MooseIndex(op_to_grains) op_index = 0; op_index < op_to_grains.size(); ++op_index)
   {
