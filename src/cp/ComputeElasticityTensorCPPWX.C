@@ -16,11 +16,11 @@ InputParameters
 ComputeElasticityTensorCPPWX::validParams()
 {
   InputParameters params = ComputeElasticityTensor::validParams();
-  params.addClassDescription("Compute an evolving elasticity tensor for crystal plastic and coupled to a grain growth phase field model.");
+  params.addClassDescription("Compute an elasticity tensor for crystal plasticity.");
   params.addRequiredParam<UserObjectName>(
       "grain_tracker", "Name of GrainTracker user object that provides RankFourTensors");
   params.addRequiredParam<UserObjectName>(
-      "grain_tracker_euler", "Name of GrainTracker user object that provides RankTwoTensors");
+      "grain_tracker_euler", "Name of GrainTracker user object that provides RankFourTensors");
   params.addParam<Real>("length_scale", 1.0e-9, "Length scale of the problem, in meters");
   params.addParam<Real>("pressure_scale", 1.0e6, "Pressure scale of the problem, in pa");
   params.addRequiredCoupledVarWithAutoBuild(
@@ -40,7 +40,8 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
     // Vector of VariableValue pointers for each component of var_name
     _D_elastic_tensor(_op_num),
     _crysrot(declareProperty<RankTwoTensor>("crysrot")),
-    _JtoeV(6.24150974e18)
+    _JtoeV(6.24150974e18),
+    _crysrot(declareProperty<RankTwoTensor>("crysrot")),
     // _R(_Euler_angles)
     // Obtain the rotation matrix by Euler angles
 {
@@ -64,7 +65,20 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
   }
 }
 
-void
+// void
+// ComputeElasticityTensorCPPWX::assignEulerAngles()
+// {
+//   if (_read_prop_user_object)
+//   {
+//     _Euler_angles_mat_prop[_qp](0) = _read_prop_user_object->getData(_current_elem, 0);
+//     _Euler_angles_mat_prop[_qp](1) = _read_prop_user_object->getData(_current_elem, 1);
+//     _Euler_angles_mat_prop[_qp](2) = _read_prop_user_object->getData(_current_elem, 2);
+//   }
+//   else
+//     _Euler_angles_mat_prop[_qp] = _Euler_angles;
+// }
+
+// void
 ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
 {
 
@@ -99,7 +113,7 @@ ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
   sum_h = std::max(sum_h, tol);
   _elasticity_tensor[_qp] /= sum_h;
   _crysrot[_qp] /= sum_h;
-  
+
 // Calculate elasticity tensor derivative: Cderiv = dhdopi/sum_h * (Cop - _Cijkl)
   for (MooseIndex(_op_num) op_index = 0; op_index < _op_num; ++op_index)
     (*_D_elastic_tensor[op_index])[_qp].zero();
