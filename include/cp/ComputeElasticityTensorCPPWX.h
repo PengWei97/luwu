@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "ComputeElasticityTensor.h"
+#include "ComputeElasticityTensorPW.h"
 #include "RankTwoTensor.h"
 #include "RotationTensor.h"
 #include "GrainDataTracker.h"
@@ -18,7 +18,7 @@
 /**
  * ComputeElasticityTensorCPPWX defines an elasticity tensor material object for crystal plasticity.
  */
-class ComputeElasticityTensorCPPWX : public ComputeElasticityTensor
+class ComputeElasticityTensorCPPWX : public ComputeElasticityTensorPW
 {
 public:
   static InputParameters validParams();

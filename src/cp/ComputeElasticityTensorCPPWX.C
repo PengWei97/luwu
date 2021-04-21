@@ -15,7 +15,7 @@ registerMooseObject("TensorMechanicsApp", ComputeElasticityTensorCPPWX);
 InputParameters
 ComputeElasticityTensorCPPWX::validParams()
 {
-  InputParameters params = ComputeElasticityTensor::validParams();
+  InputParameters params = ComputeElasticityTensorPW::validParams();
   params.addClassDescription("Compute an elasticity tensor for crystal plasticity.");
   params.addRequiredParam<UserObjectName>(
       "grain_tracker", "Name of GrainTracker user object that provides RankFourTensors");
@@ -29,7 +29,7 @@ ComputeElasticityTensorCPPWX::validParams()
 }
 
 ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters & parameters)
-  : ComputeElasticityTensor(parameters),
+  : ComputeElasticityTensorPW(parameters),
     _length_scale(getParam<Real>("length_scale")),
     _pressure_scale(getParam<Real>("pressure_scale")),
     _grain_tracker(getUserObject<GrainDataTracker<RankFourTensor>>("grain_tracker")),
@@ -63,6 +63,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
         // delastic_tensor/dgr0,delastic_tensor/dgr1
   }
 }
+
 
 // void
 // ComputeElasticityTensorCPPWX::assignEulerAngles()
