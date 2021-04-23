@@ -17,13 +17,13 @@ class EulerAngleProvider;
 /**
  * Manage a list of elasticity tensors for the grains
  */
-class GrainTrackerElasticityPW : public GrainDataTracker<RankTwoTensor>
+class GrainTrackerRotation : public GrainDataTracker<RankTwoTensor>
 // GrainDataTracker: GrainTracker派生的类模板，以对象为基础，这些对象维护每个晶粒的物理参数
 {
 public:
   static InputParameters validParams();
 
-  GrainTrackerElasticityPW(const InputParameters & parameters);
+  GrainTrackerRotation(const InputParameters & parameters);
   // 常量引用：修饰形参，防止误操作，防止在函数体内修改parameters
   // 被调函数对形参做的任何操作都影响了主调函数中的实参变量。
 
@@ -40,6 +40,8 @@ protected:
   RankTwoTensor newGrain(unsigned int new_grain_id);
   // 设置为旋转张量
 
+  const bool _random_rotations;
+  
   /// object providing the Euler angles
   const EulerAngleProvider & _euler_rot;
 };

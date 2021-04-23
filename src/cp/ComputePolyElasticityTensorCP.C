@@ -7,13 +7,13 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "ComputeElasticityTensorCPPWX.h"
+#include "ComputePolyElasticityTensorCP.h"
 #include "RotationTensor.h"
 
-registerMooseObject("TensorMechanicsApp", ComputeElasticityTensorCPPWX);
+registerMooseObject("TensorMechanicsApp", ComputePolyElasticityTensorCP);
 
 InputParameters
-ComputeElasticityTensorCPPWX::validParams()
+ComputePolyElasticityTensorCP::validParams()
 {
   InputParameters params = ComputeElasticityTensorPW::validParams();
   params.addClassDescription("Compute an elasticity tensor for crystal plasticity.");
@@ -28,7 +28,7 @@ ComputeElasticityTensorCPPWX::validParams()
   return params;
 }
 
-ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters & parameters)
+ComputePolyElasticityTensorCP::ComputePolyElasticityTensorCP(const InputParameters & parameters)
   : ComputeElasticityTensorPW(parameters),
     _length_scale(getParam<Real>("length_scale")),
     _pressure_scale(getParam<Real>("pressure_scale")),
@@ -39,8 +39,8 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
     _vals(coupledValues("v")),
     // Vector of VariableValue pointers for each component of var_name
     _D_elastic_tensor(_op_num),
-    _crysrot(declareProperty<RankTwoTensor>("crysrot")),
-    _JtoeV(6.24150974e18)
+    _JtoeV(6.24150974e18),
+    _crysrot(declareProperty<RankTwoTensor>("crysrot"))
     // _R(_Euler_angles)
     // Obtain the rotation matrix by Euler angles
 {
@@ -66,7 +66,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
 
 
 // void
-// ComputeElasticityTensorCPPWX::assignEulerAngles()
+// ComputePolyElasticityTensorCP::assignEulerAngles()
 // {
 //   if (_read_prop_user_object)
 //   {
@@ -79,7 +79,7 @@ ComputeElasticityTensorCPPWX::ComputeElasticityTensorCPPWX(const InputParameters
 // }
 
 void
-ComputeElasticityTensorCPPWX::computeQpElasticityTensor()
+ComputePolyElasticityTensorCP::computeQpElasticityTensor()
 {
 
      // Get list of active order parameters from grain tracker

@@ -13,6 +13,7 @@
   ymax = 0.02
   elem_type = QUAD4
   uniform_refine = 2
+  skip_partitioning=true
 []
 
 [GlobalParams]
@@ -196,7 +197,7 @@
     length_scale = 1e-3
   [../]
   [./ElasticityTensor]
-    type = ComputeElasticityTensorCPPWX
+    type = ComputePolyElasticityTensorCP
     grain_tracker = grain_tracker
     grain_tracker_euler = grain_tracker_euler
     length_scale = 1e-3
@@ -244,7 +245,7 @@
     outputs = none
   [../]
   [./grain_tracker_euler]
-    type = GrainTrackerElasticityPW
+    type = GrainTrackerRotation
     connecting_threshold = 0.05
     compute_var_to_feature_map = true
     flood_entity_type = elemental

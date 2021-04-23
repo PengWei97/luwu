@@ -16,14 +16,14 @@
 
 
 /**
- * ComputeElasticityTensorCPPWX defines an elasticity tensor material object for crystal plasticity.
+ * ComputePolyElasticityTensorCP defines an elasticity tensor material object for crystal plasticity.
  */
-class ComputeElasticityTensorCPPWX : public ComputeElasticityTensorPW
+class ComputePolyElasticityTensorCP : public ComputeElasticityTensorPW
 {
 public:
   static InputParameters validParams();
 
-  ComputeElasticityTensorCPPWX(const InputParameters & parameters);
+  ComputePolyElasticityTensorCP(const InputParameters & parameters);
 
 protected:
   virtual void computeQpElasticityTensor() override;
