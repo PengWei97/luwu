@@ -56,7 +56,8 @@ my_num_adaptivity = 0
   [./voronoi]
     type = PolycrystalVoronoi
     rand_seed = 81
-    coloring_algorithm = bt
+    coloring_algorithm = jp
+    file_name = 'grains.txt'
   [../]
   [./grain_tracker]
     type = GrainTracker # Faux
