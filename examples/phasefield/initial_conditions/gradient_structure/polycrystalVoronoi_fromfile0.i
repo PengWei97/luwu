@@ -1,22 +1,22 @@
-my_filename = 'vt01'
+my_filename = 'vt02'
 
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  nx = 40
-  ny = 40
+  nx = 100
+  ny = 100
   nz = 0
-  xmin = -500
-  ymin = -500
-  xmax = 500
-  ymax = 500
+  xmin = -1000
+  ymin = -1000
+  xmax = 1000
+  ymax = 1000
   zmax = 0
   elem_type = QUAD4
 []
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 10 # Number of grains
+  op_num = 20 # Number of grains
   var_name_base = gr # Base name of grains
 []
 
@@ -26,7 +26,14 @@ my_filename = 'vt01'
     # grain_num = 15
     # rand_seed = 42
     coloring_algorithm = jp # We must use bt to force the UserObject to assign one grain to each op
-    file_name = 'grains1.txt'
+    file_name = 'grains2.txt'
+  [../]
+  [./grain_tracker]
+    type = GrainTracker
+    threshold = 0.2
+    connecting_threshold = 0.08
+    compute_halo_maps = true # Only necessary for displaying HALOS
+    compute_var_to_feature_map = true
   [../]
 []
 
@@ -55,6 +62,14 @@ my_filename = 'vt01'
     order = FIRST
     family = LAGRANGE
   [../]
+  [./unique_grains]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./var_indices]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [Kernels]
@@ -72,6 +87,20 @@ my_filename = 'vt01'
     type = BndsCalcAux
     variable = bnds
     execute_on = timestep_end
+  [../]
+  [./unique_grains]
+    type = FeatureFloodCountAux
+    variable = unique_grains
+    flood_counter = grain_tracker
+    field_display = UNIQUE_REGION
+    execute_on = 'initial timestep_end'
+  [../]
+  [./var_indices]
+    type = FeatureFloodCountAux
+    variable = var_indices
+    flood_counter = grain_tracker
+    field_display = VARIABLE_COLORING
+    execute_on = 'initial timestep_end'
   [../]
 []
 
@@ -113,6 +142,11 @@ my_filename = 'vt01'
     section_name = "Root"
     data_type = total
   [../]
+  [./avg_grain_volumes]
+    type = AverageGrainVolume
+    feature_counter = grain_tracker
+    execute_on = 'initial timestep_end'
+  [../]
 []
 
 [Executioner]
@@ -132,7 +166,7 @@ my_filename = 'vt01'
   nl_rel_tol = 1e-8 # Absolute tolerance for nonlienar solves
 
   start_time = 0.0
-  end_time = 400
+  end_time = 8e4
 
   [./TimeStepper]
     type = IterationAdaptiveDT
