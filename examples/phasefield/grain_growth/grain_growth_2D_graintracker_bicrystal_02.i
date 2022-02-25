@@ -3,25 +3,23 @@
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
 
-[Mesh]
-  # Mesh block.  Meshes can be read in or automatically generated
-  type = GeneratedMesh
-  dim = 2 # Problem dimension
-  nx = 11 # Number of elements in the x-direction
-  ny = 11 # Number of elements in the y-direction
-  xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 1000 # maximum x-coordinate of the mesh
-  ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 1000 # maximum y-coordinate of the mesh
-  elem_type = QUAD4  # Type of elements used in the mesh
-  uniform_refine = 3 # Initial uniform refinement of the mesh
+my_filename = 'gg_2D_grainTracker_02'
+my_interval = 2
+my_num_adaptivity = 2
 
-  parallel_type = replicated # Periodic BCs
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 30
+  ny = 30
+  xmax = 400
+  ymax = 400
+  elem_type = QUAD
 []
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 8 # Number of order parameters used
+  op_num = 2 # Number of order parameters used
   var_name_base = gr # Base name of grains
 []
 
@@ -32,11 +30,11 @@
 []
 
 [UserObjects]
-  [./voronoi]
-    type = PolycrystalVoronoi
-    grain_num = 100 # Number of grains
-    rand_seed = 10
-  [../]
+  # [./voronoi]
+  #   type = PolycrystalVoronoi
+  #   grain_num = 100 # Number of grains
+  #   rand_seed = 10
+  # [../]
   [./grain_tracker]
     type = GrainTracker
     threshold = 0.2
@@ -47,8 +45,11 @@
 
 [ICs]
   [./PolycrystalICs]
-    [./PolycrystalColoringIC]
-      polycrystal_ic_uo = voronoi
+    [./BicrystalCircleGrainIC]
+      radius = 150
+      x = 200
+      y = 200
+      int_width = 15
     [../]
   [../]
 []
@@ -148,6 +149,17 @@
     # Outputs the current time step
     type = TimestepSize
   [../]
+  [./gr1area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr1
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
 []
 
 [Executioner]
@@ -167,7 +179,7 @@
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlienar solves
 
   start_time = 0.0
-  end_time = 1.0e3
+  end_time = 100
 
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -177,7 +189,7 @@
 
   [./Adaptivity]
     # Block that turns on mesh adaptivity. Note that mesh will never coarsen beyond initial mesh (before uniform refinement)
-    initial_adaptivity = 2 # Number of times mesh is adapted to initial condition
+    initial_adaptivity = ${my_num_adaptivity} # Number of times mesh is adapted to initial condition
     refine_fraction = 0.7 # Fraction of high error that will be refined
     coarsen_fraction = 0.1 # Fraction of low error that will coarsened
     max_h_level = 4 # Max number of refinements used, starting from initial mesh (before uniform refinement)
@@ -185,10 +197,19 @@
 []
 
 [Outputs]
-  exodus = true # Exodus file will be outputted
+  file_base = ./${my_filename}/out_${my_filename}
+  [./my_exodus]
+    type = Exodus
+    interval = ${my_interval} # The interval at which time steps are output
+    # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
+    # sync_only = true
+    sequence = true
+  [../]
   csv = true
   [./console]
     type = Console
     max_rows = 20 # Will print the 20 most recent postprocessor values to the screen
+    output_linear = false
+    # output_screen = false
   [../]
 []
