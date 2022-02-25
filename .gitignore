@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 *.tar.bz2
-=======
-*.tar.bz2 
->>>>>>> 82fc9f78b2d347f611c065d616e2c8c096f316ec
 *.tgz
 .libs
 *.la
