@@ -3,9 +3,26 @@
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
 
-my_filename = 'gg_2D_grainTracker_04'
+my_filename = 'gg_2D_grainTracker_05'
 # my_interval = 1
 my_num_adaptivity = 3
+
+# [Mesh]
+#   # Mesh block.  Meshes can be read in or automatically generated
+#   type = GeneratedMesh
+#   dim = 2 # Problem dimension
+#   nx = 50 # Number of elements in the x-direction
+#   ny = 50 # Number of elements in the y-direction
+#   xmin = 0    # minimum x-coordinate of the mesh
+#   xmax = 500 # 1000 maximum x-coordinate of the mesh
+#   ymin = 0    # minimum y-coordinate of the mesh
+#   ymax = 500 # 1000 maximum y-coordinate of the mesh
+#   elem_type = QUAD4  # Type of elements used in the mesh
+#   uniform_refine = 3 # Initial uniform refinement of the mesh
+
+#   parallel_type = replicated # Periodic BCs
+# []
+
 
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
@@ -41,7 +58,7 @@ my_num_adaptivity = 3
     # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
     grain_num = 100 # Number of grains
     rand_seed = 100
-    output_adjacency_matrix = true 
+    # output_adjacency_matrix = true 
   [../]
   [./grain_tracker]
     type = GrainTracker

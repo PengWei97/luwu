@@ -65,11 +65,7 @@ DeformedGrainMaterialGG::DeformedGrainMaterialGG(const InputParameters & paramet
 void
 DeformedGrainMaterialGG::computeQpProperties()
 {
-<<<<<<< HEAD
   _Disloc_Den_i[_qp] = _Disloc_Den * (_length_scale * _length_scale); // \rho_{deformed}--修改单位
-=======
-  _Disloc_Den_i[_qp] = _Disloc_Den * (_length_scale * _length_scale);
->>>>>>> 19f4e2b7fbf11f0d282bd5374ce4fe8f551d9a5b
 
   Real rho_i;
   Real rho0 = 0.0;
@@ -80,27 +76,16 @@ DeformedGrainMaterialGG::computeQpProperties()
   // calculate effective dislocation density and assign zero dislocation densities to undeformed
   // grains
   const auto & op_to_grains = _grain_tracker.getVarToFeatureVector(_current_elem->id());
-<<<<<<< HEAD
 
   // op_to_grains: std::vector<unsigned int>, op_to_grains.size() = the number of the order para number
 
   // std::cout << "op_to_grains[0] =" << op_to_grains[0] << std::endl; // 24
-=======
-  // op_to_grains: std::vector<unsigned int>, op_to_grains.size() = the number of the order para number, op_to_grains[op_num]
-  // dof_id_type: _current_elem->id() -- int 单元的id号码
-  // std::cout << "~~~" << std::endl; // 24
-  // std::cout << "op_to_grains[0] = " << op_to_grains[0] << std::endl; // 24
-  // std::cout << "_current_elem->id() =  " << _current_elem->id() << std::endl; // 24
-  // std::cout << "~~~" << std::endl; // 24
-
->>>>>>> 19f4e2b7fbf11f0d282bd5374ce4fe8f551d9a5b
   // loop over active OPs
   bool one_active = false;
   for (MooseIndex(op_to_grains) op_index = 0; op_index < op_to_grains.size(); ++op_index)
   {
     if (op_to_grains[op_index] == FeatureFloodCount::invalid_id)
     {
-<<<<<<< HEAD
       // std::cout << "invalid_id " << FeatureFloodCount::invalid_id << std::endl; // 24
       continue;
     }
@@ -116,46 +101,21 @@ DeformedGrainMaterialGG::computeQpProperties()
       rho_i = _Disloc_Den_i[_qp];
     rho0 += rho_i * (*_vals[op_index])[_qp] * (*_vals[op_index])[_qp];
     // 插值方案：{\sum_{j=1}^N{\rho _{dis,i}}\eta _{i}^{2}}，分母
-=======
-      // std::cout << "op_index " << op_index << std::endl; // 24
-      // std::cout << "invalid_id " << FeatureFloodCount::invalid_id << std::endl; // 24
-      // std::cout << "--- " << FeatureFloodCount::invalid_id << std::endl; // s24
-      continue;
-    }
-
-    // std::cout << "op_to_grains[" << op_index<< "] = " << op_to_grains[op_index] << std::endl; // 24
-
-    one_active = true;
-    auto grain_id = op_to_grains[op_index];
-
-    if (grain_id >= _deformed_grain_num) // 需要修改这段代码
-      rho_i = 0.0;
-    else
-      rho_i = _Disloc_Den_i[_qp];
-    rho0 += rho_i * (*_vals[op_index])[_qp] * (*_vals[op_index])[_qp];
->>>>>>> 19f4e2b7fbf11f0d282bd5374ce4fe8f551d9a5b
   }
 
   if (!one_active && _t_step > 0)
     mooseError("No active order parameters");
 
   _rho_eff[_qp] = rho0 / SumEtai2;
-<<<<<<< HEAD
   // 插值方案：\rho _{dis,eff}=\frac{\sum_{j=1}^N{\rho _{dis,i}}\eta _{i}^{2}}{\sum_{i=1}^N{\eta ^2}}
 
-=======
->>>>>>> 19f4e2b7fbf11f0d282bd5374ce4fe8f551d9a5b
   if (_rho_eff[_qp] < 1e-9)
   {
     _rho_eff[_qp] = 0.0;
     _Disloc_Den_i[_qp] = 0.0;
   }
 
-<<<<<<< HEAD
   _beta[_qp] = 0.5 * _Elas_Mod * _Burg_vec * _Burg_vec * _JtoeV * _length_scale; // 0.5*b^2*rho_{dis,eff}
-=======
-  _beta[_qp] = 0.5 * _Elas_Mod * _Burg_vec * _Burg_vec * _JtoeV * _length_scale;
->>>>>>> 19f4e2b7fbf11f0d282bd5374ce4fe8f551d9a5b
 
   // Compute the deformation energy
   _Def_Eng[_qp] = _beta[_qp] * _rho_eff[_qp];
