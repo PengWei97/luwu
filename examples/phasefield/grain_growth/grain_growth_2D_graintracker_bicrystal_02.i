@@ -3,55 +3,23 @@
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
 
-my_filename = 'gg_2D_grainTracker_05'
-# my_interval = 1
-my_num_adaptivity = 3
-
-# [Mesh]
-#   # Mesh block.  Meshes can be read in or automatically generated
-#   type = GeneratedMesh
-#   dim = 2 # Problem dimension
-#   nx = 50 # Number of elements in the x-direction
-#   ny = 50 # Number of elements in the y-direction
-#   xmin = 0    # minimum x-coordinate of the mesh
-#   xmax = 500 # 1000 maximum x-coordinate of the mesh
-#   ymin = 0    # minimum y-coordinate of the mesh
-#   ymax = 500 # 1000 maximum y-coordinate of the mesh
-#   elem_type = QUAD4  # Type of elements used in the mesh
-#   uniform_refine = 3 # Initial uniform refinement of the mesh
-
-#   parallel_type = replicated # Periodic BCs
-# []
-
+my_filename = 'gg_2D_grainTracker_02'
+my_interval = 2
+my_num_adaptivity = 2
 
 [Mesh]
-  # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
-  dim = 2 # Problem dimension
-<<<<<<< HEAD
-  nx = 25 # Number of elements in the x-direction
-  ny = 25 # Number of elements in the y-direction
-  xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 500 # 1000 maximum x-coordinate of the mesh
-  ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 500 # 1000 maximum y-coordinate of the mesh
-=======
-  nx = 50 # Number of elements in the x-direction
-  ny = 50 # Number of elements in the y-direction
-  xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 1000 # 1000 maximum x-coordinate of the mesh
-  ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 1000 # 1000 maximum y-coordinate of the mesh
->>>>>>> 92ce587093e62ec04460af3fb5ea8d73cb8bd3d0
-  elem_type = QUAD4  # Type of elements used in the mesh
-  uniform_refine = 3 # Initial uniform refinement of the mesh
-
-  parallel_type = replicated # Periodic BCs
+  dim = 2
+  nx = 30
+  ny = 30
+  xmax = 400
+  ymax = 400
+  elem_type = QUAD
 []
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 8 # Number of order parameters used
+  op_num = 2 # Number of order parameters used
   var_name_base = gr # Base name of grains
 []
 
@@ -62,32 +30,26 @@ my_num_adaptivity = 3
 []
 
 [UserObjects]
-  [./voronoi]
-    type = PolycrystalVoronoi
-    # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
-<<<<<<< HEAD
-    grain_num = 30 # Number of grains
-    rand_seed = 100
-    output_adjacency_matrix = true 
-=======
-    grain_num = 100 # Number of grains
-    rand_seed = 100
-    # output_adjacency_matrix = true 
->>>>>>> 92ce587093e62ec04460af3fb5ea8d73cb8bd3d0
-  [../]
+  # [./voronoi]
+  #   type = PolycrystalVoronoi
+  #   grain_num = 100 # Number of grains
+  #   rand_seed = 10
+  # [../]
   [./grain_tracker]
     type = GrainTracker
     threshold = 0.2
     connecting_threshold = 0.08
     compute_halo_maps = true # Only necessary for displaying HALOS
-    compute_var_to_feature_map = true
   [../]
 []
 
 [ICs]
   [./PolycrystalICs]
-    [./PolycrystalColoringIC]
-      polycrystal_ic_uo = voronoi
+    [./BicrystalCircleGrainIC]
+      radius = 150
+      x = 200
+      y = 200
+      int_width = 15
     [../]
   [../]
 []
@@ -160,14 +122,14 @@ my_num_adaptivity = 3
   [../]
 []
 
-# [BCs]
-#   # Boundary Condition block
-#   [./Periodic]
-#     [./top_bottom]
-#       auto_direction = 'x y' # Makes problem periodic in the x and y directions
-#     [../]
-#   [../]
-# []
+[BCs]
+  # Boundary Condition block
+  [./Periodic]
+    [./top_bottom]
+      auto_direction = 'x y' # Makes problem periodic in the x and y directions
+    [../]
+  [../]
+[]
 
 [Materials]
   [./CuGrGr]
@@ -187,17 +149,18 @@ my_num_adaptivity = 3
     # Outputs the current time step
     type = TimestepSize
   [../]
-[]
-
-[VectorPostprocessors]
-  [./grain_volumes] 
-    type = FeatureVolumeVectorPostprocessor 
-    flood_counter = grain_tracker # The FeatureFloodCount UserObject to get values from.
-    execute_on = 'initial timestep_end'
-    output_centroids = true
+  [./gr1area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr1
   [../]
 []
 
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
 
 [Executioner]
   type = Transient # Type of executioner, here it is transient with an adaptive time step
@@ -216,12 +179,11 @@ my_num_adaptivity = 3
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlienar solves
 
   start_time = 0.0
-  end_time = 1e4
-  # num_steps = 4
+  end_time = 100
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 5.0 # Initial time step.  In this simulation it changes.
+    dt = 25 # Initial time step.  In this simulation it changes.
     optimal_iterations = 6 # Time step will adapt to maintain this number of nonlinear iterations
   [../]
 
@@ -234,24 +196,20 @@ my_num_adaptivity = 3
   [../]
 []
 
-
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
-  print_linear_residuals = false
-  # [./console]
-  #   type = Console
-  #   max_rows = 20 # Will print the 20 most recent postprocessor values to the screen
-  #   # output_linear = false
-  #   # output_nonlinear = false
-  #   # print_mesh_changed_info = false
-  #   # output_screen = false
-  # [../]
   [./my_exodus]
     type = Exodus
-    # interval = ${my_interval} # The interval at which time steps are output
+    interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
     sequence = true
   [../]
   csv = true
+  [./console]
+    type = Console
+    max_rows = 20 # Will print the 20 most recent postprocessor values to the screen
+    output_linear = false
+    # output_screen = false
+  [../]
 []
