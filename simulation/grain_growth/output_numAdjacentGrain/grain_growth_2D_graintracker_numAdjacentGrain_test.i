@@ -3,10 +3,9 @@
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
 
-my_filename = 'GG_2D_noLoading_numAdjacentGrain_01'
-my_interval = 5
+my_filename = 'gg_2D_noloading_numAdjacentGrain_04'
+my_interval = 1
 my_num_adaptivity = 3
-
 
 
 [Mesh]
@@ -16,11 +15,11 @@ my_num_adaptivity = 3
   nx = 50 # Number of elements in the x-direction
   ny = 50 # Number of elements in the y-direction
   xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 300 # 1000 maximum x-coordinate of the mesh 300-10 500-25 1000-100 2000-400 4000-1600 
+  xmax = 1000 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
   ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 300 # 1000 maximum y-coordinate of the mesh
+  ymax = 1000 # 1000 maximum y-coordinate of the mesh
   elem_type = QUAD4  # Type of elements used in the mesh
-  uniform_refine = 3 # Initial uniform refinement of the mesh
+  uniform_refine = 2 # Initial uniform refinement of the mesh
 
   parallel_type = replicated # Periodic BCs
 []
@@ -41,8 +40,8 @@ my_num_adaptivity = 3
   [./voronoi]
     type = PolycrystalVoronoi
     # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
-    grain_num = 10 # Number of grains
-    rand_seed = 20
+    grain_num = 100 # Number of grains
+    rand_seed = 200
     # output_adjacency_matrix = true 
   [../]
   [./grain_tracker]
@@ -217,11 +216,11 @@ my_num_adaptivity = 3
   #   # output_screen = false
   # [../]
   [./my_exodus]
-    type = Exodus
-    # interval = ${my_interval} # The interval at which time steps are output
+    type = Nemesis # Nemesis # Exodus
+    interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
-    sequence = true
+    # sequence = true
   [../]
   csv = true
 []
