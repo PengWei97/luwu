@@ -2,8 +2,8 @@
 # Mesh adaptivity and time step adaptivity are used
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
-
-my_filename = 'GG_2D_noLoading_numAdjacentGrain_01'
+# GG_2D_noLoading_numAdjacentGrain -- gg
+my_filename = 'gg_01'
 my_interval = 5
 my_num_adaptivity = 3
 
@@ -186,8 +186,8 @@ my_num_adaptivity = 3
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlienar solves
 
   start_time = 0.0
-  end_time = 1e4
-  # num_steps = 4
+  # end_time = 5
+  num_steps = 4
 
   [./TimeStepper]
     type = IterationAdaptiveDT
