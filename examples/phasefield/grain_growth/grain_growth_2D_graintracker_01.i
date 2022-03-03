@@ -221,7 +221,7 @@ my_num_adaptivity = 3
     # interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
-    sequence = true
+    # sequence = true
   [../]
   csv = true
 []
