@@ -2,27 +2,11 @@
 # Mesh adaptivity and time step adaptivity are used
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
+# gg_2D_grainTracker--002
 
-my_filename = 'gg_2D_grainTracker_05'
+my_filename = '002_gbMobilityAnisotropic_01'
 # my_interval = 1
 my_num_adaptivity = 3
-
-# [Mesh]
-#   # Mesh block.  Meshes can be read in or automatically generated
-#   type = GeneratedMesh
-#   dim = 2 # Problem dimension
-#   nx = 50 # Number of elements in the x-direction
-#   ny = 50 # Number of elements in the y-direction
-#   xmin = 0    # minimum x-coordinate of the mesh
-#   xmax = 500 # 1000 maximum x-coordinate of the mesh
-#   ymin = 0    # minimum y-coordinate of the mesh
-#   ymax = 500 # 1000 maximum y-coordinate of the mesh
-#   elem_type = QUAD4  # Type of elements used in the mesh
-#   uniform_refine = 3 # Initial uniform refinement of the mesh
-
-#   parallel_type = replicated # Periodic BCs
-# []
-
 
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
@@ -31,14 +15,31 @@ my_num_adaptivity = 3
   nx = 50 # Number of elements in the x-direction
   ny = 50 # Number of elements in the y-direction
   xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 1000 # 1000 maximum x-coordinate of the mesh
+  xmax = 500 # 1000 maximum x-coordinate of the mesh
   ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 1000 # 1000 maximum y-coordinate of the mesh
+  ymax = 500 # 1000 maximum y-coordinate of the mesh
   elem_type = QUAD4  # Type of elements used in the mesh
   uniform_refine = 3 # Initial uniform refinement of the mesh
 
   parallel_type = replicated # Periodic BCs
 []
+
+
+# [Mesh]
+#   # Mesh block.  Meshes can be read in or automatically generated
+#   type = GeneratedMesh
+#   dim = 2 # Problem dimension
+#   nx = 50 # Number of elements in the x-direction
+#   ny = 50 # Number of elements in the y-direction
+#   xmin = 0    # minimum x-coordinate of the mesh
+#   xmax = 1000 # 1000 maximum x-coordinate of the mesh
+#   ymin = 0    # minimum y-coordinate of the mesh
+#   ymax = 1000 # 1000 maximum y-coordinate of the mesh
+#   elem_type = QUAD4  # Type of elements used in the mesh
+#   uniform_refine = 3 # Initial uniform refinement of the mesh
+
+#   parallel_type = replicated # Periodic BCs
+# []
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
@@ -56,8 +57,8 @@ my_num_adaptivity = 3
   [./voronoi]
     type = PolycrystalVoronoi
     # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
-    grain_num = 100 # Number of grains
-    rand_seed = 100
+    grain_num = 25 # Number of grains
+    rand_seed = 30
     # output_adjacency_matrix = true 
   [../]
   [./grain_tracker]
@@ -157,6 +158,7 @@ my_num_adaptivity = 3
 [Materials]
   [./CuGrGr]
     # Material properties
+    
     type = GBEvolution
     T = 450 # Constant temperature of the simulation (for mobility calculation)
     wGB = 14 # Width of the diffuse GB
