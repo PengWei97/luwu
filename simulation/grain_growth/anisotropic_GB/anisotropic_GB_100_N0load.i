@@ -1,27 +1,39 @@
-my_filename = 'GG_2D_elasiticLoading_01' 
-my_interval = 0
+# This simulation predicts GB migration of a 2D copper polycrystal with 100 grains represented with 18 order parameters
+# Mesh adaptivity and time step adaptivity are used
+# An AuxVariable is used to calculate the grain boundary locations
+# Postprocessors are used to record time step and the number of grains
+# gg_100_anisotropicTheta_01 -- 没有考虑晶界各向异性
+# gg_100_anisotropicTheta_02 -- 考虑晶界各向异性
+
+my_filename = 'gg_100_anisotropicTheta_03'
+my_interval = 5
 my_num_adaptivity = 3
 
+
 [Mesh]
+  # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
-  dim = 2
-  nx = 10
-  ny = 10
-  nz = 0
-  xmax = 500
-  ymax = 500
-  zmax = 0
-  elem_type = QUAD4
-  uniform_refine = 2
+  dim = 2 # Problem dimension
+  nx = 20 # Number of elements in the x-direction
+  ny = 20 # Number of elements in the y-direction
+  xmin = 0    # minimum x-coordinate of the mesh
+  xmax = 1000 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
+  ymin = 0    # minimum y-coordinate of the mesh
+  ymax = 1000 # 1000 maximum y-coordinate of the mesh
+  elem_type = QUAD4  # Type of elements used in the mesh
+  uniform_refine = 2 # Initial uniform refinement of the mesh
+
+  parallel_type = distributed # Periodic BCs distributed replicated
 []
 
 [GlobalParams]
-  op_num = 8
-  var_name_base = gr
-  grain_num = 10
+  # Parameters used by several kernels that are defined globally to simplify input file
+  op_num = 10 # Number of order parameters used
+  var_name_base = gr # Base name of grains
 []
 
 [Variables]
+  # Variable block, where all variables in the simulation are declared
   [./PolycrystalVariables]
   [../]
   [./disp_x]
@@ -37,11 +49,15 @@ my_num_adaptivity = 3
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name = grn_36_rand_2D.tex
+    file_name = grn_100_rand_2D.tex
   [../]
   [./voronoi]
     type = PolycrystalVoronoi
-    coloring_algorithm = bt
+    # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
+    grain_num = 100 # Number of grains
+    rand_seed = 200
+    # output_adjacency_matrix = true 
+    coloring_algorithm = jp
   [../]
   [./grain_tracker]
     type = GrainTrackerElasticity
@@ -116,7 +132,9 @@ my_num_adaptivity = 3
 []
 
 [Kernels]
+  # Kernel block, where the kernels defining the residual equations are set up.
   [./PolycrystalKernel]
+    # Custom action creating all necessary kernels for grain growth.  All input parameters are up in GlobalParams
   [../]
   [./PolycrystalElasticDrivingForce]
   [../]
@@ -127,6 +145,7 @@ my_num_adaptivity = 3
 []
 
 [AuxKernels]
+  # AuxKernel block, defining the equations used to calculate the auxvars
   [./BndsCalc]
     type = BndsCalcAux
     variable = bnds
@@ -220,17 +239,18 @@ my_num_adaptivity = 3
 []
 
 [BCs]
-  [./Periodic]
-    [./All]
-      auto_direction = 'x'
-      variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7'
-    [../]
-  [../]
+#   # Boundary Condition block
+#   [./Periodic]
+#     [./top_bottom]
+#       auto_direction = 'x y' # Makes problem periodic in the x and y directions
+#     [../]
+#   [../]
   [./top_displacement]
     type = DirichletBC
     variable = disp_y
     boundary = top
-    value = -50.0
+    value = 50
+    # value = 0
   [../]
   [./x_anchor]
     type = DirichletBC
@@ -247,14 +267,23 @@ my_num_adaptivity = 3
 []
 
 [Materials]
-  [./Copper]
-    type = GBEvolution
-    block = 0
-    T = 500 # K
-    wGB = 15 # nm
-    GBmob0 = 2.5e-6 # m^4/(Js) from Schoenfelder 1997
-    Q = 0.23 # Migration energy in eV
-    GBenergy = 0.708 # GB energy in J/m^2
+  [./CuGrGr]
+    # Material properties
+    type = GBAnisotropyEvolutionBase # GBAnisotropyEvolutionBase GBEvolution
+    T = 450 # Constant temperature of the simulation (for mobility calculation)
+    wGB = 14 # Width of the diffuse GB
+    GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
+    Q = 0.23 #eV for copper from Schoenfelder1997
+    GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+    outputs = my_exodus
+    output_properties = 'M_GB GBenergy' 
+  [../]
+  [./GBMisorientation]
+    type = ComputePolycrystalGBAnisotropy
+    grain_tracker = grain_tracker
+    euler_angle_provider = euler_angle_file
+    outputs = my_exodus
+    output_properties = delta_theta
   [../]
   [./ElasticityTensor]
     type = ComputePolycrystalElasticityTensor
@@ -272,21 +301,32 @@ my_num_adaptivity = 3
 []
 
 [Postprocessors]
-  [./ngrains]
-    type = FeatureFloodCount
-    variable = bnds
-    threshold = 0.7
+  # Scalar postprocessors
+  [./dt]
+    # Outputs the current time step
+    type = TimestepSize
   [../]
   [./dofs]
     type = NumDOFs
-  [../]
-  [./dt]
-    type = TimestepSize
   [../]
   [./run_time]
     type = PerfGraphData
     section_name = "Root"
     data_type = total
+  [../]
+  [./ngrains]
+    type = FeatureFloodCount
+    variable = bnds
+    threshold = 0.7
+  [../]
+[]
+
+[VectorPostprocessors]
+  [./grain_volumes] 
+    type = FeatureVolumeVectorPostprocessor 
+    flood_counter = grain_tracker # The FeatureFloodCount UserObject to get values from.
+    execute_on = 'initial timestep_end'
+    output_centroids = true
   [../]
 []
 
@@ -298,17 +338,25 @@ my_num_adaptivity = 3
 []
 
 [Executioner]
-  type = Transient
-  scheme = bdf2
-  solve_type = PJFNK
-  petsc_options_iname = '-pc_type -pc_hypre_type -ksp_gmres_restart -pc_hypre_boomeramg_strong_threshold'
-  petsc_options_value = 'hypre boomeramg 31 0.7'
-  l_tol = 1.0e-4
-  l_max_its = 30
-  nl_max_its = 25
-  nl_rel_tol = 1.0e-7
+  type = Transient # Type of executioner, here it is transient with an adaptive time step
+  scheme = bdf2 # Type of time integration (2nd order backward euler), defaults to 1st order backward euler
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  # Uses newton iteration to solve the problem.
+  petsc_options_iname = '-pc_type -pc_hypre_type -ksp_gmres_restart -mat_mffd_type'
+  petsc_options_value = 'hypre boomeramg 101 ds'
+
+  l_max_its = 30 # Max number of linear iterations
+  l_tol = 1e-4 # Relative tolerance for linear solves
+  nl_max_its = 40 # Max number of nonlinear iterations
+  nl_rel_tol = 1e-10 # Absolute tolerance for nonlienar solves
+
   start_time = 0.0
-  num_steps = 1
+  end_time = 1e4
+  # num_steps = 4
+
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1.5
@@ -316,13 +364,16 @@ my_num_adaptivity = 3
     cutback_factor = 0.8
     optimal_iterations = 8
   [../]
+
   [./Adaptivity]
-    initial_adaptivity = 2
-    refine_fraction = 0.8
-    coarsen_fraction = 0.05
-    max_h_level = 3
+    # Block that turns on mesh adaptivity. Note that mesh will never coarsen beyond initial mesh (before uniform refinement)
+    initial_adaptivity = ${my_num_adaptivity} # Number of times mesh is adapted to initial condition
+    refine_fraction = 0.7 # Fraction of high error that will be refined
+    coarsen_fraction = 0.1 # Fraction of low error that will coarsened
+    max_h_level = 4 # Max number of refinements used, starting from initial mesh (before uniform refinement)
   [../]
 []
+
 
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
@@ -336,8 +387,8 @@ my_num_adaptivity = 3
   #   # output_screen = false
   # [../]
   [./my_exodus]
-    type = Exodus
-    # interval = ${my_interval} # The interval at which time steps are output
+    type = Nemesis # Exodus Nemesis
+    interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
     # sequence = true
