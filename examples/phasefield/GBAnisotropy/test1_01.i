@@ -1,4 +1,4 @@
-my_filename = 'test_01'
+my_filename = 'test_02'
 my_num_adaptivity = 3
 my_interval = 5
 
@@ -37,6 +37,19 @@ my_interval = 5
   [../]
 []
 
+[UserObjects]
+  [./euler_angle_file]
+    type = EulerAngleFileReader
+    file_name = grn_100_testure_2D.tex # grn_100_rand_2D
+  [../]
+  [./grain_tracker]
+    type = GrainTracker
+    compute_var_to_feature_map = true
+    threshold = 0.2
+    connecting_threshold = 0.08
+    compute_halo_maps = true # Only necessary for displaying HALOS
+  [../]
+[]
 [AuxVariables]
   [./bnds]
     order = FIRST

@@ -2,8 +2,11 @@
 # Mesh adaptivity and time step adaptivity are used
 # An AuxVariable is used to calculate the grain boundary locations
 # Postprocessors are used to record time step and the number of grains
+# code ./out_gg_100_anisotropicTheta_02_10.csv
+# gg_100_anisotropicTheta_01 -- 没有考虑晶界各向异性
+# gg_100_anisotropicTheta_02 -- 考虑晶界各向异性
 
-my_filename = 'gg_numAdjacentGrain_1600_02'
+my_filename = 'gg_100_anisotropicTheta_03'
 my_interval = 5
 my_num_adaptivity = 3
 
@@ -12,21 +15,21 @@ my_num_adaptivity = 3
   # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
   dim = 2 # Problem dimension
-  nx = 200 # Number of elements in the x-direction
-  ny = 200 # Number of elements in the y-direction
+  nx = 20 # Number of elements in the x-direction
+  ny = 20 # Number of elements in the y-direction
   xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 4000 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
+  xmax = 1400 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
   ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 4000 # 1000 maximum y-coordinate of the mesh
+  ymax = 1400 # 1000 maximum y-coordinate of the mesh
   elem_type = QUAD4  # Type of elements used in the mesh
-  uniform_refine = 3 # Initial uniform refinement of the mesh
+  uniform_refine = 2 # Initial uniform refinement of the mesh
 
   parallel_type = distributed # Periodic BCs distributed replicated
 []
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 10 # Number of order parameters used
+  op_num = 12 # Number of order parameters used
   var_name_base = gr # Base name of grains
 []
 
@@ -34,22 +37,39 @@ my_num_adaptivity = 3
   # Variable block, where all variables in the simulation are declared
   [./PolycrystalVariables]
   [../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
 []
 
 [UserObjects]
+  [./euler_angle_file]
+    type = EulerAngleFileReader
+    file_name = grn_100_rand_2D.tex
+  [../]
   [./voronoi]
     type = PolycrystalVoronoi
     # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
-    grain_num = 1600 # Number of grains
-    rand_seed = 3200
+    grain_num = 100 # Number of grains
+    rand_seed = 200
     # output_adjacency_matrix = true 
+    coloring_algorithm = jp
   [../]
   [./grain_tracker]
-    type = GrainTracker
+    type = GrainTrackerElasticity
     threshold = 0.2
-    connecting_threshold = 0.08
-    compute_halo_maps = true # Only necessary for displaying HALOS
     compute_var_to_feature_map = true
+    execute_on = 'initial timestep_begin'
+    flood_entity_type = ELEMENTAL
+
+    C_ijkl = '1.27e5 0.708e5 0.708e5 1.27e5 0.708e5 1.27e5 0.7355e5 0.7355e5 0.7355e5'
+    fill_method = symmetric9
+    euler_angle_provider = euler_angle_file
   [../]
 []
 
@@ -62,9 +82,33 @@ my_num_adaptivity = 3
 []
 
 [AuxVariables]
-  # Dependent variables
   [./bnds]
-    # Variable used to visualize the grain boundaries in the simulation
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./elastic_strain11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./elastic_strain22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./elastic_strain12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress22]
+    order = CONSTANT
+    family = MONOMIAL
   [../]
   [./unique_grains]
     order = CONSTANT
@@ -74,11 +118,15 @@ my_num_adaptivity = 3
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./ghost_regions]
+  [./vonmises_stress]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./halos]
+  [./C1111]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./euler_angle]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -89,64 +137,167 @@ my_num_adaptivity = 3
   [./PolycrystalKernel]
     # Custom action creating all necessary kernels for grain growth.  All input parameters are up in GlobalParams
   [../]
+  [./PolycrystalElasticDrivingForce]
+  [../]
+  [./TensorMechanics]
+    use_displaced_mesh = true
+    displacements = 'disp_x disp_y'
+  [../]
 []
 
 [AuxKernels]
   # AuxKernel block, defining the equations used to calculate the auxvars
-  [./bnds_aux]
-    # AuxKernel that calculates the GB term
+  [./BndsCalc]
     type = BndsCalcAux
     variable = bnds
-    execute_on = 'initial timestep_end'
+    execute_on = timestep_end
+  [../]
+  [./elastic_strain11]
+    type = RankTwoAux
+    variable = elastic_strain11
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 0
+    execute_on = timestep_end
+  [../]
+  [./elastic_strain22]
+    type = RankTwoAux
+    variable = elastic_strain22
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 1
+    execute_on = timestep_end
+  [../]
+  [./elastic_strain12]
+    type = RankTwoAux
+    variable = elastic_strain12
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 1
+    execute_on = timestep_end
+  [../]
+	[./stress11]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress11
+    index_i = 0
+    index_j = 0
+  [../]
+  [./stress12]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress12
+    index_i = 0
+    index_j = 1
+  [../]
+  [./stress22]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress22
+    index_i = 1
+    index_j = 1
   [../]
   [./unique_grains]
     type = FeatureFloodCountAux
     variable = unique_grains
+    execute_on = timestep_end
     flood_counter = grain_tracker
     field_display = UNIQUE_REGION
-    execute_on = 'initial timestep_end'
   [../]
   [./var_indices]
     type = FeatureFloodCountAux
     variable = var_indices
+    execute_on = timestep_end
     flood_counter = grain_tracker
     field_display = VARIABLE_COLORING
-    execute_on = 'initial timestep_end'
   [../]
-  [./ghosted_entities]
-    type = FeatureFloodCountAux
-    variable = ghost_regions
-    flood_counter = grain_tracker
-    field_display = GHOSTED_ENTITIES
-    execute_on = 'initial timestep_end'
+  [./C1111]
+    type = RankFourAux
+    variable = C1111
+    rank_four_tensor = elasticity_tensor
+    index_l = 0
+    index_j = 0
+    index_k = 0
+    index_i = 0
+    execute_on = timestep_end
   [../]
-  [./halos]
-    type = FeatureFloodCountAux
-    variable = halos
-    flood_counter = grain_tracker
-    field_display = HALOS
+  [./vonmises_stress]
+    type = RankTwoScalarAux
+    variable = vonmises_stress
+    rank_two_tensor = stress
+    scalar_type = VonMisesStress
+    execute_on = timestep_end
+  [../]
+  [./euler_angle]
+    type = OutputEulerAngles
+    variable = euler_angle
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'phi1'
+    #  phi1, Phi, phi2
     execute_on = 'initial timestep_end'
   [../]
 []
 
-# [BCs]
+[BCs]
 #   # Boundary Condition block
 #   [./Periodic]
 #     [./top_bottom]
 #       auto_direction = 'x y' # Makes problem periodic in the x and y directions
 #     [../]
 #   [../]
-# []
+  [./top_displacement]
+    type = DirichletBC
+    variable = disp_y
+    boundary = top
+    value = 50
+    # value = 0
+  [../]
+  [./x_anchor]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'left right'
+    value = 0.0
+  [../]
+  [./y_anchor]
+    type = DirichletBC
+    variable = disp_y
+    boundary = bottom
+    value = 0.0
+  [../]
+[]
 
 [Materials]
   [./CuGrGr]
     # Material properties
-    type = GBEvolution
+    type = GBAnisotropyEvolutionBase # GBAnisotropyEvolutionBase GBEvolution
     T = 450 # Constant temperature of the simulation (for mobility calculation)
     wGB = 14 # Width of the diffuse GB
     GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
     Q = 0.23 #eV for copper from Schoenfelder1997
     GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+    outputs = my_exodus
+    output_properties = 'M_GB GBenergy' 
+  [../]
+  [./GBMisorientation]
+    type = ComputePolycrystalGBAnisotropy
+    grain_tracker = grain_tracker
+    euler_angle_provider = euler_angle_file
+    outputs = my_exodus
+    output_properties = delta_theta
+  [../]
+  [./ElasticityTensor]
+    type = ComputePolycrystalElasticityTensor
+    grain_tracker = grain_tracker
+  [../]
+  [./strain]
+    type = ComputeSmallStrain
+    block = 0
+    displacements = 'disp_x disp_y'
+  [../]
+  [./stress]
+    type = ComputeLinearElasticStress
+    block = 0
   [../]
 []
 
@@ -155,6 +306,19 @@ my_num_adaptivity = 3
   [./dt]
     # Outputs the current time step
     type = TimestepSize
+  [../]
+  [./dofs]
+    type = NumDOFs
+  [../]
+  [./run_time]
+    type = PerfGraphData
+    section_name = "Root"
+    data_type = total
+  [../]
+  [./ngrains]
+    type = FeatureFloodCount
+    variable = bnds
+    threshold = 0.7
   [../]
 []
 
@@ -167,6 +331,12 @@ my_num_adaptivity = 3
   [../]
 []
 
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    coupled_groups = 'disp_x,disp_y'
+  [../]
+[]
 
 [Executioner]
   type = Transient # Type of executioner, here it is transient with an adaptive time step
@@ -190,8 +360,10 @@ my_num_adaptivity = 3
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 5.0 # Initial time step.  In this simulation it changes.
-    optimal_iterations = 6 # Time step will adapt to maintain this number of nonlinear iterations
+    dt = 1.5
+    growth_factor = 1.2
+    cutback_factor = 0.8
+    optimal_iterations = 8
   [../]
 
   [./Adaptivity]

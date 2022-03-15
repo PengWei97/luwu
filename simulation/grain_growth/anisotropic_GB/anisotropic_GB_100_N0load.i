@@ -5,8 +5,8 @@
 # gg_100_anisotropicTheta_01 -- 没有考虑晶界各向异性
 # gg_100_anisotropicTheta_02 -- 考虑晶界各向异性
 
-my_filename = 'gg_100_anisotropicTheta_03'
-my_interval = 5
+my_filename = 'gg_100_anisotropicTheta_02_10_3'
+# my_interval = 5
 my_num_adaptivity = 3
 
 
@@ -17,9 +17,9 @@ my_num_adaptivity = 3
   nx = 20 # Number of elements in the x-direction
   ny = 20 # Number of elements in the y-direction
   xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 1000 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
+  xmax = 1400 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
   ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 1000 # 1000 maximum y-coordinate of the mesh
+  ymax = 1400 # 1000 maximum y-coordinate of the mesh
   elem_type = QUAD4  # Type of elements used in the mesh
   uniform_refine = 2 # Initial uniform refinement of the mesh
 
@@ -28,7 +28,7 @@ my_num_adaptivity = 3
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 10 # Number of order parameters used
+  op_num = 12 # Number of order parameters used
   var_name_base = gr # Base name of grains
 []
 
@@ -36,20 +36,12 @@ my_num_adaptivity = 3
   # Variable block, where all variables in the simulation are declared
   [./PolycrystalVariables]
   [../]
-  [./disp_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./disp_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
 []
 
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name = grn_100_rand_2D.tex
+    file_name = grn_100_testure_2D.tex # grn_100_rand_2D
   [../]
   [./voronoi]
     type = PolycrystalVoronoi
@@ -60,15 +52,11 @@ my_num_adaptivity = 3
     coloring_algorithm = jp
   [../]
   [./grain_tracker]
-    type = GrainTrackerElasticity
-    threshold = 0.2
+    type = GrainTracker
     compute_var_to_feature_map = true
-    execute_on = 'initial timestep_begin'
-    flood_entity_type = ELEMENTAL
-
-    C_ijkl = '1.27e5 0.708e5 0.708e5 1.27e5 0.708e5 1.27e5 0.7355e5 0.7355e5 0.7355e5'
-    fill_method = symmetric9
-    euler_angle_provider = euler_angle_file
+    threshold = 0.2
+    connecting_threshold = 0.08
+    compute_halo_maps = true # Only necessary for displaying HALOS
   [../]
 []
 
@@ -85,43 +73,11 @@ my_num_adaptivity = 3
     order = FIRST
     family = LAGRANGE
   [../]
-  [./elastic_strain11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./elastic_strain22]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./elastic_strain12]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress12]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress22]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
   [./unique_grains]
     order = CONSTANT
     family = MONOMIAL
   [../]
   [./var_indices]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./vonmises_stress]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./C1111]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -136,12 +92,6 @@ my_num_adaptivity = 3
   [./PolycrystalKernel]
     # Custom action creating all necessary kernels for grain growth.  All input parameters are up in GlobalParams
   [../]
-  [./PolycrystalElasticDrivingForce]
-  [../]
-  [./TensorMechanics]
-    use_displaced_mesh = true
-    displacements = 'disp_x disp_y'
-  [../]
 []
 
 [AuxKernels]
@@ -150,51 +100,6 @@ my_num_adaptivity = 3
     type = BndsCalcAux
     variable = bnds
     execute_on = timestep_end
-  [../]
-  [./elastic_strain11]
-    type = RankTwoAux
-    variable = elastic_strain11
-    rank_two_tensor = elastic_strain
-    index_i = 0
-    index_j = 0
-    execute_on = timestep_end
-  [../]
-  [./elastic_strain22]
-    type = RankTwoAux
-    variable = elastic_strain22
-    rank_two_tensor = elastic_strain
-    index_i = 1
-    index_j = 1
-    execute_on = timestep_end
-  [../]
-  [./elastic_strain12]
-    type = RankTwoAux
-    variable = elastic_strain12
-    rank_two_tensor = elastic_strain
-    index_i = 0
-    index_j = 1
-    execute_on = timestep_end
-  [../]
-	[./stress11]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress11
-    index_i = 0
-    index_j = 0
-  [../]
-  [./stress12]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress12
-    index_i = 0
-    index_j = 1
-  [../]
-  [./stress22]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress22
-    index_i = 1
-    index_j = 1
   [../]
   [./unique_grains]
     type = FeatureFloodCountAux
@@ -209,23 +114,6 @@ my_num_adaptivity = 3
     execute_on = timestep_end
     flood_counter = grain_tracker
     field_display = VARIABLE_COLORING
-  [../]
-  [./C1111]
-    type = RankFourAux
-    variable = C1111
-    rank_four_tensor = elasticity_tensor
-    index_l = 0
-    index_j = 0
-    index_k = 0
-    index_i = 0
-    execute_on = timestep_end
-  [../]
-  [./vonmises_stress]
-    type = RankTwoScalarAux
-    variable = vonmises_stress
-    rank_two_tensor = stress
-    scalar_type = VonMisesStress
-    execute_on = timestep_end
   [../]
   [./euler_angle]
     type = OutputEulerAngles
@@ -245,38 +133,19 @@ my_num_adaptivity = 3
 #       auto_direction = 'x y' # Makes problem periodic in the x and y directions
 #     [../]
 #   [../]
-  [./top_displacement]
-    type = DirichletBC
-    variable = disp_y
-    boundary = top
-    value = 50
-    # value = 0
-  [../]
-  [./x_anchor]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'left right'
-    value = 0.0
-  [../]
-  [./y_anchor]
-    type = DirichletBC
-    variable = disp_y
-    boundary = bottom
-    value = 0.0
-  [../]
 []
 
 [Materials]
   [./CuGrGr]
     # Material properties
-    type = GBAnisotropyEvolutionBase # GBAnisotropyEvolutionBase GBEvolution
-    T = 450 # Constant temperature of the simulation (for mobility calculation)
+    type = GBAnisotropyMisorientation # GBAnisotropyEvolutionBase GBEvolution GBAnisotropyMisorientation
+    T = 600 # Constant temperature of the simulation (for mobility calculation)
     wGB = 14 # Width of the diffuse GB
-    GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
-    Q = 0.23 #eV for copper from Schoenfelder1997
-    GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+    # GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
+    # Q = 0.23 #eV for copper from Schoenfelder1997
+    # GBenergy = 0.708 #J/m^2 from Schoenfelder1997
     outputs = my_exodus
-    output_properties = 'M_GB GBenergy' 
+    # output_properties = 'M_GB GBenergy' 
   [../]
   [./GBMisorientation]
     type = ComputePolycrystalGBAnisotropy
@@ -284,19 +153,6 @@ my_num_adaptivity = 3
     euler_angle_provider = euler_angle_file
     outputs = my_exodus
     output_properties = delta_theta
-  [../]
-  [./ElasticityTensor]
-    type = ComputePolycrystalElasticityTensor
-    grain_tracker = grain_tracker
-  [../]
-  [./strain]
-    type = ComputeSmallStrain
-    block = 0
-    displacements = 'disp_x disp_y'
-  [../]
-  [./stress]
-    type = ComputeLinearElasticStress
-    block = 0
   [../]
 []
 
@@ -330,13 +186,6 @@ my_num_adaptivity = 3
   [../]
 []
 
-[Preconditioning]
-  [./SMP]
-    type = SMP
-    coupled_groups = 'disp_x,disp_y'
-  [../]
-[]
-
 [Executioner]
   type = Transient # Type of executioner, here it is transient with an adaptive time step
   scheme = bdf2 # Type of time integration (2nd order backward euler), defaults to 1st order backward euler
@@ -354,8 +203,8 @@ my_num_adaptivity = 3
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlienar solves
 
   start_time = 0.0
-  end_time = 1e4
-  # num_steps = 4
+  # end_time = 1e4
+  num_steps = 10
 
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -388,7 +237,7 @@ my_num_adaptivity = 3
   # [../]
   [./my_exodus]
     type = Nemesis # Exodus Nemesis
-    interval = ${my_interval} # The interval at which time steps are output
+    # interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
     # sequence = true
