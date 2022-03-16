@@ -5,21 +5,21 @@
 # gg_100_anisotropicTheta_01 -- 没有考虑晶界各向异性
 # gg_100_anisotropicTheta_02 -- 考虑晶界各向异性
 
-my_filename = 'gg_100_anisotropicTheta_02_10_3'
-my_interval = 5
-my_num_adaptivity = 3
+my_filename = 'gg_100_anisotropicTheta_02_10_6'
+my_interval = 2
+# my_num_adaptivity = 3
 
 
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
   dim = 2 # Problem dimension
-  nx = 20 # Number of elements in the x-direction
-  ny = 20 # Number of elements in the y-direction
+  nx = 350 # Number of elements in the x-direction
+  ny = 350 # Number of elements in the y-direction
   xmin = 0    # minimum x-coordinate of the mesh
-  xmax = 1400 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
+  xmax = 700 # 1000 maximum x-coordinate of the mesh 2000-400 400 1600
   ymin = 0    # minimum y-coordinate of the mesh
-  ymax = 1400 # 1000 maximum y-coordinate of the mesh
+  ymax = 700 # 1000 maximum y-coordinate of the mesh
   elem_type = QUAD4  # Type of elements used in the mesh
   uniform_refine = 2 # Initial uniform refinement of the mesh
 
@@ -46,7 +46,7 @@ my_num_adaptivity = 3
   [./voronoi]
     type = PolycrystalVoronoi
     # FeatureFloodCount-PolycrystalObjectBase-PolycrystalVoronoi
-    grain_num = 100 # Number of grains
+    grain_num = 25 # Number of grains 100
     rand_seed = 200
     # output_adjacency_matrix = true 
     coloring_algorithm = jp
@@ -208,19 +208,19 @@ my_num_adaptivity = 3
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.5
+    dt = 0.5e-3
     growth_factor = 1.2
     cutback_factor = 0.8
     optimal_iterations = 8
   [../]
 
-  [./Adaptivity]
-    # Block that turns on mesh adaptivity. Note that mesh will never coarsen beyond initial mesh (before uniform refinement)
-    initial_adaptivity = ${my_num_adaptivity} # Number of times mesh is adapted to initial condition
-    refine_fraction = 0.7 # Fraction of high error that will be refined
-    coarsen_fraction = 0.1 # Fraction of low error that will coarsened
-    max_h_level = 4 # Max number of refinements used, starting from initial mesh (before uniform refinement)
-  [../]
+  # [./Adaptivity]
+  #   # Block that turns on mesh adaptivity. Note that mesh will never coarsen beyond initial mesh (before uniform refinement)
+  #   initial_adaptivity = ${my_num_adaptivity} # Number of times mesh is adapted to initial condition
+  #   refine_fraction = 0.7 # Fraction of high error that will be refined
+  #   coarsen_fraction = 0.1 # Fraction of low error that will coarsened
+  #   max_h_level = 4 # Max number of refinements used, starting from initial mesh (before uniform refinement)
+  # [../]
 []
 
 
@@ -236,11 +236,11 @@ my_num_adaptivity = 3
   #   # output_screen = false
   # [../]
   [./my_exodus]
-    type = Exodus # Exodus Nemesis
+    type = Nemesis # Exodus Nemesis
     interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
-    # sequence = true
+    sequence = true
   [../]
   csv = true
 []
