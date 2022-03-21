@@ -1,6 +1,6 @@
-my_filename = 'test_01'
+my_filename = 'gg_100_anisotropicTheta_02_10_20'
 my_num_adaptivity = 3
-my_interval = 5
+# my_interval = 5
 
 [Mesh]
   type = GeneratedMesh
@@ -75,12 +75,12 @@ my_interval = 5
 
 [Materials]
   [./CuGrGranisotropic]
-    type = GBAnisotropyMisorientation # GBAnisotropy GBAnisotropyMisorientation
+    type = GBAnisotropy # GBAnisotropy GBAnisotropyMisorientation
     T = 600 # K
 
     # molar_volume_value = 7.11e-6 #Units:m^3/mol
     Anisotropic_GB_file_name = anisotropy_mobility_01.txt   # anisotropy_energy.txt
-    # inclination_anisotropy = false # true
+    inclination_anisotropy = false # true
     outputs = my_exodus
     # output_properties = 'kappa_op GBenergy' 
   [../]
@@ -117,7 +117,8 @@ my_interval = 5
   nl_max_its = 40
   nl_rel_tol = 1e-9
 
-  num_steps = 100 #
+  # num_steps = 100 #
+  end_time = 180
   # dt = 10.0
 
   [./TimeStepper]
@@ -135,11 +136,12 @@ my_interval = 5
     coarsen_fraction = 0.1 # Fraction of low error that will coarsened
     max_h_level = 4 # Max number of refinements used, starting from initial mesh (before uniform refinement)
   [../]
+
 []
 
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
-  # print_linear_residuals = false
+  print_linear_residuals = false
   # [./console]
   #   type = Console
   #   max_rows = 20 # Will print the 20 most recent postprocessor values to the screen
@@ -150,7 +152,7 @@ my_interval = 5
   # [../]
   [./my_exodus]
     type = Exodus
-    interval = ${my_interval} # The interval at which time steps are output
+    # interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
     # sequence = true
