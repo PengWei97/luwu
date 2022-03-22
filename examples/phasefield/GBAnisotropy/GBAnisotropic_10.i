@@ -1,6 +1,9 @@
-my_filename = 'gbAnisotropyGrainGrowth_01'
+my_filename = 'gbAnisotropyGrainGrowth_09'
 # my_interval = 2
 my_num_adaptivity = 3
+my_rate1_HABvsLAB = 4.5
+my_rate2_HABvsLAB = 0.5
+my_end_time = 5e4
 
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
@@ -35,7 +38,7 @@ my_num_adaptivity = 3
   [./voronoi]
     type = PolycrystalVoronoi
     rand_seed = 20
-    coloring_algorithm = bt # 保持序参数对应唯一的晶粒
+    coloring_algorithm = jp # 保持序参数对应唯一的晶粒
   [../]
   [./grain_tracker]
     type = GrainTracker # Note: FauxGrainTracker only used for testing purposes. Use GrainTracker when using GrainTextureVectorPostprocessor.
@@ -126,11 +129,13 @@ my_num_adaptivity = 3
     T = 450 # K
     wGB = 14 # Width of the diffuse GB nm
     inclination_anisotropy = false # true
-    gbEnergy_anisotropy = true
+    gbEnergy_anisotropy = false # true false
+    gbMobility_anisotropy = true
+    GBmob_HAB = 2.5e-6 # 
     GBsigma_HAB = 0.708
-    GBmob_HAB = 2.5e-6
     GBQ_HAB = 0.23
-    rate_HABvsLAB = 4 # 2
+    rate1_HABvsLAB = ${my_rate1_HABvsLAB} # rate_HABvsLAB + 1
+    rate2_HABvsLAB = ${my_rate2_HABvsLAB}
     outputs = my_exodus
   [../]
   # [./CuGrGr]
@@ -172,6 +177,11 @@ my_num_adaptivity = 3
     variable = bnds
     threshold = 0.7
   [../]
+  [./avg_grain_volumes]
+    type = AverageGrainVolume
+    feature_counter = grain_tracker
+    execute_on = 'initial timestep_end'
+  [../]
 []
 
 [Executioner]
@@ -187,12 +197,12 @@ my_num_adaptivity = 3
   nl_abs_tol = 1e-11 # Relative tolerance for nonlinear solves
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlinear solves
   start_time = 0.0
-  # end_time = 500
-  num_steps = 10
+  end_time = ${my_end_time}
+  # num_steps = 10
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.1
+    dt = 0.5
     growth_factor = 1.2
     cutback_factor = 0.8
     optimal_iterations = 8
