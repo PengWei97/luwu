@@ -114,15 +114,61 @@ mpiexec -np 30 ~/projects/luwu/luwu-opt -i GBAnisotropic_10.i > gbAnisotropyGrai
 ## 晶界迁移率 - gbAnisotropyGrainGrowth_09
 > 10个晶粒模拟，考虑晶界迁移率各向异性，rate1_HABvsLAB = 4.5; rate2_HABvsLAB = 0.5, **10倍**
 > 10个晶粒中有2个欧拉角为90，其他为43~45
-> 耗时：30.51min
+> 耗时：2.86h, end_Time = 1e5
 > 结果：L_max = 0.51, L_min = 0.0051; 模拟结果与gbAnisotropyGrainGrowth_03一样（低角度晶界一样移动）
 > **最优**
 
 ## 晶界能 - gbAnisotropyGrainGrowth_15
-> 10个晶粒模拟，考虑晶界迁移率各向异性，rate1_HABvsLAB = 4.5; rate2_HABvsLAB = 0.5, **10倍**
+> 10个晶粒模拟，考虑晶界能向异性，rate1_HABvsLAB = 4.5; rate2_HABvsLAB = 0.5, **10倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：1.53h, end_Time = 1e5
 
-## 晶界能-晶界迁移率 - gbAnisotropyGrainGrowth_16
+## gbAnisotropyGrainGrowth_16
+> 10个晶粒模拟，考虑晶界能向异性和晶界迁移率各向异性，rate1_HABvsLAB = 4.5; rate2_HABvsLAB = 0.5, **10倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：1.21h, end_Time = 1e4
+> 晶界失稳
+```bash
+code ~/projects/luwu/examples/phasefield/GBAnisotropy/gbAnisotropyGrainGrowth_*/out_gbAnisotropyGrainGrowth_16.csv
+```
 
-## 弹性能各向异性 - gbAnisotropyGrainGrowth_17
+## gbAnisotropyGrainGrowth_17
+> 10个晶粒模拟，考虑晶界能向异性和晶界迁移率各向异性，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：4.04min, end_Time = 1e4
 
-## 弹性能各向异性 - 晶界能-晶界迁移率 -- gbAnisotropyGrainGrowth_18
+## gbAnisotropyGrainGrowth_18
+> 10个晶粒模拟，考虑晶界能向异性，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：1.48min, end_Time = 1e4
+> 
+## gbAnisotropyGrainGrowth_19
+> 10个晶粒模拟，考虑晶界能向异性和晶界迁移率各向异性+弹性能各向异性，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：26.73min, end_Time = 1077
+
+
+## gbAnisotropyGrainGrowth_20
+> 10个晶粒模拟，考虑晶界能各向异性+弹性能各向异性(2%)，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：45.81min, end_Time = 1e4
+
+## gbAnisotropyGrainGrowth_21
+> 10个晶粒模拟，考虑晶界迁移率各向异性+弹性能各向异性(2%)，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：51.73min, end_Time = 1e4
+
+## gbAnisotropyGrainGrowth_22
+> 10个晶粒模拟，考虑晶界各向同性+弹性能各向异性(2%)，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：55.60min, end_Time = 1e4
+
+## gbAnisotropyGrainGrowth_23
+> 10个晶粒模拟，考虑晶界能向异性和晶界迁移率各向异性+弹性能各向异性(5%)，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：23.71min, end_Time = 1e4
+
+## gbAnisotropyGrainGrowth_24
+> 10个晶粒模拟，考虑晶界能向异性和晶界迁移率各向异性+弹性能各向异性(2%)，rate1_HABvsLAB = 0.5; rate2_HABvsLAB = 0.5, **2倍**
+> 10个晶粒中有2个欧拉角为90，其他为43~45
+> 耗时：23.71min, end_Time = 1e4
