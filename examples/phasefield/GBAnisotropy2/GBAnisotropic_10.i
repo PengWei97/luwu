@@ -45,7 +45,7 @@ my_end_time = 1e5
 [UserObjects]
   [./voronoi]
     type = PolycrystalVoronoi
-    rand_seed = 40
+    rand_seed = 50
     coloring_algorithm = bt # 保持序参数对应唯一的晶粒
   [../]
   [./grain_tracker]

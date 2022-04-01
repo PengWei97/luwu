@@ -1,9 +1,12 @@
+# 如果不考虑相场-弹性场耦合，可以使用recover进行重启
 my_filename = 'gbAnisotropyGrainGrowth_24'
 # my_interval = 2
 my_num_adaptivity = 3
 my_rate1_HABvsLAB = 0.5
 my_rate2_HABvsLAB = 0.5
 my_end_time = 1e5
+my_length_scale = 1e-9
+my_time_scale = 1e-9
 my_load = 8
 
 [Mesh]
@@ -27,6 +30,8 @@ my_load = 8
   op_num = 10 # Number of order parameters used
   var_name_base = gr # Base name of grains
   grain_num = 10 #Number of grains
+  length_scale = ${my_length_scale}
+  time_scale = ${my_time_scale}
 []
 
 [Variables]
