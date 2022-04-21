@@ -80,6 +80,17 @@ my_load = 18.8
     fill_method = symmetric9
     euler_angle_provider = euler_angle_file
   [../]
+<<<<<<< HEAD
+=======
+  # [./grain_tracker]
+  #   type = GrainTracker # Note: FauxGrainTracker only used for testing purposes. Use GrainTracker when using GrainTextureVectorPostprocessor.
+  #   connecting_threshold = 0.2
+  #   compute_var_to_feature_map = true
+  #   flood_entity_type = ELEMENTAL
+  #   execute_on = 'initial timestep_begin'
+  #   outputs = none
+  # [../]
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [ICs]
@@ -95,6 +106,7 @@ my_load = 18.8
     order = FIRST
     family = LAGRANGE
   [../]
+<<<<<<< HEAD
   [./elastic_strain11]
     order = CONSTANT
     family = MONOMIAL
@@ -119,14 +131,7 @@ my_load = 18.8
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./vonmises_stress]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./C1111]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
+=======
   # Dependent variables
   [./unique_grains]
     order = CONSTANT
@@ -140,6 +145,55 @@ my_load = 18.8
     order = CONSTANT
     family = MONOMIAL
   [../]
+  # [./elastic_strain11]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+  # [./elastic_strain22]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+  # [./elastic_strain12]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+  # [./elastic_stress11] 
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+  # [./elastic_stress22]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+  # [./elastic_stress12]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # [../]
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
+  [./vonmises_stress]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./C1111]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+<<<<<<< HEAD
+  # Dependent variables
+  [./unique_grains]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./var_indices]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./euler_angle]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [Kernels]
@@ -162,6 +216,7 @@ my_load = 18.8
     variable = bnds
     execute_on = timestep_end
   [../]
+<<<<<<< HEAD
   [./elastic_strain11]
     type = RankTwoAux
     variable = elastic_strain11
@@ -210,6 +265,8 @@ my_load = 18.8
     index_j = 1
     execute_on = timestep_end
   [../]
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./unique_grains]
     type = FeatureFloodCountAux
     variable = unique_grains
@@ -224,6 +281,66 @@ my_load = 18.8
     flood_counter = grain_tracker
     field_display = VARIABLE_COLORING
   [../]
+<<<<<<< HEAD
+=======
+  [./euler_angle]
+    type = OutputEulerAngles
+    variable = euler_angle
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'phi1'
+    #  phi1, Phi, phi2
+    execute_on = 'initial timestep_end'
+  [../]
+  # [./elastic_strain11]
+  #   type = RankTwoAux
+  #   variable = elastic_strain11
+  #   rank_two_tensor = elastic_strain
+  #   index_i = 0
+  #   index_j = 0
+  #   execute_on = timestep_end
+  # [../]
+  # [./elastic_strain22]
+  #   type = RankTwoAux
+  #   variable = elastic_strain22
+  #   rank_two_tensor = elastic_strain
+  #   index_i = 1
+  #   index_j = 1
+  #   execute_on = timestep_end
+  # [../]
+  # [./elastic_strain12]
+  #   type = RankTwoAux
+  #   variable = elastic_strain12
+  #   rank_two_tensor = elastic_strain
+  #   index_i = 0
+  #   index_j = 1
+  #   execute_on = timestep_end
+  # [../]
+  # [./elastic_stress11]
+  #   type = RankTwoAux
+  #   variable = elastic_stress11
+  #   rank_two_tensor = stress
+  #   index_i = 0
+  #   index_j = 0
+  #   execute_on = timestep_end
+  # [../]
+  # [./elastic_stress22]
+  #   type = RankTwoAux
+  #   variable = elastic_stress22
+  #   rank_two_tensor = stress
+  #   index_i = 1
+  #   index_j = 1
+  #   execute_on = timestep_end
+  # [../]
+  # [./elastic_stress12]
+  #   type = RankTwoAux
+  #   variable = elastic_stress12
+  #   rank_two_tensor = stress
+  #   index_i = 0
+  #   index_j = 1
+  #   execute_on = timestep_end
+  # [../]
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./C1111]
     type = RankFourAux
     variable = C1111
@@ -241,6 +358,7 @@ my_load = 18.8
     scalar_type = VonMisesStress
     execute_on = timestep_end
   [../]
+<<<<<<< HEAD
   [./euler_angle]
     type = OutputEulerAngles
     variable = euler_angle
@@ -250,6 +368,8 @@ my_load = 18.8
     #  phi1, Phi, phi2
     execute_on = 'initial timestep_end'
   [../]
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [BCs]
@@ -297,8 +417,24 @@ my_load = 18.8
     GBQ_HAB = 0.23
     rate1_HABvsLAB = ${my_rate1_HABvsLAB} # rate_HABvsLAB + 1
     rate2_HABvsLAB = ${my_rate2_HABvsLAB}
+<<<<<<< HEAD
     # outputs = my_exodus
   [../]
+=======
+    outputs = my_exodus
+  [../]
+  # [./CuGrGr]
+  #   # Material properties
+  #   type = GBEvolution
+  #   block = 0
+  #   T = 450 # Constant temperature of the simulation (for mobility calculation)
+  #   wGB = ${my_wGB} # Width of the diffuse GB 0.6 14 0.6(不行)
+  #   GBmob0 = ${my_GBmob0} #m^4(Js) for copper from Schoenfelder1997 2.5e-6 2.5e-9(晶界没有演化)
+  #   Q = 0.23 #eV for copper from Schoenfelder1997
+  #   GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+  #   outputs = my_exodus
+  # [../]
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./ElasticityTensor]
     type = ComputePolycrystalElasticityTensor
     grain_tracker = grain_tracker
@@ -312,6 +448,7 @@ my_load = 18.8
     type = ComputeLinearElasticStress
     block = 0
   [../]
+<<<<<<< HEAD
 	# [./elasticenergy]
   #   type = ElasticEnergyMaterial
   #   f_name = f_elastic
@@ -319,6 +456,15 @@ my_load = 18.8
   #   args = 'gr1 gr0'
 	# 	outputs = my_exodus
   # [../]
+=======
+  [./elastic_free_energy_p]
+    type = ElasticEnergyMaterial
+    f_name = f_el
+    derivative_order = 1
+    variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7 gr8 gr9 gr10 gr11'
+    outputs = exodus
+  [../]
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [VectorPostprocessors]
@@ -328,7 +474,10 @@ my_load = 18.8
     execute_on = 'initial timestep_end'
     output_centroids = true
   [../]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [Postprocessors]
@@ -373,7 +522,11 @@ my_load = 18.8
 
   l_max_its = 20 # Max number of linear iterations
   l_tol = 1e-4 # Relative tolerance for linear solves
+<<<<<<< HEAD
   nl_max_its = 15 # Max number of nonlinear iterations
+=======
+  nl_max_its = 12 # Max number of nonlinear iterations
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   nl_abs_tol = 1e-11 # Relative tolerance for nonlinear solves
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlinear solves
   start_time = 0.0
@@ -399,10 +552,13 @@ my_load = 18.8
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
   print_linear_residuals = false
+<<<<<<< HEAD
   [./console]
     type = Console
     max_rows = 10 # Will print the 20 most recent postprocessor values to the screen
   [../]
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./my_exodus]
     type = Nemesis # Exodus Nemesis
     interval = ${my_interval} # The interval at which time steps are output
