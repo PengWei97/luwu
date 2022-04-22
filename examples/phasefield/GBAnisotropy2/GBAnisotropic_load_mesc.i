@@ -1,4 +1,4 @@
-my_filename = '4type_coupled_200'
+my_filename = '4type_GBElastic_200'
 my_interval = 5
 my_num_adaptivity = 3
 my_rate1_HABvsLAB = 0.25
@@ -16,8 +16,9 @@ my_max = 3760 # 1200 3760
 my_grain_num = 200 # 20 200
 my_rand_seed = 400 # 40 400
 
-my_load = 18.8
+my_load = 18.8 # 0.5%
 
+# tar -jcvf 4type_GBElastic_200_048exodus.tar.bz2 ./4type_GBElastic_200/*.e-s???[048]*
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
@@ -298,13 +299,14 @@ my_load = 18.8
     T = 450 # K
     wGB = ${my_wGB} # Width of the diffuse GB nm # 0.14 miu m
     inclination_anisotropy = false # true
-    gbEnergy_anisotropy = false # true false
-    gbMobility_anisotropy = false
+    gbEnergy_anisotropy = true # true false
+    gbMobility_anisotropy = true
     GBmob_HAB = ${my_GBmob0} # 2.5e-6
     GBsigma_HAB = 0.708
     GBQ_HAB = 0.23
     rate1_HABvsLAB = ${my_rate1_HABvsLAB} # rate_HABvsLAB + 1
     rate2_HABvsLAB = ${my_rate2_HABvsLAB}
+    output_properties = 'kappa_op L mu'
     outputs = my_exodus
   [../]
   # [./CuGrGr]
@@ -334,9 +336,10 @@ my_load = 18.8
   [./elastic_free_energy_p]
     type = ElasticEnergyMaterial
     f_name = f_el
-    derivative_order = 1
-    variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7 gr8 gr9 gr10 gr11'
-    outputs = exodus
+    derivative_order = 2
+    args = 'gr0'
+    output_properties = 'f_el'
+    outputs = my_exodus
   [../]
 []
 
@@ -398,9 +401,10 @@ my_load = 18.8
   end_time = ${my_end_time}
   # num_steps = 10
 
+  # automatic_scaling = true
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 5.0
+    dt = 1.5
     growth_factor = 1.2
     cutback_factor = 0.8
     optimal_iterations = 8
