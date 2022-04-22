@@ -1,31 +1,40 @@
-# para_20_elastic_00: 没有弹性能，同性
-# para_20_elastic_01: 加载1.0%，同性
-# para_20_elastic_02: 加载0.5%，同性
+# para_20_elastic_01: 没有弹性能，同性， 没有算完
+# para_20_elastic_02: 加载1.0%，同性
+# para_20_elastic_03: 加载0.5%，同性
+# para_20_ElasticGB_04: 加载0.5%，异性（0.5-0.5）
+# para_20_ElasticGB_05: 加载0.0%，异性（0.9/0.1 0.5/0.5） 20倍可以
+# para_20_ElasticGB_06: 加载0.0%，异性（0.9/0.1 0.750/0.25） 40倍不行，演化到后面不稳定
+# para_20_ElasticGB_07: 加载0.0%，异性（0.9/0.1 0.60/0.40） 25倍可以，演化到188.22比较慢，晶界保持稳定
+# para_20_ElasticGB_08: 加载0.0%，异性（1.9/0.1 0.60/0.40） 50倍不可以，演化到35.12出现奇怪的晶界， bnd_max = 1.2
+# para_60_ElasticGB_09: 加载0.5%，异性（0.9/0.1 0.60/0.40） 25倍不可以，晶界形态极度奇异， bnd_max = 1.5
+# para_60_ElasticGB_10: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 5.0e-12
+# para_60_ElasticGB_11: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 3.0e-12
+# para_400_ElasticGB_11: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 5.0e-12
 
-my_filename = 'para_20_elastic_00'
+my_filename = 'para_400_ElasticGB_11'
 my_interval = 5
 my_num_adaptivity = 3
-my_end_time = 1e10
+my_end_time = 500
 
 my_length_scale = 1e-8 # 10 nm
-my_time_scale = 1e-2 # 0.1 s
-my_GBmob0 = 2.5e-11 # 2.5e-11 6.6383e-14 2.5e-11
+my_time_scale = 1 # 0.1 s
+my_GBmob0 = 5.0e-12 # 2.5e-11 6.6383e-14 2.5e-11
 my_wGB = 20
-# my_rate1_HABvsLAB_mob = 0
-# my_rate2_HABvsLAB_mob = 1
-# my_rate1_HABvsLAB_sigma = 0
-# my_rate2_HABvsLAB_sigma = 1
+my_rate1_HABvsLAB_mob = 0.60
+my_rate2_HABvsLAB_mob = 0.40
+my_rate1_HABvsLAB_sigma = 0.60
+my_rate2_HABvsLAB_sigma = 0.40
 my_connecting_threshold = 0.05
 
-my_load = 0 # 75.20 # 2%
+my_load = 26.6 # 75.20 # 2%
 
-my_nx = 40
-my_ny = 40 # 40 # 30 94
-my_max_x = 1200 #1200 # 400 # 1200 3760 1600-(36)
-my_max_y = 1200 #1200
+my_nx = 133
+my_ny = 133 # 40 # 30 94
+my_max_x = 5320 # 2060 #1200 # 400 # 1200 3760-(200) 1600-(36) 5320-(400)
+my_max_y = 5320 # 2060 #1200
 
-my_grain_num = 20 # 20
-my_rand_seed = 40 # 40
+my_grain_num = 400 # 20
+my_rand_seed = 800 # 40
 # tar -jcvf 4type_GBElastic_200_048exodus.tar.bz2 ./4type_GBElastic_200/*.e-s???[048]*
 
 [Mesh]
@@ -47,7 +56,7 @@ my_rand_seed = 40 # 40
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 14 # Number of order parameters used
+  op_num = 16 # Number of order parameters used
   grain_num = ${my_grain_num}
   var_name_base = gr # Base name of grains
   length_scale = ${my_length_scale}
@@ -71,7 +80,7 @@ my_rand_seed = 40 # 40
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name =  grn_20_testure1_2D.tex #grn_20_testure_2D.tex grn_36_rand_2D.tex
+    file_name =  grn_400_testure1_2D.tex #grn_20_testure_2D.tex grn_36_rand_2D.tex
   [../]
   [./voronoi]
     type = PolycrystalVoronoi
@@ -279,7 +288,7 @@ my_rand_seed = 40 # 40
   [./Periodic]
     [./top_bottom]
       auto_direction = 'x y' # Makes problem periodic in the x and y directions
-      variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7 gr8 gr9 gr10 gr11 gr12 gr13'
+      variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7 gr8 gr9 gr10 gr11 gr12 gr13 gr14 gr15'
     [../]
   [../]
   [./top_displacement]
@@ -305,35 +314,36 @@ my_rand_seed = 40 # 40
 
 
 [Materials]
-  # [./CuGrGranisotropic]
-  #   type = GBAnisotropyGrainGrowth # 
-  #   grain_tracker = grain_tracker
-  #   euler_angle_provider = euler_angle_file 
-  #   T = 450 # K
-  #   inclination_anisotropy = false # true
-  #   gbEnergy_anisotropy = false # true false
-  #   gbMobility_anisotropy = false
-  #   GBmob_HAB = ${my_GBmob0} # 2.5e-6
-  #   GBsigma_HAB = 0.708
-  #   GBQ_HAB = 0.23
-  #   rate1_HABvsLAB_mob = ${my_rate1_HABvsLAB_mob} # rate_HABvsLAB + 1
-  #   rate2_HABvsLAB_mob = ${my_rate2_HABvsLAB_mob}
-  #   rate1_HABvsLAB_sigma = ${my_rate1_HABvsLAB_sigma} # rate_HABvsLAB + 1
-  #   rate2_HABvsLAB_sigma = ${my_rate2_HABvsLAB_sigma}
-  #   output_properties = 'kappa_op L mu gamma_asymm'
-  #   outputs = my_exodus
-  # [../]
-  [./Copper]
-    type = GBEvolution
-    block = 0
+  [./CuGrGranisotropic]
+    type = GBAnisotropyGrainGrowth # 
+    grain_tracker = grain_tracker
+    euler_angle_provider = euler_angle_file 
     T = 450 # K
-    GBmob0 = ${my_GBmob0} # 2.5e-6 #m^4/(Js) from Schoenfelder 1997
-    Q = 0.23 #Migration energy in eV
-    GBenergy = 0.708 #GB energy in J/m^2
+    inclination_anisotropy = false # true
+    gbEnergy_anisotropy = true # true false
+    gbMobility_anisotropy = true
+    GBmob_HAB = ${my_GBmob0} # 2.5e-6
+    GBsigma_HAB = 0.708
+    GBQ_HAB = 0.23
+    rate1_HABvsLAB_mob = ${my_rate1_HABvsLAB_mob} # rate_HABvsLAB + 1
+    rate2_HABvsLAB_mob = ${my_rate2_HABvsLAB_mob}
+    rate1_HABvsLAB_sigma = ${my_rate1_HABvsLAB_sigma} # rate_HABvsLAB + 1
+    rate2_HABvsLAB_sigma = ${my_rate2_HABvsLAB_sigma}
     wGB = ${my_wGB}
-    # output_properties = 'kappa_op L mu gamma_asymm'
-    # outputs = my_exodus
+    output_properties = 'kappa_op L mu gamma_asymm'
+    outputs = my_exodus
   [../]
+  # [./Copper]
+  #   type = GBEvolution
+  #   block = 0
+  #   T = 450 # K
+  #   GBmob0 = ${my_GBmob0} # 2.5e-6 #m^4/(Js) from Schoenfelder 1997
+  #   Q = 0.23 #Migration energy in eV
+  #   GBenergy = 0.708 #GB energy in J/m^2
+  #   wGB = ${my_wGB}
+  #   # output_properties = 'kappa_op L mu gamma_asymm'
+  #   # outputs = my_exodus
+  # [../]
   [./ElasticityTensor]
     type = ComputePolycrystalElasticityTensor
     grain_tracker = grain_tracker
@@ -413,20 +423,20 @@ my_rand_seed = 40 # 40
   dtmin = 1e-5
   l_max_its = 30 # Max number of linear iterations
   l_tol = 1e-4 # Relative tolerance for linear solves
-  nl_max_its = 25 # Max number of nonlinear iterations
+  nl_max_its = 10 # Max number of nonlinear iterations
   nl_abs_tol = 1e-11 # Relative tolerance for nonlinear solves
   nl_rel_tol = 1e-7 # Absolute tolerance for nonlinear solves
 
   start_time = 0.0
   end_time = ${my_end_time}
   # num_steps = 3
-
+  dtmax = 2.2
   automatic_scaling = true # Whether to use automatic scaling for the variables.
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.04
+    dt = 0.7 # 1238-iso # 400-0.7
     growth_factor = 1.2
-    cutback_factor = 0.5
+    cutback_factor = 0.8
     optimal_iterations = 8
   [../]
   [./Adaptivity]
@@ -449,7 +459,7 @@ my_rand_seed = 40 # 40
   file_base = ./${my_filename}/out_${my_filename}
   print_linear_residuals = false # false true
   [./my_exodus]
-    type = Exodus # Exodus Nemesis VTK
+    type = Nemesis # Exodus Nemesis VTK
     interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
