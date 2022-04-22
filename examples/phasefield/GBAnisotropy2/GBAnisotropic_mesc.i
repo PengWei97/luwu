@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 my_filename = 'para_80_1'
 my_interval = 5
 my_num_adaptivity = 3
 my_rate1_HABvsLAB = 1
 my_rate2_HABvsLAB = 1
+=======
+my_filename = '4type_GBAnisotrpic_200'
+my_interval = 5
+my_num_adaptivity = 3
+my_rate1_HABvsLAB = 0.25 # 前置因子
+my_rate2_HABvsLAB = 0.5 # 后置因子
+>>>>>>> bee4aea458b5b1e0f20e80f1f488ab5c196134b7
 my_end_time = 1e5
 
 my_length_scale = 1e-8 # 10 nm
@@ -171,14 +179,23 @@ my_rand_seed = 160 # 40 160 400
     T = 450 # K
     wGB = ${my_wGB} # Width of the diffuse GB nm # 0.14 miu m
     inclination_anisotropy = false # true
+<<<<<<< HEAD
+    gbEnergy_anisotropy = true # true false
+    gbMobility_anisotropy = true
+=======
     gbEnergy_anisotropy = false # true false
     gbMobility_anisotropy = false
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
     GBmob_HAB = ${my_GBmob0} # 2.5e-6
     GBsigma_HAB = ${my_GBsigma_HAB} # 0.708
     GBQ_HAB = 0.23
     rate1_HABvsLAB = ${my_rate1_HABvsLAB} # rate_HABvsLAB + 1
     rate2_HABvsLAB = ${my_rate2_HABvsLAB}
+<<<<<<< HEAD
+    # outputs = my_exodus
+=======
     outputs = my_exodus
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [../]
   # [./CuGrGr]
   #   # Material properties
@@ -270,6 +287,13 @@ my_rand_seed = 160 # 40 160 400
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
   print_linear_residuals = false
+<<<<<<< HEAD
+  [./console]
+    type = Console
+    max_rows = 10 # Will print the 20 most recent postprocessor values to the screen
+  [../]
+=======
+>>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./my_exodus]
     type = Nemesis # Exodus Nemesis
     interval = ${my_interval} # The interval at which time steps are output

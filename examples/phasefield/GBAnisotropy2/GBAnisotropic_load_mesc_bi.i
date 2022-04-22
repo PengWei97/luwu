@@ -1,5 +1,6 @@
-my_filename = '4type_elastic05_200'
-my_interval = 5
+# 圆晶晶粒尺寸为150
+my_filename = '4type_elastic0_bi_mum4'
+my_interval = 1
 my_num_adaptivity = 3
 my_rate1_HABvsLAB = 0.5
 my_rate2_HABvsLAB = 0.5
@@ -7,18 +8,22 @@ my_end_time = 1e5
 
 my_length_scale = 1e-8 # 10 nm
 my_time_scale = 1e-1 # 0.1 s
-
 my_GBmob0 = 2.5e-11
 my_wGB = 20
 
-my_nx = 94 # 30 94
-my_max = 3760 # 1200 3760
-my_grain_num = 200 # 20 200
-my_rand_seed = 400 # 40 400
+# my_length_scale = 1e-9 # 10 nm
+# my_time_scale = 1e-9 # 0.1 s
+# my_GBmob0 = 2.5e-6
+# my_wGB = 15
 
-my_load = 18.8 # 0.5%
+my_grain_radius = 150
+my_point = 200
 
-# tar -jcvf 4type_GBElastic_200_048exodus.tar.bz2 ./4type_GBElastic_200/*.e-s???[048]*
+my_nx = 20 # 30 94
+my_max = 400 # 1200 3760
+
+my_load = 6
+
 [Mesh]
   # Mesh block.  Meshes can be read in or automatically generated
   type = GeneratedMesh
@@ -38,9 +43,8 @@ my_load = 18.8 # 0.5%
 
 [GlobalParams]
   # Parameters used by several kernels that are defined globally to simplify input file
-  op_num = 12 # Number of order parameters used
-  var_name_base = gr # Base name of grains
-  grain_num = ${my_grain_num} #Number of grains
+  op_num = 2
+  var_name_base = gr
   length_scale = ${my_length_scale}
   time_scale = ${my_time_scale}
 []
@@ -62,14 +66,14 @@ my_load = 18.8 # 0.5%
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name = grn_200_testure_2D.tex
+    file_name = grn_2_testure_2D.tex
   [../]
-  [./voronoi]
-    type = PolycrystalVoronoi
-    rand_seed = ${my_rand_seed}
-    coloring_algorithm = jp # 保持序参数对应唯一的晶粒
-    int_width = ${my_wGB}
-  [../]
+  # [./voronoi]
+  #   type = PolycrystalVoronoi
+  #   rand_seed = ${my_rand_seed}
+  #   coloring_algorithm = jp # 保持序参数对应唯一的晶粒
+  #   int_width = ${my_wGB}
+  # [../]
   [./grain_tracker]
     type = GrainTrackerElasticity # Note: FauxGrainTracker only used for testing purposes. Use GrainTracker when using GrainTextureVectorPostprocessor.
     connecting_threshold = 0.2
@@ -81,23 +85,15 @@ my_load = 18.8 # 0.5%
     fill_method = symmetric9
     euler_angle_provider = euler_angle_file
   [../]
-<<<<<<< HEAD
-=======
-  # [./grain_tracker]
-  #   type = GrainTracker # Note: FauxGrainTracker only used for testing purposes. Use GrainTracker when using GrainTextureVectorPostprocessor.
-  #   connecting_threshold = 0.2
-  #   compute_var_to_feature_map = true
-  #   flood_entity_type = ELEMENTAL
-  #   execute_on = 'initial timestep_begin'
-  #   outputs = none
-  # [../]
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
 [ICs]
   [./PolycrystalICs]
-    [./PolycrystalColoringIC]
-      polycrystal_ic_uo = voronoi
+    [./BicrystalCircleGrainIC]
+      radius = ${my_grain_radius}
+      x = ${my_point}
+      y = ${my_point}
+      int_width = ${my_wGB}
     [../]
   [../]
 []
@@ -107,7 +103,6 @@ my_load = 18.8 # 0.5%
     order = FIRST
     family = LAGRANGE
   [../]
-<<<<<<< HEAD
   [./elastic_strain11]
     order = CONSTANT
     family = MONOMIAL
@@ -132,45 +127,6 @@ my_load = 18.8 # 0.5%
     order = CONSTANT
     family = MONOMIAL
   [../]
-=======
-  # Dependent variables
-  [./unique_grains]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./var_indices]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./euler_angle]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  # [./elastic_strain11]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
-  # [./elastic_strain22]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
-  # [./elastic_strain12]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
-  # [./elastic_stress11] 
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
-  # [./elastic_stress22]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
-  # [./elastic_stress12]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  # [../]
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./vonmises_stress]
     order = CONSTANT
     family = MONOMIAL
@@ -179,7 +135,6 @@ my_load = 18.8 # 0.5%
     order = CONSTANT
     family = MONOMIAL
   [../]
-<<<<<<< HEAD
   # Dependent variables
   [./unique_grains]
     order = CONSTANT
@@ -193,8 +148,14 @@ my_load = 18.8 # 0.5%
     order = CONSTANT
     family = MONOMIAL
   [../]
-=======
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
+  [./local_energy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./elastic_energy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [Kernels]
@@ -217,7 +178,6 @@ my_load = 18.8 # 0.5%
     variable = bnds
     execute_on = timestep_end
   [../]
-<<<<<<< HEAD
   [./elastic_strain11]
     type = RankTwoAux
     variable = elastic_strain11
@@ -266,8 +226,6 @@ my_load = 18.8 # 0.5%
     index_j = 1
     execute_on = timestep_end
   [../]
-=======
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./unique_grains]
     type = FeatureFloodCountAux
     variable = unique_grains
@@ -282,66 +240,6 @@ my_load = 18.8 # 0.5%
     flood_counter = grain_tracker
     field_display = VARIABLE_COLORING
   [../]
-<<<<<<< HEAD
-=======
-  [./euler_angle]
-    type = OutputEulerAngles
-    variable = euler_angle
-    euler_angle_provider = euler_angle_file
-    grain_tracker = grain_tracker
-    output_euler_angle = 'phi1'
-    #  phi1, Phi, phi2
-    execute_on = 'initial timestep_end'
-  [../]
-  # [./elastic_strain11]
-  #   type = RankTwoAux
-  #   variable = elastic_strain11
-  #   rank_two_tensor = elastic_strain
-  #   index_i = 0
-  #   index_j = 0
-  #   execute_on = timestep_end
-  # [../]
-  # [./elastic_strain22]
-  #   type = RankTwoAux
-  #   variable = elastic_strain22
-  #   rank_two_tensor = elastic_strain
-  #   index_i = 1
-  #   index_j = 1
-  #   execute_on = timestep_end
-  # [../]
-  # [./elastic_strain12]
-  #   type = RankTwoAux
-  #   variable = elastic_strain12
-  #   rank_two_tensor = elastic_strain
-  #   index_i = 0
-  #   index_j = 1
-  #   execute_on = timestep_end
-  # [../]
-  # [./elastic_stress11]
-  #   type = RankTwoAux
-  #   variable = elastic_stress11
-  #   rank_two_tensor = stress
-  #   index_i = 0
-  #   index_j = 0
-  #   execute_on = timestep_end
-  # [../]
-  # [./elastic_stress22]
-  #   type = RankTwoAux
-  #   variable = elastic_stress22
-  #   rank_two_tensor = stress
-  #   index_i = 1
-  #   index_j = 1
-  #   execute_on = timestep_end
-  # [../]
-  # [./elastic_stress12]
-  #   type = RankTwoAux
-  #   variable = elastic_stress12
-  #   rank_two_tensor = stress
-  #   index_i = 0
-  #   index_j = 1
-  #   execute_on = timestep_end
-  # [../]
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./C1111]
     type = RankFourAux
     variable = C1111
@@ -359,7 +257,6 @@ my_load = 18.8 # 0.5%
     scalar_type = VonMisesStress
     execute_on = timestep_end
   [../]
-<<<<<<< HEAD
   [./euler_angle]
     type = OutputEulerAngles
     variable = euler_angle
@@ -369,8 +266,13 @@ my_load = 18.8 # 0.5%
     #  phi1, Phi, phi2
     execute_on = 'initial timestep_end'
   [../]
-=======
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
+  [./local_free_energy]
+    type = TotalFreeEnergy
+    f_name = F_loc
+    variable = local_energy
+    kappa_names = 'kappa_op kappa_op'
+    interfacial_vars = 'gr0 gr1'
+  [../]
 []
 
 [BCs]
@@ -378,7 +280,7 @@ my_load = 18.8 # 0.5%
   [./Periodic]
     [./top_bottom]
       auto_direction = 'x y' # Makes problem periodic in the x and y directions
-      variable = 'gr0 gr1 gr2 gr3 gr4 gr5 gr6 gr7 gr8 gr9 gr10 gr11'
+      variable = 'gr0 gr1'
     [../]
   [../]
   [./top_displacement]
@@ -411,35 +313,15 @@ my_load = 18.8 # 0.5%
     T = 450 # K
     wGB = ${my_wGB} # Width of the diffuse GB nm # 0.14 miu m
     inclination_anisotropy = false # true
-    gbEnergy_anisotropy = true # true false
-    gbMobility_anisotropy = true
+    gbEnergy_anisotropy = false # true false
+    gbMobility_anisotropy = false
     GBmob_HAB = ${my_GBmob0} # 2.5e-6
     GBsigma_HAB = 0.708
     GBQ_HAB = 0.23
     rate1_HABvsLAB = ${my_rate1_HABvsLAB} # rate_HABvsLAB + 1
     rate2_HABvsLAB = ${my_rate2_HABvsLAB}
-<<<<<<< HEAD
-    output_properties = 'kappa_op L mu'
-=======
-<<<<<<< HEAD
-    # outputs = my_exodus
-  [../]
-=======
->>>>>>> bee4aea458b5b1e0f20e80f1f488ab5c196134b7
     outputs = my_exodus
   [../]
-  # [./CuGrGr]
-  #   # Material properties
-  #   type = GBEvolution
-  #   block = 0
-  #   T = 450 # Constant temperature of the simulation (for mobility calculation)
-  #   wGB = ${my_wGB} # Width of the diffuse GB 0.6 14 0.6(不行)
-  #   GBmob0 = ${my_GBmob0} #m^4(Js) for copper from Schoenfelder1997 2.5e-6 2.5e-9(晶界没有演化)
-  #   Q = 0.23 #eV for copper from Schoenfelder1997
-  #   GBenergy = 0.708 #J/m^2 from Schoenfelder1997
-  #   outputs = my_exodus
-  # [../]
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./ElasticityTensor]
     type = ComputePolycrystalElasticityTensor
     grain_tracker = grain_tracker
@@ -453,40 +335,39 @@ my_load = 18.8 # 0.5%
     type = ComputeLinearElasticStress
     block = 0
   [../]
-<<<<<<< HEAD
-	# [./elasticenergy]
-  #   type = ElasticEnergyMaterial
-  #   f_name = f_elastic
-  #   derivative_order = 1
-  #   args = 'gr1 gr0'
-	# 	outputs = my_exodus
-  # [../]
-=======
-  [./elastic_free_energy_p]
+	[./elasticenergy]
     type = ElasticEnergyMaterial
-    f_name = f_el
+    f_name = F_elastic
+    args = 'gr1 gr0'
+		outputs = my_exodus
+  [../]
+  [./free_energy]
+    type = DerivativeParsedMaterial
+    f_name = F_loc
+    args = 'gr0 gr1'
+    material_property_names = 'mu gamma_asymm'
+    function = 'mu*(gr0^4/4.0 - gr0^2/2.0 + gr1^4/4.0 - gr1^2/2.0 + gamma_asymm*gr0^2*gr1^2 + 1.0/4.0)'
     derivative_order = 2
-    args = 'gr0'
-    output_properties = 'f_el'
+    enable_jit = true
     outputs = my_exodus
+    # Enable just-in-time compilation of function expressions for faster evaluation
   [../]
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
 []
 
-[VectorPostprocessors]
-  [./grain_volumes] 
-    type = FeatureVolumeVectorPostprocessor 
-    flood_counter = grain_tracker # The FeatureFloodCount UserObject to get values from.
-    execute_on = 'initial timestep_end'
-    output_centroids = true
-  [../]
-<<<<<<< HEAD
-
-=======
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
-[]
+# [VectorPostprocessors]
+#   [./grain_volumes] 
+#     type = FeatureVolumeVectorPostprocessor 
+#     flood_counter = grain_tracker # The FeatureFloodCount UserObject to get values from.
+#     execute_on = 'initial timestep_end'
+#     output_centroids = true
+#   [../]
+# []
 
 [Postprocessors]
+  [./total_energy]
+    type = ElementIntegralVariablePostprocessor
+    variable = local_energy
+  [../]
   # Scalar postprocessors
   [./dt]
     # Outputs the current time step
@@ -505,10 +386,9 @@ my_load = 18.8 # 0.5%
     variable = bnds
     threshold = 0.7
   [../]
-  [./avg_grain_volumes]
-    type = AverageGrainVolume
-    feature_counter = grain_tracker
-    execute_on = 'initial timestep_end'
+  [./gr0area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr0
   [../]
 []
 
@@ -528,21 +408,16 @@ my_load = 18.8 # 0.5%
 
   l_max_its = 20 # Max number of linear iterations
   l_tol = 1e-4 # Relative tolerance for linear solves
-<<<<<<< HEAD
   nl_max_its = 15 # Max number of nonlinear iterations
-=======
-  nl_max_its = 12 # Max number of nonlinear iterations
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   nl_abs_tol = 1e-11 # Relative tolerance for nonlinear solves
   nl_rel_tol = 1e-10 # Absolute tolerance for nonlinear solves
   start_time = 0.0
   end_time = ${my_end_time}
   # num_steps = 10
 
-  # automatic_scaling = true
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.5
+    dt = 5.0
     growth_factor = 1.2
     cutback_factor = 0.8
     optimal_iterations = 8
@@ -559,15 +434,8 @@ my_load = 18.8 # 0.5%
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
   print_linear_residuals = false
-<<<<<<< HEAD
-  [./console]
-    type = Console
-    max_rows = 10 # Will print the 20 most recent postprocessor values to the screen
-  [../]
-=======
->>>>>>> 33d23280851440a845efbd15dd6c7ab7c31899f0
   [./my_exodus]
-    type = Nemesis # Exodus Nemesis
+    type = Exodus # Exodus Nemesis
     interval = ${my_interval} # The interval at which time steps are output
     # sync_times = '10 50 100 500 1000 5000 10000 50000 100000'
     # sync_only = true
