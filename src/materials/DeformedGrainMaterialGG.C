@@ -10,7 +10,7 @@
 #include "DeformedGrainMaterialGG.h"
 #include "GrainTrackerInterface.h"
 
-registerMooseObject("PhaseFieldApp", DeformedGrainMaterialGG);
+registerMooseObject("luwuApp", DeformedGrainMaterialGG);
 
 InputParameters
 DeformedGrainMaterialGG::validParams()
