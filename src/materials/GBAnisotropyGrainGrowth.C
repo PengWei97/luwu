@@ -8,7 +8,9 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "GBAnisotropyGrainGrowth.h"
+#include "RotationTensor.h"
 #include "MooseMesh.h"
+#include <cmath>
 
 registerMooseObject("luwuApp", GBAnisotropyGrainGrowth);
 
@@ -44,7 +46,8 @@ GBAnisotropyGrainGrowth::validParams()
   params.addRequiredParam<bool>("gbEnergy_anisotropy",
                                 "The GB energy anisotropy would be considered if true");
   params.addRequiredParam<bool>("gbMobility_anisotropy",
-                                "The GB mobility anisotropy would be considered if true");                              
+                                "The GB mobility anisotropy would be considered if true");
+  params.addRequiredParam<std::string>("type_crystalline", "Type named of crystalline structure");                              
   params.addRequiredCoupledVarWithAutoBuild(
       "v", "var_name_base", "op_num", "Array of coupled variables");
   return params;
@@ -53,7 +56,6 @@ GBAnisotropyGrainGrowth::validParams()
 GBAnisotropyGrainGrowth::GBAnisotropyGrainGrowth(const InputParameters & parameters)
   : Material(parameters),
     _grain_tracker(getUserObject<GrainTracker>("grain_tracker")),
-    // _grain_size(getUserObject<FeatureVolumeVectorPostprocessor>("grain_size")),
     _euler(getUserObject<EulerAngleProvider>("euler_angle_provider")),
     _wGB(getParam<Real>("wGB")),
     _mesh_dimension(_mesh.dimension()),
@@ -68,6 +70,7 @@ GBAnisotropyGrainGrowth::GBAnisotropyGrainGrowth(const InputParameters & paramet
     _rate2_HABvsLAB_sigma(getParam<Real>("rate2_HABvsLAB_sigma")),
     _delta_sigma(getParam<Real>("delta_sigma")),
     _delta_mob(getParam<Real>("delta_mob")),
+    _type_crystalline(getParam<std::string>("type_crystalline")),
     _inclination_anisotropy(getParam<bool>("inclination_anisotropy")),
     _gbEnergy_anisotropy(getParam<bool>("gbEnergy_anisotropy")),
     _gbMobility_anisotropy(getParam<bool>("gbMobility_anisotropy")),
@@ -90,7 +93,6 @@ GBAnisotropyGrainGrowth::GBAnisotropyGrainGrowth(const InputParameters & paramet
   _Q.resize(_op_num);
   _kappa_gamma.resize(_op_num);
   _a_g2.resize(_op_num);
-  // _grain_id.resize(_op_num);
 
   for (unsigned int op = 0; op < _op_num; ++op)
   {
@@ -179,8 +181,8 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
   std::vector<unsigned int> variableIndex; // Create a vector of order parameter indices
   Real bnd_val = 0;
 
-  // const auto & grain_size = _grain_size.getFeatureVolume(1);
   _delta_theta[_qp] = 0;
+  // op_to_grains.size() is the size of the order parameters
   for (MooseIndex(op_to_grains) op_index = 0; op_index < op_to_grains.size(); ++op_index)
   {
     auto grain_id = op_to_grains[op_index]; // grain id
@@ -188,7 +190,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
     if (grain_id == FeatureFloodCount::invalid_id) // max 4294967295
       continue;    
 
-    grainID.push_back(grain_id); // save the grain id
+    grainID.push_back(grain_id); // save the grain id if grain_id != invalid_id
     variableIndex.push_back(op_index); // the id of the order paramater gr[0-num_op]
   }
 
@@ -197,10 +199,11 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
   Real data_mob;
   Real data_Q;
 
-  Real GBsigma_LOW = _GBsigma_HAB * _rate2_HABvsLAB_sigma;
-  Real GBmob_LOW = _GBmob_HAB * _rate2_HABvsLAB_mob;
-  Real GBQ_LOW = _GBQ_HAB;
+  Real GBsigma_LAB = _GBsigma_HAB * _rate2_HABvsLAB_sigma;
+  Real GBmob_LAB = _GBmob_HAB * _rate2_HABvsLAB_mob;
+  Real GBQ_LAB = _GBQ_HAB;
 
+  // initialize three type paramaters
   for (unsigned int i = 0; i < _op_num; ++i) // column
   {
     std::vector<Real> row_sigma; // create an empty row of double values
@@ -208,14 +211,13 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
     std::vector<Real> row_Q;
     for (unsigned int j = 0; j < _op_num; ++j) // line
     {
-      data_sigma = GBsigma_LOW;
-      data_mob = GBmob_LOW;   
-      data_Q = GBQ_LOW;
+      data_sigma = GBsigma_LAB;
+      data_mob = GBmob_LAB;   
+      data_Q = GBQ_LAB;
       row_sigma.push_back(data_sigma);
       row_mob.push_back(data_mob);
       row_Q.push_back(data_Q);
-    } // initialize three type paramaters
-    
+    } 
       _sigma[i] = row_sigma; // unit: J/m^2 GB energy
 
       _mob[i] = row_mob; // unit: m^4/(J*s) GB mobility
@@ -229,7 +231,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
 
   Real delta_euler = 0.0;
   // edit the tensor based on the delta_theta
-  if (grainID.size() == 1 || grainID.size() == 0) // inside the grain   || grainID.size() == 0
+  if (grainID.size() == 1 || grainID.size() == 0) // inside the grain  || grainID.size() == 0
   {
     _delta_theta[_qp] = 0.0;
   }
@@ -240,7 +242,8 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
       {
         const RealVectorValue angles_i = _euler.getEulerAngles(grainID[i]);
         const RealVectorValue angles_j = _euler.getEulerAngles(grainID[j]); // EulerAngles
-        delta_euler = std::abs(angles_i(1)-angles_j(1))/45*15; ///35*15; // get the misorientation based grain id // phi-2
+        delta_euler = std::abs(angles_i(1)-angles_j(1))/45*15; /// 35*15; // get the misorientation based grain id // phi-2
+        calculateMisorientaion(angles_i, angles_j);
 
         if (delta_euler > 0.0)
         {
@@ -267,6 +270,62 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
       }
       _delta_theta[_qp] = 1.0;
   }
+}
+
+Real
+GBAnisotropyGrainGrowth::calculateMisorientaion(const RealVectorValue & Euler1, const RealVectorValue & Euler2)
+{
+  auto R1 = RotationTensor(Euler1);
+  auto R2 = RotationTensor(Euler2);
+  std::vector<std::vector<Real>> eulerAngle_symm;
+
+  if ( _type_crystalline == "hcp" )
+  {
+    eulerAngle_symm = 
+    {
+      {0,0,0},
+      {120,0,0},
+      {240,0,0},
+      {60,0,0},
+      {180,0,0},
+      {300,0,0},
+      {240,180,0},
+      {0,180,0},
+      {120,180,0},
+      {60,180,0},
+      {180,180,0},
+      {300,180,0}
+    };
+  }
+  
+  // std::cout << "the length of eulerAngle_symm is " << eulerAngle_symm.size() << std::endl;
+  int symm_size = eulerAngle_symm.size();
+  std::vector<Real> theta(symm_size,0);
+
+  RankTwoTensor M_misori;
+
+  for (unsigned int i = 0; i < symm_size; ++i)
+  {
+    EulerAngles angles; // Real phi1, Phi, phi2
+    angles.phi1 = eulerAngle_symm[0][i];
+    angles.Phi = eulerAngle_symm[1][i];
+    angles.phi2 = eulerAngle_symm[2][i];
+
+    M_misori = (RotationTensor(RealVectorValue(angles)) * R1).inverse() * R2;
+    
+    Real t1 = M_misori(0,0);
+    Real t2 = M_misori(1,1);
+    Real t3 = M_misori(2,2);
+
+    theta[i] = std::acos(0.5*(t1+t2+t3-1.0))*180/3.1415926;
+    std::cout << "theta[" << i << "] is " << theta[i] << std::endl;
+  }
+    std::cout << "Euler1 " << Euler1 << std::endl;
+    std::cout << "Euler2 " << Euler2 << std::endl;
+    std::cout << "the misorientation is " << *std::min_element(theta.begin(), theta.end()) << std::endl;
+    std::cout << "-----" << std::endl;
+
+  return 0;
 }
 
 void

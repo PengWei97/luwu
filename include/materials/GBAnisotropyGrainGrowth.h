@@ -32,6 +32,8 @@ protected:
 
   virtual void computeGBParamaterByMisorientaion();
 
+  virtual Real calculateMisorientaion(const RealVectorValue & Euler1, const RealVectorValue & Euler2);
+
   virtual void computeGBParamater();
 
   const unsigned int _mesh_dimension;
@@ -40,13 +42,14 @@ protected:
   const Real _time_scale;
   const Real _delta_sigma; 
   const Real _delta_mob;
-  const Real _GBsigma_HAB;
-  const Real _GBmob_HAB;
-  const Real _GBQ_HAB;
-  const Real _rate1_HABvsLAB_mob;
-  const Real _rate2_HABvsLAB_mob;
-  const Real _rate1_HABvsLAB_sigma;
-  const Real _rate2_HABvsLAB_sigma;
+  const Real _GBsigma_HAB; // 高角度晶界的晶界能
+  const Real _GBmob_HAB; // 高角度晶界的晶界迁移率
+  const Real _GBQ_HAB; // 高角度晶界的激活能
+  const Real _rate1_HABvsLAB_mob; // a_{mu,1}
+  const Real _rate2_HABvsLAB_mob; // a_{mu,2}
+  const Real _rate1_HABvsLAB_sigma; // a_{sigma,1}
+  const Real _rate2_HABvsLAB_sigma; // a_{sigma,2}
+  const std::string _type_crystalline; // hcp or cubic
 
   const bool _inclination_anisotropy;
   const bool _gbEnergy_anisotropy;
@@ -66,7 +69,7 @@ protected:
   MaterialProperty<Real> & _gamma;
   MaterialProperty<Real> & _L;
   MaterialProperty<Real> & _mu;
-  MaterialProperty<Real> & _delta_theta; // grain boundary misorientation
+  MaterialProperty<Real> & _delta_theta; // misorientation between grains
   
   const Real _kb;
   const Real _JtoeV;
@@ -79,9 +82,6 @@ protected:
 
   /// Grain tracker object
   const GrainTracker & _grain_tracker;
-
-  /// Grain area or volume
-  // const FeatureVolumeVectorPostprocessor & _grain_size;
 
   // / get the grain orientation based on Euler angels
   const EulerAngleProvider & _euler; 
