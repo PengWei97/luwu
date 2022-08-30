@@ -70,7 +70,7 @@ my_rand_seed = 20 # 40 200-400
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name =  grn_10_testure_2D.tex
+    file_name =  grn_20_rand_2D.tex #grn_10_testure_2D.tex
   [../]
   [./voronoi]
     type = PolycrystalVoronoi
@@ -427,7 +427,7 @@ my_rand_seed = 20 # 40 200-400
 
   start_time = 0.0
 #   end_time = ${my_end_time}
-  num_steps = 2
+  num_steps = 1
   # dtmax = 2.2
   # automatic_scaling = true # Whether to use automatic scaling for the variables.
   [./TimeStepper]

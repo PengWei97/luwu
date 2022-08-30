@@ -243,7 +243,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
         const RealVectorValue angles_i = _euler.getEulerAngles(grainID[i]);
         const RealVectorValue angles_j = _euler.getEulerAngles(grainID[j]); // EulerAngles
         delta_euler = std::abs(angles_i(1)-angles_j(1))/45*15; /// 35*15; // get the misorientation based grain id // phi-2
-        calculateMisorientaion(angles_i, angles_j);
+        Real calculated_mis = calculateMisorientaion(angles_i, angles_j); // TODO
 
         if (delta_euler > 0.0)
         {
@@ -272,60 +272,51 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
   }
 }
 
+
+// calculate misorientation between grains based euler angels and crystalline symm
 Real
 GBAnisotropyGrainGrowth::calculateMisorientaion(const RealVectorValue & Euler1, const RealVectorValue & Euler2)
 {
   auto R1 = RotationTensor(Euler1);
   auto R2 = RotationTensor(Euler2);
-  std::vector<std::vector<Real>> eulerAngle_symm;
+  std::vector<std::vector<Real>> eulerAngle_symm = {
+    {0.0,   0.0,   0.0},
+    {120.0, 0.0,   0.0},
+    {240.0, 0.0,   0.0},
+    {60.0,  0.0,   0.0},
+    {180.0, 0.0,   0.0},
+    {300.0, 0.0,   0.0},
+    {240.0, 180.0, 0.0},
+    {0.0,   180.0, 0.0},
+    {120.0, 180.0, 0.0},
+    {60.0,  180.0, 0.0},
+    {180.0, 180.0, 0.0},
+    {300.0, 180.0, 0.0}
+  }; // symmetry matrix for hcp system 
 
-  if ( _type_crystalline == "hcp" )
-  {
-    eulerAngle_symm = 
-    {
-      {0,0,0},
-      {120,0,0},
-      {240,0,0},
-      {60,0,0},
-      {180,0,0},
-      {300,0,0},
-      {240,180,0},
-      {0,180,0},
-      {120,180,0},
-      {60,180,0},
-      {180,180,0},
-      {300,180,0}
-    };
-  }
-  
-  // std::cout << "the length of eulerAngle_symm is " << eulerAngle_symm.size() << std::endl;
-  int symm_size = eulerAngle_symm.size();
-  std::vector<Real> theta(symm_size,0);
-
+  auto symm_size = eulerAngle_symm.size();
+  std::vector<Real> theta(symm_size, 0);
   RankTwoTensor M_misori;
+  EulerAngles s_ang; // Real phi1, Phi, phi2
 
   for (unsigned int i = 0; i < symm_size; ++i)
   {
-    EulerAngles angles; // Real phi1, Phi, phi2
-    angles.phi1 = eulerAngle_symm[0][i];
-    angles.Phi = eulerAngle_symm[1][i];
-    angles.phi2 = eulerAngle_symm[2][i];
-
-    M_misori = (RotationTensor(RealVectorValue(angles)) * R1).inverse() * R2;
+    s_ang.phi1 = eulerAngle_symm[i][0];
+    s_ang.Phi = eulerAngle_symm[i][1];
+    s_ang.phi2 = eulerAngle_symm[i][2];
     
+    M_misori = (RotationTensor(s_ang)*R1).inverse()*R2;
+
     Real t1 = M_misori(0,0);
     Real t2 = M_misori(1,1);
     Real t3 = M_misori(2,2);
 
-    theta[i] = std::acos(0.5*(t1+t2+t3-1.0))*180/3.1415926;
-    std::cout << "theta[" << i << "] is " << theta[i] << std::endl;
+    theta[i] = std::acos(0.5*(t1+t2+t3-1.0));
+    M_misori.zero();
   }
-    std::cout << "Euler1 " << Euler1 << std::endl;
-    std::cout << "Euler2 " << Euler2 << std::endl;
-    std::cout << "the misorientation is " << *std::min_element(theta.begin(), theta.end()) << std::endl;
-    std::cout << "-----" << std::endl;
 
-  return 0;
+  // return the minmum of theta, or misorientation for 
+  return *std::min_element(theta.begin(), theta.end())*180/3.14;
 }
 
 void
