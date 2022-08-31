@@ -242,8 +242,12 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
       {
         const RealVectorValue angles_i = _euler.getEulerAngles(grainID[i]);
         const RealVectorValue angles_j = _euler.getEulerAngles(grainID[j]); // EulerAngles
-        delta_euler = std::abs(angles_i(1)-angles_j(1))/45*15; /// 35*15; // get the misorientation based grain id // phi-2
-        Real calculated_mis = calculateMisorientaion(angles_i, angles_j); // TODO
+        // delta_euler = std::abs(angles_i(1)-angles_j(1))/45*15; /// 35*15; // get the misorientation based grain id // phi-2
+        delta_euler = calculateMisorientaion(angles_i, angles_j); // TODO
+        // std::cout << "delta_euler " << delta_euler << std::endl;
+        
+        // if (delta_euler < 0.0)
+          // delta_euler = 0.0;
 
         if (delta_euler > 0.0)
         {
@@ -268,7 +272,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
           }
         }
       }
-      _delta_theta[_qp] = 1.0;
+      _delta_theta[_qp] = delta_euler;
   }
 }
 
