@@ -10,6 +10,7 @@
 #pragma once
 
 #include "Material.h"
+#include "EBSDReader.h"
 #include "typeinfo"
 // Forward Declarations
 class GrainTrackerInterface;
@@ -26,56 +27,61 @@ public:
   DeformedGrainMaterialGG(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpProperties();
+  virtual void initQpStatefulProperties() override;
 
-  /// total number of grains
-  const unsigned int _op_num;
+  virtual void computeQpProperties() override;
+
+  /// total number of grains 
+  const unsigned int _op_num; 
 
   /// order parameter values
-  const std::vector<const VariableValue *> _vals;
+  const std::vector<const VariableValue *> _vals; 
 
-  const Real _length_scale;
-  const Real _int_width;
-  const Real _time_scale;
-  const Real _GBMobility;
-
-  /// the GB Energy
-  const Real _GBE;
+  const Real _length_scale; 
 
   /// the average dislocation density
-  const Real _Disloc_Den;
+  const Real _Disloc_Den; 
 
   /// the elastic modulus
-  const Real _Elas_Mod;
+  const Real _Elas_Mod; 
 
   /// the Length of Burger's Vector
-  const Real _Burg_vec;
+  const Real _Burg_vec; 
 
-  /// the same parameters that appear in the original grain growth model
-  MaterialProperty<Real> & _kappa;
-  MaterialProperty<Real> & _gamma;
-  MaterialProperty<Real> & _L;
-  MaterialProperty<Real> & _mu;
+  // const std::string _type_crystalline; // hcp or cubic
+
+  /// number of the order paramaters in vaild
+  MaterialProperty<Real> & _num_op_valid;
+
+  /// Old value of _num_op_valid
+  const MaterialProperty<Real> & _num_op_valid_old;
 
   /// the prefactor needed to calculate the deformation energy from dislocation density
-  MaterialProperty<Real> & _beta;
+  MaterialProperty<Real> & _beta; 
 
   /// dislocation density in grain i
-  MaterialProperty<Real> & _Disloc_Den_i;
+  // Stateful Material Properties
+  MaterialProperty<Real> & _Disloc_Den_i; 
+
+  const MaterialProperty<Real> & _Disloc_Den_i_old; 
 
   /// the average/effective dislocation density
-  MaterialProperty<Real> & _rho_eff;
+  MaterialProperty<Real> & _rho_eff; 
 
   /// the deformation energy
-  MaterialProperty<Real> & _Def_Eng;
+  MaterialProperty<Real> & _Def_Eng; 
 
   // Constants
 
   /// number of deformed grains
-  const unsigned int _deformed_grain_num;
+  const unsigned int _deformed_grain_num; 
 
   /// Grain tracker object
-  const GrainTrackerInterface & _grain_tracker;
-  const Real _kb;
-  const Real _JtoeV;
+  const GrainTrackerInterface & _grain_tracker; 
+  const Real _JtoeV; 
+
+  /// get the dislocation density on ebsd_reader
+  const EBSDReader & _ebsd_reader;
+
+  MooseEnum _data_name;
 };

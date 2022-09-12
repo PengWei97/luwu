@@ -11,6 +11,7 @@
 
 #include "Material.h"
 #include "EulerAngleProvider.h"
+#include "EBSDReader.h"
 #include "GrainTracker.h"
 #include "FeatureVolumeVectorPostprocessor.h"
 // Forward Declarations
@@ -70,6 +71,7 @@ protected:
   MaterialProperty<Real> & _L;
   MaterialProperty<Real> & _mu;
   MaterialProperty<Real> & _delta_theta; // misorientation between grains
+  // MaterialProperty<Real> & _num_grain_valid;
   
   const Real _kb;
   const Real _JtoeV;
@@ -85,5 +87,10 @@ protected:
 
   // / get the grain orientation based on Euler angels
   const EulerAngleProvider & _euler; 
+
+  // / get the rho based on ebsd_reader
+  // const EBSDReader & _ebsd_reader;
+
+  // MooseEnum _data_name;
 };
 

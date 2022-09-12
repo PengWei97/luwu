@@ -22,7 +22,7 @@
 #
 # Num_Features: 87 
 #
-# phi1 PHI phi2 x y z FeatureId PhaseId Symmetry
+# phi1 PHI phi2 x y z FeatureId PhaseId Symmetry Rho
 1.3160 1.5914 0.0692 1.3160 1.5914 0 16 1 62 4.3796e+13
 1.3156 1.5915 0.0683 1.3156 1.5915 0 16 1 62 4.3796e+13
 1.3160 1.5914 0.0692 1.3160 1.5914 0 16 1 62 4.3796e+13

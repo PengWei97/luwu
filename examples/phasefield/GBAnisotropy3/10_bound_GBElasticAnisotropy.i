@@ -19,7 +19,7 @@
 # para_300_ElasticGB_18: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0e-12 (45-0) ID-55
 # para_200_ElasticGB_19: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0345e-12 (45-0) grn_200_testure3_2D 三种取向 形态仍然是矩形
 # 
-
+/home/pw-moose/projects/luwu/examples/phasefield/GBAnisotropy3/10_bound_GBElasticAnisotropy.i
 my_filename = 'para_200_ElasticGB_19'
 my_interval = 5
 my_num_adaptivity = 3
@@ -74,7 +74,43 @@ my_rand_seed = 400 # 40 200-400
 
 [Variables]
   # Variable block, where all variables in the simulation are declared
-  [./PolycrystalVariables]
+  # [./PolycrystalVariables]
+  # [../]
+  [./gr0]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr1]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr2]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr3]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr4]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr5]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr6]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr7]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./gr8]
+    order = FIRST
+    family = LAGRANGE
   [../]
   [./disp_x]
     order = FIRST

@@ -1,9 +1,9 @@
-my_filename = "05_ebsd"
+my_filename = "10_ebsd_rho"
 
 [Mesh]
   [ebsd_mesh]
     type = EBSDMeshGenerator
-    filename = 4_Ti700du_10minFill.inl #4_Ti700du_10minFill.inl #Ti700du_10minFill_3.inl #Small_IN100_4.txt
+    filename = local_Ti700du_10minFill_rho_single.txt 
     # pre_refine = 2
   []
 []
@@ -18,9 +18,9 @@ my_filename = "05_ebsd"
     type = EBSDReader
     # Load and manage DREAM.3D EBSD data files for running simulations on reconstructed microstructures
     L_norm = 1 # Specifies the type of average the user intends to perform
-    # custom_columns = 10 # Number of additional custom data columns to read from the EBSD file
+    custom_columns = 1 # Number of additional custom data columns to read from the EBSD file 自定义数据的数目
     
-    # execute_on = TIMESTEP_END
+    execute_on = 'initial timestep_begin'
   []
   [ebsd]
     type = PolycrystalEBSD
@@ -91,6 +91,10 @@ my_filename = "05_ebsd"
     family = MONOMIAL
   []
   [phi2]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [Rho]
     order = CONSTANT
     family = MONOMIAL
   []
@@ -177,13 +181,21 @@ my_filename = "05_ebsd"
     output_euler_angle = 'phi2'
     execute_on = 'initial'
   []
-  [grain_aux]
+  [grain_aux] # exection = TIMESTEP_END
     type = EBSDReaderPointDataAux
-    variable = ebsd_grains
+    variable = ebsd_grains # 位错密度
     ebsd_reader = ebsd_reader
-    data_name = 'feature_id'
-    execute_on = 'initial timestep_end'
+    data_name = 'CUSTOM0' # custom feature_id CUSTOM0 CUSTOM0 Rho Rho0 CUSTOM0
+    execute_on = 'initial timestep_end' 
   []
+  # [Rho]
+  #   type = EBSDReaderPointDataAux
+  #   variable = Rho
+  #   ebsd_reader = ebsd_reader
+  #   grain_tracker = grain_tracker
+  #   data_name = 'feature_id'
+  #   execute_on = 'initial timestep_end'
+  # []
 []
 
 [Modules]
@@ -216,6 +228,8 @@ my_filename = "05_ebsd"
     type_crystalline = hcp
     grain_tracker = grain_tracker
     euler_angle_provider = ebsd_reader 
+    ebsd_reader = ebsd_reader
+    data_name = 'CUSTOM0'
     T = 450 # K
 
     inclination_anisotropy = false # true
@@ -270,12 +284,12 @@ my_filename = "05_ebsd"
   nl_rel_tol = 1.0e-8
 
   start_time = 0.0
-  num_steps = 1000
+  num_steps = 20
 
   [TimeStepper]
     type = IterationAdaptiveDT
     cutback_factor = 0.9
-    dt = 7.0
+    dt = 0.1
     growth_factor = 1.1
     optimal_iterations = 7
   []
@@ -292,7 +306,7 @@ my_filename = "05_ebsd"
   file_base = ./${my_filename}/out_${my_filename}
   [my_exodus]
     type = Exodus
-    interval = 5
+    # interval = 5
   [../]
   print_linear_residuals = false
   

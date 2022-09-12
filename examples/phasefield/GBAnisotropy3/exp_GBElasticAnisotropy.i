@@ -18,9 +18,9 @@
 # para_400_ElasticGB_17: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0e-12 (45-0) ing
 # para_300_ElasticGB_18: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0e-12 (45-0) ID-55
 # para_200_ElasticGB_19: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0345e-12 (45-0) grn_200_testure3_2D 三种取向 形态仍然是矩形
-# 
-
-my_filename = 'para_200_ElasticGB_19'
+# para_200_ElasticGB_20: 加载0.5%，异性（0.6/0.4 0.60/0.40） 6.25倍 mob0 = 4.0345e-12 [0 x 45] grn_200_testure4_2D 三种取向 (0 35(55) 22.5(62.5))
+ 
+my_filename = 'para_200_ElasticGB_20'
 my_interval = 5
 my_num_adaptivity = 3
 my_end_time = 500
@@ -89,7 +89,7 @@ my_rand_seed = 400 # 40 200-400
 [UserObjects]
   [./euler_angle_file]
     type = EulerAngleFileReader
-    file_name =  grn_200_testure3_2D.tex #grn_20_testure_2D.tex grn_36_rand_2D.tex grn_400_testure1_2D grn_200_testure2_2D grn_200_testure3_2D
+    file_name =  grn_200_testure4_2D.tex #grn_20_testure_2D.tex grn_36_rand_2D.tex grn_400_testure1_2D grn_200_testure2_2D grn_200_testure3_2D
   [../]
   [./voronoi]
     type = PolycrystalVoronoi
@@ -177,7 +177,15 @@ my_rand_seed = 400 # 40 200-400
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./euler_angle]
+  [./euler_angle1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./euler_angle2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./euler_angle3]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -281,12 +289,30 @@ my_rand_seed = 400 # 40 200-400
     flood_counter = grain_tracker
     field_display = VARIABLE_COLORING
   [../]
-  [./euler_angle]
+  [./euler_angle1]
     type = OutputEulerAngles
-    variable = euler_angle
+    variable = euler_angle1
     euler_angle_provider = euler_angle_file
     grain_tracker = grain_tracker
     output_euler_angle = 'phi1'
+    #  phi1, Phi, phi2
+    execute_on = 'initial timestep_end'
+  [../]
+  [./euler_angle2]
+    type = OutputEulerAngles
+    variable = euler_angle2
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'Phi'
+    #  phi1, Phi, phi2
+    execute_on = 'initial timestep_end'
+  [../]
+  [./euler_angle3]
+    type = OutputEulerAngles
+    variable = euler_angle3
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'phi2'
     #  phi1, Phi, phi2
     execute_on = 'initial timestep_end'
   [../]

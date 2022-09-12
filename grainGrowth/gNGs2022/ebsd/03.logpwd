@@ -1,0 +1,70 @@
+[36mThe following total 5 aux variables:
+  L
+  delta_theta
+  gamma_asymm
+  kappa_op
+  mu
+are added for automatic output by MaterialOutputAction.[39m
+field_name is CUSTOM0
+Framework Information:
+MOOSE Version:           git commit ad72734889 on 2022-08-30
+LibMesh Version:         
+PETSc Version:           3.16.6
+SLEPc Version:           3.16.2
+Current Time:            Sun Sep  4 17:47:14 2022
+Executable Timestamp:    Sun Sep  4 17:45:57 2022
+
+Parallelism:
+  Num Processors:          30
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 21904
+    Local:                 773
+    Min/Max/Avg:           665/783/730
+  Elems:                   
+    Total:                 21609
+    Local:                 717
+    Min/Max/Avg:           706/735/720
+  Num Subdomains:          1
+  Num Partitions:          30
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                262848
+  Num Local DOFs:          9276
+  Variables:               { "gr0" "gr1" "gr2" "gr3" "gr4" ... "gr7" "gr8" "gr9" "gr10" "gr11" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                432475
+  Num Local DOFs:          14396
+  Variables:               "bnds" { "unique_grains_ic" "unique_grains" "ghost_elements" "halos" "var_indices_ic" 
+                             ... "L" "delta_theta" "gamma_asymm" "kappa_op" "mu" } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  PETSc Preconditioner:    hypre boomeramg 
+
+[mpiexec@pwmoose-PowerEdge-T640] Sending Ctrl-C to processes as requested
+[mpiexec@pwmoose-PowerEdge-T640] Press Ctrl-C again to force abort
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 2209275 RUNNING AT pwmoose-PowerEdge-T640
+=   EXIT CODE: 2
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Interrupt (signal 2)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions

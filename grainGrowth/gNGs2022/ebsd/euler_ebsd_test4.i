@@ -1,9 +1,9 @@
-my_filename = "05_ebsd"
+my_filename = "11_ebsd_rho"
 
 [Mesh]
   [ebsd_mesh]
     type = EBSDMeshGenerator
-    filename = 4_Ti700du_10minFill.inl #4_Ti700du_10minFill.inl #Ti700du_10minFill_3.inl #Small_IN100_4.txt
+    filename = local_Ti700du_10minFill_rho_single.txt 
     # pre_refine = 2
   []
 []
@@ -18,9 +18,9 @@ my_filename = "05_ebsd"
     type = EBSDReader
     # Load and manage DREAM.3D EBSD data files for running simulations on reconstructed microstructures
     L_norm = 1 # Specifies the type of average the user intends to perform
-    # custom_columns = 10 # Number of additional custom data columns to read from the EBSD file
+    custom_columns = 1 # Number of additional custom data columns to read from the EBSD file 自定义数据的数目
     
-    # execute_on = TIMESTEP_END
+    execute_on = 'initial timestep_begin'
   []
   [ebsd]
     type = PolycrystalEBSD
@@ -94,10 +94,18 @@ my_filename = "05_ebsd"
     order = CONSTANT
     family = MONOMIAL
   []
+  [Rho]
+    order = CONSTANT
+    family = MONOMIAL
+  []
   [ebsd_grains]
     family = MONOMIAL
     order = CONSTANT
   []
+  # [num_op_valid]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  # []
 []
 
 [Kernels]
@@ -177,13 +185,27 @@ my_filename = "05_ebsd"
     output_euler_angle = 'phi2'
     execute_on = 'initial'
   []
-  [grain_aux]
+  [grain_aux] # exection = TIMESTEP_END
     type = EBSDReaderPointDataAux
-    variable = ebsd_grains
+    variable = ebsd_grains # 位错密度
     ebsd_reader = ebsd_reader
-    data_name = 'feature_id'
-    execute_on = 'initial timestep_end'
+    data_name = 'CUSTOM0' # custom feature_id CUSTOM0 CUSTOM0 Rho Rho0 CUSTOM0
+    execute_on = 'initial timestep_end' 
   []
+  # [num_op_valid]
+  #   type = MaterialRealAux
+  #   variable = num_op_valid
+  #   property = Def_Eng
+  #   execute_on = timestep_end
+  # []
+  # [Rho]
+  #   type = EBSDReaderPointDataAux
+  #   variable = Rho
+  #   ebsd_reader = ebsd_reader
+  #   grain_tracker = grain_tracker
+  #   data_name = 'feature_id'
+  #   execute_on = 'initial timestep_end'
+  # []
 []
 
 [Modules]
@@ -215,8 +237,8 @@ my_filename = "05_ebsd"
     type = GBAnisotropyGrainGrowth
     type_crystalline = hcp
     grain_tracker = grain_tracker
-    euler_angle_provider = ebsd_reader 
     T = 450 # K
+    euler_angle_provider = ebsd_reader 
 
     inclination_anisotropy = false # true
     gbEnergy_anisotropy = true # true false
@@ -234,7 +256,21 @@ my_filename = "05_ebsd"
     length_scale = 1.0e-6
     time_scale = 1.0e-6
 
-    output_properties = 'kappa_op L mu gamma_asymm delta_theta'
+    # output_properties = 'kappa_op L mu gamma_asymm delta_theta num_grain_valid'
+    # output_properties = 'num_grain_valid'
+    # outputs = my_exodus
+  []
+  [CuDeformedEnergy]
+    type = DeformedGrainMaterialGG
+    # int_width = 4.0
+    # outputs = my_exodus
+    type_crystalline = hcp
+    ebsd_reader = ebsd_reader
+    data_name = 'CUSTOM0'
+    deformed_grain_num = 2
+    grain_tracker = grain_tracker
+
+    output_properties = 'num_op_valid Disloc_Den_i Disloc_Den_i_old'
     outputs = my_exodus
   []
 []
@@ -270,12 +306,12 @@ my_filename = "05_ebsd"
   nl_rel_tol = 1.0e-8
 
   start_time = 0.0
-  num_steps = 1000
+  num_steps = 1e3
 
   [TimeStepper]
     type = IterationAdaptiveDT
     cutback_factor = 0.9
-    dt = 7.0
+    dt = 0.1
     growth_factor = 1.1
     optimal_iterations = 7
   []

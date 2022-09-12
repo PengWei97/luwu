@@ -24,6 +24,10 @@ GBAnisotropyGrainGrowth::validParams()
       "grain_tracker", "Name of GrainTracker user object that provides Grain ID according to element ID");
   params.addRequiredParam<UserObjectName>("euler_angle_provider",
                                           "Name of Euler angle provider user object");  
+  // params.addRequiredParam<UserObjectName>("ebsd_reader",
+                                          // "The EBSDReader GeneralUserObject");
+  // MooseEnum field_types = EBSDAccessFunctors::getPointDataFieldType();                                           
+  // params.addRequiredParam<MooseEnum>("data_name", field_types, "The data to be extracted from the EBSD data by");                            
   params.addRequiredCoupledVarWithAutoBuild(
       "v", "var_name_base", "op_num", "Array of coupled variables");
   params.addRequiredParam<Real>("wGB", "Diffuse GB width in nm");
@@ -57,6 +61,8 @@ GBAnisotropyGrainGrowth::GBAnisotropyGrainGrowth(const InputParameters & paramet
   : Material(parameters),
     _grain_tracker(getUserObject<GrainTracker>("grain_tracker")),
     _euler(getUserObject<EulerAngleProvider>("euler_angle_provider")),
+    // _ebsd_reader(getUserObject<EBSDReader>("ebsd_reader")),
+    // _data_name(getParam<MooseEnum>("data_name")),
     _wGB(getParam<Real>("wGB")),
     _mesh_dimension(_mesh.dimension()),
     _length_scale(getParam<Real>("length_scale")),
@@ -76,6 +82,7 @@ GBAnisotropyGrainGrowth::GBAnisotropyGrainGrowth(const InputParameters & paramet
     _gbMobility_anisotropy(getParam<bool>("gbMobility_anisotropy")),
     _T(coupledValue("T")), //??
     _kappa(declareProperty<Real>("kappa_op")),
+    // _num_grain_valid(declareProperty<Real>("num_grain_valid")),
     _gamma(declareProperty<Real>("gamma_asymm")),
     _L(declareProperty<Real>("L")),
     _mu(declareProperty<Real>("mu")),
@@ -182,6 +189,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
   Real bnd_val = 0;
 
   _delta_theta[_qp] = 0;
+  // _num_grain_valid[_qp] = 0;
   // op_to_grains.size() is the size of the order parameters
   for (MooseIndex(op_to_grains) op_index = 0; op_index < op_to_grains.size(); ++op_index)
   {
@@ -192,6 +200,7 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
 
     grainID.push_back(grain_id); // save the grain id if grain_id != invalid_id
     variableIndex.push_back(op_index); // the id of the order paramater gr[0-num_op]
+    // _num_grain_valid[_qp] = _num_grain_valid[_qp] + 1;
   }
 
   // initial the tensor of paramater
@@ -272,8 +281,14 @@ GBAnisotropyGrainGrowth::computeGBParamaterByMisorientaion()
           }
         }
       }
+      // auto AA = _ebsd_reader.getData(_current_elem->id());
       _delta_theta[_qp] = delta_euler;
   }
+  // MooseEnum _data_name = 'CUSTOM0';
+  // auto _val_a = _ebsd_reader.getPointDataAccessFunctor(_data_name);
+  // Point p = _current_elem->vertex_average();
+
+  // _delta_theta[_qp] = (*_val_a)(_ebsd_reader.getData(p));
 }
 
 
