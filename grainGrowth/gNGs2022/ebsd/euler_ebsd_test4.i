@@ -1,15 +1,17 @@
-my_filename = "11_ebsd_rho"
+my_filename = "13_ebsd_rho_total"
 
 [Mesh]
   [ebsd_mesh]
     type = EBSDMeshGenerator
-    filename = local_Ti700du_10minFill_rho_single.txt 
+    filename = total_Ti700du_10minFill_rho_single_2.txt
+    # /home/pw-moose/projects/luwu/grainGrowth/gNGs2022/ _add2
     # pre_refine = 2
+    parallel_type = distributed
   []
 []
 
 [GlobalParams]
-  op_num = 12
+  op_num = 18
   var_name_base = gr
 []
 
@@ -18,7 +20,7 @@ my_filename = "11_ebsd_rho"
     type = EBSDReader
     # Load and manage DREAM.3D EBSD data files for running simulations on reconstructed microstructures
     L_norm = 1 # Specifies the type of average the user intends to perform
-    custom_columns = 1 # Number of additional custom data columns to read from the EBSD file 自定义数据的数目
+    custom_columns = 0 # Number of additional custom data columns to read from the EBSD file 自定义数据的数目
     
     execute_on = 'initial timestep_begin'
   []
@@ -185,13 +187,13 @@ my_filename = "11_ebsd_rho"
     output_euler_angle = 'phi2'
     execute_on = 'initial'
   []
-  [grain_aux] # exection = TIMESTEP_END
-    type = EBSDReaderPointDataAux
-    variable = ebsd_grains # 位错密度
-    ebsd_reader = ebsd_reader
-    data_name = 'CUSTOM0' # custom feature_id CUSTOM0 CUSTOM0 Rho Rho0 CUSTOM0
-    execute_on = 'initial timestep_end' 
-  []
+  # [grain_aux] # exection = TIMESTEP_END
+  #   type = EBSDReaderPointDataAux
+  #   variable = ebsd_grains # 位错密度
+  #   ebsd_reader = ebsd_reader
+  #   data_name = 'CUSTOM0' # custom feature_id CUSTOM0 CUSTOM0 Rho Rho0 CUSTOM0
+  #   execute_on = 'initial timestep_end' 
+  # []
   # [num_op_valid]
   #   type = MaterialRealAux
   #   variable = num_op_valid
@@ -260,19 +262,19 @@ my_filename = "11_ebsd_rho"
     # output_properties = 'num_grain_valid'
     # outputs = my_exodus
   []
-  [CuDeformedEnergy]
-    type = DeformedGrainMaterialGG
-    # int_width = 4.0
-    # outputs = my_exodus
-    type_crystalline = hcp
-    ebsd_reader = ebsd_reader
-    data_name = 'CUSTOM0'
-    deformed_grain_num = 2
-    grain_tracker = grain_tracker
+  # [CuDeformedEnergy]
+  #   type = DeformedGrainMaterialGG
+  #   # int_width = 4.0
+  #   # outputs = my_exodus
+  #   type_crystalline = hcp
+  #   ebsd_reader = ebsd_reader
+  #   data_name = 'CUSTOM0'
+  #   deformed_grain_num = 2
+  #   grain_tracker = grain_tracker
 
-    output_properties = 'num_op_valid Disloc_Den_i Disloc_Den_i_old'
-    outputs = my_exodus
-  []
+  #   output_properties = 'num_op_valid Disloc_Den_i Disloc_Den_i_old'
+  #   outputs = my_exodus
+  # []
 []
 
 [Postprocessors]
@@ -306,7 +308,7 @@ my_filename = "11_ebsd_rho"
   nl_rel_tol = 1.0e-8
 
   start_time = 0.0
-  num_steps = 1e3
+  num_steps = 100
 
   [TimeStepper]
     type = IterationAdaptiveDT
@@ -327,12 +329,12 @@ my_filename = "11_ebsd_rho"
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
   [my_exodus]
-    type = Exodus
-    interval = 5
+    type = Nemesis # Nemesis Exodus
+    interval = 1
   [../]
   print_linear_residuals = false
   
-  checkpoint = true
+  # checkpoint = true
   perf_graph = true
   csv = true
 []

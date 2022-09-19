@@ -1,0 +1,63 @@
+Framework Information:
+MOOSE Version:           git commit ad72734889 on 2022-08-30
+LibMesh Version:         
+PETSc Version:           3.16.6
+SLEPc Version:           3.16.2
+Current Time:            Mon Sep 19 19:17:22 2022
+Executable Timestamp:    Mon Sep 19 17:36:15 2022
+
+Parallelism:
+  Num Processors:          2
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 14641
+    Local:                 7392
+    Min/Max/Avg:           7249/7392/7320
+  Elems:                   
+    Total:                 14400
+    Local:                 7200
+    Min/Max/Avg:           7200/7200/7200
+  Num Subdomains:          1
+  Num Partitions:          2
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                117128
+  Num Local DOFs:          59136
+  Variables:               { "gr0" "gr1" "gr2" "gr3" "gr4" "gr5" "gr6" "gr7" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                158641
+  Num Local DOFs:          79392
+  Variables:               "bnds" { "unique_grains_ic" "unique_grains" "ghost_elements" "halos" "var_indices_ic" 
+                             "var_indices" "ebsd_grains" "RGB_x" "RGB_y" "RGB_z" } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  PETSc Preconditioner:    hypre boomeramg 
+
+[33mGrain #90 intersects Grain #96 (variable index: 3)
+[39m[32m- Depth 0: Remapping grain #90 from variable index 3 to 6 which currently contains zero grains.
+
+[39mFinished inside of GrainTracker
+
+*** ERROR ***
+/home/pw-moose/projects/luwu/grainGrowth/gNGs2022/ebsd_00/IN100-111grn.i:6: unused parameter 'Mesh/ebsd_mesh/parallel_type'
+
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+
+*** ERROR ***
+/home/pw-moose/projects/luwu/grainGrowth/gNGs2022/ebsd_00/IN100-111grn.i:6: unused parameter 'Mesh/ebsd_mesh/parallel_type'
