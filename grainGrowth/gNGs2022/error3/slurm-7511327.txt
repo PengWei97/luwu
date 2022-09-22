@@ -1,0 +1,1024 @@
+
+
+[36m
+*** Info ***
+Using ./09_local_ebsd_misori_GBanisotropy/out_09_local_ebsd_misori_GBanisotropy_cp/0055 for recovery.[39m
+[36mThe following total 2 aux variables:
+  delta_theta
+  kappa_op
+are added for automatic output by MaterialOutputAction.[39m
+Framework Information:
+MOOSE Version:           git commit 9c2c6fe on 2022-03-23
+LibMesh Version:         
+PETSc Version:           3.16.5
+SLEPc Version:           3.16.2
+Current Time:            Thu Sep 22 20:09:56 2022
+Executable Timestamp:    Thu Sep 22 20:09:39 2022
+
+Parallelism:
+  Num Processors:          112
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           distributed
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 139183
+    Local:                 420
+    Min/Max/Avg:           353/2789/1242
+  Elems:                   
+    Total:                 124133
+    Local:                 366
+    Min/Max/Avg:           343/2484/1108
+  Num Subdomains:          1
+  Num Partitions:          1
+  Partitioner:             parmetis
+
+Nonlinear System:
+  Num DOFs:                2505294
+  Num Local DOFs:          7560
+  Variables:               { "gr0" "gr1" "gr2" "gr3" "gr4" ... "gr13" "gr14" "gr15" "gr16" "gr17" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                1380513
+  Num Local DOFs:          4080
+  Variables:               "bnds" { "unique_grains_ic" "unique_grains" "phi1" "Phi" "phi2" "RGB_x" "RGB_y" 
+                             "RGB_z" "delta_theta" "kappa_op" } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  PETSc Preconditioner:    hypre boomeramg 
+
+
+Time Step 56, time = 15.4223, dt = 0.417725
+ 0 Nonlinear |R| = [32m9.180162e-01[39m
+ 1 Nonlinear |R| = [32m5.768520e-03[39m
+ 2 Nonlinear |R| = [32m7.708989e-07[39m
+ 3 Nonlinear |R| = [32m5.226698e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 10.09 s[39m] [[33m   10 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 75 -> 75
+Grains active index 1: 51 -> 51
+Grains active index 2: 44 -> 45++
+Grains active index 3: 38 -> 38
+Grains active index 4: 34 -> 34
+Grains active index 5: 28 -> 28
+Grains active index 6: 19 -> 19
+Grains active index 7: 10 -> 10
+Grains active index 8: 7 -> 7
+Grains active index 9: 4 -> 4
+Grains active index 10: 4 -> 4
+Grains active index 11: 2 -> 2
+Grains active index 12: 2 -> 2
+Grains active index 13: 1 -> 1
+Grains active index 14: 1 -> 1
+Grains active index 15: 1 -> 1
+Grains active index 16: 0 -> 0
+Grains active index 17: 0 -> 0
+
+[33mNucleating Grain Detected  (variable index: 0)
+[39m[33mNucleating Grain Detected  (variable index: 2)
+[39m[32mMarking Grain 182 as INACTIVE (variable index: 0)
+[39m[33m
+*****************************************************************************
+Couldn't find a matching grain while working on variable index: 0
+Creating new unique grain: 329
+Grain ID: 329
+Ghosted Entities: 
+Local Entities: 
+Halo Entities: 145153 145415 175509 175511 175551 175553 175555 175556 175559 175560 175561 175563 175564 175566 175567 175569 175570 175572 175573 175574 
+Periodic Node IDs: 
+BBoxes:
+Max: (x,y,z)=( 122.867,  151.803,        0) Min: (x,y,z)=( 120.861,  149.799,        0)
+Status:  MARKED
+Orig IDs (rank, index): (100, 1) 
+Var_index: 0
+Min Entity ID: 175562
+
+
+*****************************************************************************
+[39m[33m
+*****************************************************************************
+Couldn't find a matching grain while working on variable index: 2
+Creating new unique grain: 330
+Grain ID: 330
+Ghosted Entities: 
+Local Entities: 
+Halo Entities: 25264 25265 25283 25285 25290 25292 25759 25760 25761 25763 25764 25766 25767 25769 25770 25772 25773 25774 25816 25819 
+Periodic Node IDs: 
+BBoxes:
+Max: (x,y,z)=( 38.6155,  155.561,        0) Min: (x,y,z)=( 36.6095,  153.807,        0)
+Status:  MARKED
+Orig IDs (rank, index): (14, 10) 
+Var_index: 2
+Min Entity ID: 25762
+
+
+*****************************************************************************
+[39mFinished inside of GrainTracker
+
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 0 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 1
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 254 size: 0[39m
+
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 11 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 2
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 11 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 4
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 118 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 5
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 155 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 6
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 1 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 16
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 19
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 193 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 28
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 183 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 32
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 33
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 112 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 36
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 37
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 48
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 104 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 49
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 122 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 50
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 70 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 3
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 1 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 7
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 265 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 9
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 1 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 11
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 12
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 50 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 13
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 14
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 17
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 18
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 256 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 20
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 69 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 21
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 6 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 22
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 138 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 56
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 50 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 23
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 138 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 57
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 1 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 24
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 169 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 60
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 50 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 25
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 122 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 61
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 215 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 26
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 152 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 62
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 27
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 169 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 63
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 90 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 29
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 122 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 64
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 30
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 175 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 67
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 112 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 34
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 122 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 69
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 70 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 38
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 195 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 73
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 94 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 39
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 212 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 78
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 40
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 206 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 80
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 113 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 41
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 193 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 82
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 90 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 42
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 84
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 44
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 195 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 85
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 136 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 45
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 262 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 89
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 135 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 46
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 248 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 91
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 149 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 47
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 215 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 93
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 118 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 53
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 259 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 94
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 152 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 55
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 257 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 96
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 38 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 98 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 99
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 8
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 100
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 12 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 10
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 101
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 1 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 15
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 244 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 102
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 92 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 31
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 282 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 103
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 97 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 35
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 215 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 104
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 2 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 43
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 215 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 105
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 147 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 51
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 11 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 106
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 72 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 52
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 107
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 155 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 54
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 147 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 58
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 169 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 59
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 183 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 65
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 187 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 66
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 68
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 198 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 70
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 71
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 192 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 72
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 122 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 74
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 166 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 75
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 189 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 76
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 198 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 77
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 210 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 79
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 188 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 81
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 180 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 83
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 86
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 237 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 87
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 244 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 88
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 195 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 90
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 74 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 92
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 216 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 95
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 97
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 98
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 265 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 108
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 282 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 109
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 246 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 110
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 284 size: 0[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 111
