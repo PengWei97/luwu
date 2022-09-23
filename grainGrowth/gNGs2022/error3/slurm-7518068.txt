@@ -1,0 +1,3120 @@
+
+[33mEBSD orientation data may not be reliable for grain 3
+[39m[33mEBSD orientation data may not be reliable for grain 63
+[39m[33mEBSD orientation data may not be reliable for grain 69
+[39m[33mEBSD orientation data may not be reliable for grain 84
+[39m[33mEBSD orientation data may not be reliable for grain 179
+[39m[33mEBSD orientation data may not be reliable for grain 180
+[39m[33mEBSD orientation data may not be reliable for grain 188
+[39m[33mEBSD orientation data may not be reliable for grain 200
+[39m[33mEBSD orientation data may not be reliable for grain 234
+[39m[33mEBSD orientation data may not be reliable for grain 248
+[39m[33mEBSD orientation data may not be reliable for grain 269
+[39m
+[36mThe following total 2 aux variables:
+  delta_theta
+  kappa_op
+are added for automatic output by MaterialOutputAction.[39m
+Framework Information:
+MOOSE Version:           git commit 9c2c6fe on 2022-03-23
+LibMesh Version:         
+PETSc Version:           3.16.5
+SLEPc Version:           3.16.2
+Current Time:            Fri Sep 23 08:51:17 2022
+Executable Timestamp:    Thu Sep 22 20:09:39 2022
+
+Parallelism:
+  Num Processors:          112
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           distributed
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 40200
+    Local:                 400
+    Min/Max/Avg:           299/404/358
+  Elems:                   
+    Total:                 39800
+    Local:                 351
+    Min/Max/Avg:           334/370/355
+  Num Subdomains:          1
+  Num Partitions:          1
+  Partitioner:             parmetis
+
+Nonlinear System:
+  Num DOFs:                723600
+  Num Local DOFs:          7200
+  Variables:               { "gr0" "gr1" "gr2" "gr3" "gr4" ... "gr13" "gr14" "gr15" "gr16" "gr17" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                438200
+  Num Local DOFs:          3910
+  Variables:               "bnds" { "unique_grains_ic" "unique_grains" "phi1" "Phi" "phi2" "RGB_x" "RGB_y" 
+                             "RGB_z" "delta_theta" "kappa_op" } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  PETSc Preconditioner:    hypre boomeramg 
+
+
+[36m
+*** Info ***
+/es01/paratera/sce0895/luwu/grainGrowth/gNGsStroedEnergy2022/ebsd/02_ebsd_misorientation/ebsd_local_misori.i:32: (UserObjects/ebsd/coloring_algorithm):
+    The backtracking algorithm has exponential complexity. If you are using very few order parameters,
+    or you have several hundred grains or more, you should use one of the PETSc coloring algorithms such as "jp".[39m
+
+    Finished Performing Initial Adaptivity                                               [[33m  8.19 s[39m] [[33m    5 MB[39m]
+[33mGrain #6 intersects Grain #60 (variable index: 6)
+[39m[32m- Depth 0: Remapping grain #60 from variable index 6 to 4 whose closest grain (#39) is at a distance of 9.83267
+
+[39mFinished inside of GrainTracker
+
+  Finished Performing Initial Setup                                                      [[33m  9.32 s[39m] [[33m   28 MB[39m]
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 0.1, dt = 0.1
+ 0 Nonlinear |R| = [32m2.109217e+01[39m
+ 1 Nonlinear |R| = [32m1.132918e+00[39m
+ 2 Nonlinear |R| = [32m7.919934e-03[39m
+ 3 Nonlinear |R| = [32m7.886740e-07[39m
+ 4 Nonlinear |R| = [32m4.523692e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 29.06 s[39m] [[33m    7 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m2.118373e-11[39m
+  gr14: [33m1.865512e-11[39m
+  gr15: [33m1.645886e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 2, time = 0.21, dt = 0.11
+ 0 Nonlinear |R| = [32m4.389057e+00[39m
+ 1 Nonlinear |R| = [32m1.513240e-02[39m
+ 2 Nonlinear |R| = [32m1.839102e-04[39m
+ 3 Nonlinear |R| = [32m4.651850e-07[39m
+ 4 Nonlinear |R| = [32m1.534692e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 20.43 s[39m] [[33m    1 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m8.295097e-12[39m
+  gr15: [33m6.567355e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 3, time = 0.331, dt = 0.121
+ 0 Nonlinear |R| = [32m1.659940e+00[39m
+ 1 Nonlinear |R| = [32m4.671178e-03[39m
+ 2 Nonlinear |R| = [32m1.301793e-05[39m
+ 3 Nonlinear |R| = [32m5.906808e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 14.66 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m3.120443e-10[39m
+  gr2: [33m3.115198e-10[39m
+  gr6: [33m2.534111e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 4, time = 0.4641, dt = 0.1331
+ 0 Nonlinear |R| = [32m1.580047e+00[39m
+ 1 Nonlinear |R| = [32m2.227139e-02[39m
+ 2 Nonlinear |R| = [32m4.937578e-04[39m
+ 3 Nonlinear |R| = [32m4.940125e-06[39m
+ 4 Nonlinear |R| = [32m6.727428e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 20.77 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr14: [31m6.087026e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 5, time = 0.61051, dt = 0.14641
+ 0 Nonlinear |R| = [32m1.985511e+00[39m
+ 1 Nonlinear |R| = [32m3.584753e-02[39m
+ 2 Nonlinear |R| = [32m5.932651e-04[39m
+ 3 Nonlinear |R| = [32m2.523948e-06[39m
+ 4 Nonlinear |R| = [32m7.380139e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 19.69 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr14: [31m6.913316e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 6, time = 0.771561, dt = 0.161051
+ 0 Nonlinear |R| = [32m1.544488e+00[39m
+ 1 Nonlinear |R| = [32m1.363632e-02[39m
+ 2 Nonlinear |R| = [32m9.887109e-05[39m
+ 3 Nonlinear |R| = [32m3.994839e-07[39m
+ 4 Nonlinear |R| = [32m6.308506e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 19.50 s[39m] [[33m    1 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [31m5.797442e-11[39m
+  gr6: [33m2.114420e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 7, time = 0.948717, dt = 0.177156
+ 0 Nonlinear |R| = [32m1.617438e+00[39m
+ 1 Nonlinear |R| = [32m3.898604e-02[39m
+ 2 Nonlinear |R| = [32m6.754911e-04[39m
+ 3 Nonlinear |R| = [32m1.413775e-05[39m
+ 4 Nonlinear |R| = [32m2.832942e-08[39m
+ 5 Nonlinear |R| = [32m1.997551e-12[39m
+  Finished Solving                                                                       [[33m 25.29 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m9.035727e-13[39m
+  gr12: [33m1.356849e-12[39m
+  gr14: [33m8.740261e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 8, time = 1.12587, dt = 0.177156
+ 0 Nonlinear |R| = [32m1.553118e+00[39m
+ 1 Nonlinear |R| = [32m3.768809e-02[39m
+ 2 Nonlinear |R| = [32m9.063941e-04[39m
+ 3 Nonlinear |R| = [32m9.555329e-06[39m
+ 4 Nonlinear |R| = [32m3.676600e-09[39m
+  Finished Solving                                                                       [[33m 21.71 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m2.975637e-09[39m
+  gr14: [33m2.151418e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 9, time = 1.32074, dt = 0.194872
+ 0 Nonlinear |R| = [32m1.433450e+00[39m
+ 1 Nonlinear |R| = [32m4.103637e-02[39m
+ 2 Nonlinear |R| = [32m4.973318e-03[39m
+ 3 Nonlinear |R| = [32m9.145615e-05[39m
+ 4 Nonlinear |R| = [32m3.579916e-07[39m
+ 5 Nonlinear |R| = [32m1.559362e-11[39m
+  Finished Solving                                                                       [[33m 24.52 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [31m1.470941e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 10, time = 1.51562, dt = 0.194872
+ 0 Nonlinear |R| = [32m1.802787e+00[39m
+ 1 Nonlinear |R| = [32m6.959910e-02[39m
+ 2 Nonlinear |R| = [32m1.739467e-03[39m
+ 3 Nonlinear |R| = [32m9.603563e-06[39m
+ 4 Nonlinear |R| = [32m1.550415e-09[39m
+  Finished Solving                                                                       [[33m 21.65 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [31m1.504281e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 11, time = 1.72998, dt = 0.214359
+ 0 Nonlinear |R| = [32m1.892613e+00[39m
+ 1 Nonlinear |R| = [32m8.375875e-02[39m
+ 2 Nonlinear |R| = [32m2.740960e-03[39m
+ 3 Nonlinear |R| = [32m3.231553e-05[39m
+ 4 Nonlinear |R| = [32m2.071994e-08[39m
+ 5 Nonlinear |R| = [32m8.866529e-13[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 26.50 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m3.685794e-13[39m
+  gr14: [33m3.097088e-13[39m
+  gr16: [33m6.847632e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 12, time = 1.94433, dt = 0.214359
+ 0 Nonlinear |R| = [32m2.130066e+00[39m
+ 1 Nonlinear |R| = [32m1.372015e-01[39m
+ 2 Nonlinear |R| = [32m2.733983e-03[39m
+ 3 Nonlinear |R| = [32m5.183385e-05[39m
+ 4 Nonlinear |R| = [32m5.921898e-08[39m
+ 5 Nonlinear |R| = [32m2.384815e-12[39m
+  Finished Solving                                                                       [[33m 29.78 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m9.565051e-13[39m
+  gr14: [31m2.182469e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 13, time = 2.15869, dt = 0.214359
+ 0 Nonlinear |R| = [32m1.504087e+00[39m
+ 1 Nonlinear |R| = [32m7.661977e-02[39m
+ 2 Nonlinear |R| = [32m1.003322e-03[39m
+ 3 Nonlinear |R| = [32m2.820452e-06[39m
+ 4 Nonlinear |R| = [32m2.901434e-10[39m
+  Finished Solving                                                                       [[33m 20.69 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m2.064011e-10[39m
+  gr14: [33m1.214090e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 14, time = 2.39449, dt = 0.235795
+ 0 Nonlinear |R| = [32m3.364313e+00[39m
+ 1 Nonlinear |R| = [32m2.036255e-01[39m
+ 2 Nonlinear |R| = [32m4.117703e-03[39m
+ 3 Nonlinear |R| = [32m3.463696e-05[39m
+ 4 Nonlinear |R| = [32m2.097584e-07[39m
+ 5 Nonlinear |R| = [32m2.188712e-11[39m
+  Finished Solving                                                                       [[33m 29.97 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m1.876171e-11[39m
+  gr14: [33m1.036162e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 15, time = 2.63028, dt = 0.235795
+ 0 Nonlinear |R| = [32m3.768359e+00[39m
+ 1 Nonlinear |R| = [32m2.542824e-01[39m
+ 2 Nonlinear |R| = [32m7.482689e-03[39m
+ 3 Nonlinear |R| = [32m9.636000e-05[39m
+ 4 Nonlinear |R| = [32m3.679528e-07[39m
+ 5 Nonlinear |R| = [32m1.872352e-11[39m
+  Finished Solving                                                                       [[33m 31.18 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m9.942317e-12[39m
+  gr14: [33m1.555359e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.000000e-01 |   5.557242e+06 |   1.000000e-01 |   3.290000e+02 |   1.832330e+05 |   1.960480e+05 |   2.020000e+02 |   4.158864e+01 |
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 16, time = 2.86608, dt = 0.235795
+ 0 Nonlinear |R| = [32m2.129471e+00[39m
+ 1 Nonlinear |R| = [32m1.017602e-01[39m
+ 2 Nonlinear |R| = [32m1.347935e-02[39m
+ 3 Nonlinear |R| = [32m1.259330e-04[39m
+ 4 Nonlinear |R| = [32m2.121771e-07[39m
+ 5 Nonlinear |R| = [32m1.950958e-11[39m
+  Finished Solving                                                                       [[33m 28.07 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m1.002465e-11[39m
+  gr14: [33m1.546133e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   2.100000e-01 |   4.668621e+06 |   1.100000e-01 |   3.290000e+02 |   1.516730e+05 |   1.658890e+05 |   2.410000e+02 |   6.561622e+01 |
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 17, time = 3.10187, dt = 0.235795
+ 0 Nonlinear |R| = [32m2.377013e+00[39m
+ 1 Nonlinear |R| = [32m1.348884e-01[39m
+ 2 Nonlinear |R| = [32m2.990750e-03[39m
+ 3 Nonlinear |R| = [32m3.743621e-05[39m
+ 4 Nonlinear |R| = [32m2.152779e-08[39m
+  Finished Solving                                                                       [[33m 23.12 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m7.577562e-09[39m
+  gr14: [31m2.007409e-08[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   3.310000e-01 |   4.264763e+06 |   1.210000e-01 |   3.290000e+02 |   1.375490e+05 |   1.520670e+05 |   2.480000e+02 |   8.256151e+01 |
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 18, time = 3.36125, dt = 0.259374
+ 0 Nonlinear |R| = [32m2.593286e+00[39m
+ 1 Nonlinear |R| = [32m1.703945e-01[39m
+ 2 Nonlinear |R| = [32m4.713962e-03[39m
+ 3 Nonlinear |R| = [32m1.432820e-04[39m
+ 4 Nonlinear |R| = [32m3.097584e-07[39m
+ 5 Nonlinear |R| = [32m1.003603e-11[39m
+  Finished Solving                                                                       [[33m 29.03 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr5: [33m3.818073e-12[39m
+  gr12: [33m5.522245e-12[39m
+  gr14: [33m5.585559e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   4.641000e-01 |   4.384688e+06 |   1.331000e-01 |   3.290000e+02 |   1.414760e+05 |   1.563120e+05 |   2.390000e+02 |   1.055679e+02 |
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 19, time = 3.62062, dt = 0.259374
+ 0 Nonlinear |R| = [32m4.085990e+00[39m
+ 1 Nonlinear |R| = [32m3.811057e-01[39m
+ 2 Nonlinear |R| = [32m1.237305e-02[39m
+ 3 Nonlinear |R| = [32m9.687844e-05[39m
+ 4 Nonlinear |R| = [32m3.526628e-07[39m
+ 5 Nonlinear |R| = [32m1.335121e-11[39m
+  Finished Solving                                                                       [[33m 33.01 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m7.958137e-12[39m
+  gr6: [33m6.548991e-12[39m
+  gr14: [33m5.082967e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   6.105100e-01 |   4.294006e+06 |   1.464100e-01 |   3.290000e+02 |   1.385600e+05 |   1.530740e+05 |   2.300000e+02 |   1.274846e+02 |
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 20, time = 3.88, dt = 0.259374
+ 0 Nonlinear |R| = [32m3.590474e+00[39m
+ 1 Nonlinear |R| = [32m3.196770e-01[39m
+ 2 Nonlinear |R| = [32m1.102532e-02[39m
+ 3 Nonlinear |R| = [32m2.823096e-04[39m
+ 4 Nonlinear |R| = [32m6.862704e-07[39m
+ 5 Nonlinear |R| = [32m7.205048e-11[39m
+  Finished Solving                                                                       [[33m 30.42 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr6: [33m3.250532e-11[39m
+  gr12: [33m5.109447e-11[39m
+  gr14: [33m3.525461e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   7.715610e-01 |   4.420349e+06 |   1.610510e-01 |   3.290000e+02 |   1.426880e+05 |   1.575510e+05 |   2.250000e+02 |   1.499275e+02 |
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 21, time = 4.13937, dt = 0.259374
+ 0 Nonlinear |R| = [32m1.596999e+00[39m
+ 1 Nonlinear |R| = [32m9.109542e-02[39m
+ 2 Nonlinear |R| = [32m6.471249e-03[39m
+ 3 Nonlinear |R| = [32m1.999080e-04[39m
+ 4 Nonlinear |R| = [32m3.814063e-07[39m
+ 5 Nonlinear |R| = [32m2.878458e-11[39m
+  Finished Solving                                                                       [[33m 28.37 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m2.394153e-11[39m
+  gr14: [33m1.588193e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   9.487171e-01 |   4.302151e+06 |   1.771561e-01 |   3.290000e+02 |   1.388330e+05 |   1.533590e+05 |   2.210000e+02 |   1.774762e+02 |
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 22, time = 4.39874, dt = 0.259374
+ 0 Nonlinear |R| = [32m1.178261e+00[39m
+ 1 Nonlinear |R| = [32m3.368059e-02[39m
+ 2 Nonlinear |R| = [32m3.355506e-04[39m
+ 3 Nonlinear |R| = [32m2.598233e-06[39m
+ 4 Nonlinear |R| = [32m7.962867e-10[39m
+  Finished Solving                                                                       [[33m 19.74 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [31m7.586332e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.125873e+00 |   4.390456e+06 |   1.771561e-01 |   3.290000e+02 |   1.416500e+05 |   1.565240e+05 |   2.190000e+02 |   2.014472e+02 |
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 23, time = 4.68406, dt = 0.285312
+ 0 Nonlinear |R| = [32m1.359664e+00[39m
+ 1 Nonlinear |R| = [32m8.240549e-02[39m
+ 2 Nonlinear |R| = [32m3.478703e-03[39m
+ 3 Nonlinear |R| = [32m2.781243e-05[39m
+ 4 Nonlinear |R| = [32m6.000232e-09[39m
+  Finished Solving                                                                       [[33m 20.68 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [31m5.751437e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.320745e+00 |   4.220185e+06 |   1.948717e-01 |   3.290000e+02 |   1.359830e+05 |   1.505450e+05 |   2.170000e+02 |   2.286005e+02 |
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 24, time = 4.9979, dt = 0.313843
+ 0 Nonlinear |R| = [32m1.270277e+00[39m
+ 1 Nonlinear |R| = [32m9.127208e-02[39m
+ 2 Nonlinear |R| = [32m4.992464e-03[39m
+ 3 Nonlinear |R| = [32m1.395271e-05[39m
+ 4 Nonlinear |R| = [32m9.297810e-09[39m
+  Finished Solving                                                                       [[33m 22.21 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr11: [31m9.074560e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.515617e+00 |   4.352766e+06 |   1.948717e-01 |   3.290000e+02 |   1.403510e+05 |   1.552240e+05 |   2.160000e+02 |   2.524996e+02 |
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 25, time = 5.34313, dt = 0.345227
+ 0 Nonlinear |R| = [32m1.130818e+00[39m
+ 1 Nonlinear |R| = [32m8.522517e-02[39m
+ 2 Nonlinear |R| = [32m1.111355e-02[39m
+ 3 Nonlinear |R| = [32m2.671309e-04[39m
+ 4 Nonlinear |R| = [32m2.322232e-07[39m
+ 5 Nonlinear |R| = [32m1.086426e-11[39m
+  Finished Solving                                                                       [[33m 28.28 s[39m] [[33m    2 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr2: [33m5.555050e-12[39m
+  gr12: [33m6.092178e-12[39m
+  gr15: [33m4.701687e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.729976e+00 |   4.234782e+06 |   2.143589e-01 |   3.290000e+02 |   1.364870e+05 |   1.510480e+05 |   2.060000e+02 |   2.816521e+02 |
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 26, time = 5.68835, dt = 0.345227
+ 0 Nonlinear |R| = [32m2.977460e+00[39m
+ 1 Nonlinear |R| = [32m3.510689e-01[39m
+ 2 Nonlinear |R| = [32m1.890362e-02[39m
+ 3 Nonlinear |R| = [32m4.821790e-04[39m
+ 4 Nonlinear |R| = [32m2.459681e-06[39m
+ 5 Nonlinear |R| = [32m1.350089e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 33.15 s[39m] [[33m    1 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr15: [33m1.174609e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   1.944334e+00 |   4.352771e+06 |   2.143589e-01 |   3.290000e+02 |   1.403420e+05 |   1.552290e+05 |   2.010000e+02 |   3.138070e+02 |
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 27, time = 6.03358, dt = 0.345227
+ 0 Nonlinear |R| = [32m2.136015e+00[39m
+ 1 Nonlinear |R| = [32m2.108905e-01[39m
+ 2 Nonlinear |R| = [32m1.441210e-02[39m
+ 3 Nonlinear |R| = [32m9.035624e-04[39m
+ 4 Nonlinear |R| = [32m4.292276e-05[39m
+ 5 Nonlinear |R| = [32m2.950460e-07[39m
+ 6 Nonlinear |R| = [32m2.821518e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 38.99 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m2.179823e-11[39m
+  gr14: [33m1.747250e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   2.158693e+00 |   4.209290e+06 |   2.143589e-01 |   3.290000e+02 |   1.355870e+05 |   1.501800e+05 |   2.040000e+02 |   3.367544e+02 |
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 28, time = 6.37881, dt = 0.345227
+ 0 Nonlinear |R| = [32m5.153226e+00[39m
+ 1 Nonlinear |R| = [32m6.231644e-01[39m
+ 2 Nonlinear |R| = [32m9.484359e-02[39m
+ 3 Nonlinear |R| = [32m5.979641e-03[39m
+ 4 Nonlinear |R| = [32m1.214133e-04[39m
+ 5 Nonlinear |R| = [32m2.401838e-08[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 34.56 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m1.147604e-08[39m
+  gr14: [33m2.103754e-08[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   2.394488e+00 |   4.192781e+06 |   2.357948e-01 |   3.290000e+02 |   1.348310e+05 |   1.497090e+05 |   6.500000e+01 |   3.689454e+02 |
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 29, time = 6.72403, dt = 0.345227
+ 0 Nonlinear |R| = [32m2.237036e+00[39m
+ 1 Nonlinear |R| = [32m2.356991e-01[39m
+ 2 Nonlinear |R| = [32m2.635166e-02[39m
+ 3 Nonlinear |R| = [32m4.350454e-04[39m
+ 4 Nonlinear |R| = [32m6.775176e-06[39m
+ 5 Nonlinear |R| = [32m8.839529e-08[39m
+ 6 Nonlinear |R| = [32m2.421967e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 35.15 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [31m2.278103e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   2.630283e+00 |   4.204135e+06 |   2.357948e-01 |   3.290000e+02 |   1.353470e+05 |   1.500350e+05 |   2.900000e+01 |   4.023833e+02 |
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 30, time = 7.06926, dt = 0.345227
+ 0 Nonlinear |R| = [32m1.091586e+00[39m
+ 1 Nonlinear |R| = [32m4.677901e-02[39m
+ 2 Nonlinear |R| = [32m2.757611e-03[39m
+ 3 Nonlinear |R| = [32m5.517385e-05[39m
+ 4 Nonlinear |R| = [32m3.321306e-08[39m
+ 5 Nonlinear |R| = [32m1.574459e-12[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 25.13 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m8.714806e-13[39m
+  gr3: [33m7.078874e-13[39m
+  gr15: [33m9.089001e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   2.866078e+00 |   4.233861e+06 |   2.357948e-01 |   3.290000e+02 |   1.362410e+05 |   1.511290e+05 |   2.400000e+01 |   4.330892e+02 |
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 31, time = 7.41449, dt = 0.345227
+ 0 Nonlinear |R| = [32m1.269683e+00[39m
+ 1 Nonlinear |R| = [32m1.213494e-01[39m
+ 2 Nonlinear |R| = [32m8.188235e-03[39m
+ 3 Nonlinear |R| = [32m6.604919e-03[39m
+ 4 Nonlinear |R| = [32m6.259519e-04[39m
+ 5 Nonlinear |R| = [32m1.323104e-05[39m
+ 6 Nonlinear |R| = [32m1.514726e-08[39m
+ 7 Nonlinear |R| = [32m1.096630e-12[39m
+  Finished Solving                                                                       [[33m 33.61 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m4.931667e-13[39m
+  gr1: [33m5.864635e-13[39m
+  gr15: [33m7.438630e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   3.101872e+00 |   4.216218e+06 |   2.357948e-01 |   3.290000e+02 |   1.357250e+05 |   1.504720e+05 |   1.700000e+01 |   4.584998e+02 |
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 32, time = 7.75972, dt = 0.345227
+ 0 Nonlinear |R| = [32m1.131932e+00[39m
+ 1 Nonlinear |R| = [32m7.578169e-02[39m
+ 2 Nonlinear |R| = [32m2.648068e-03[39m
+ 3 Nonlinear |R| = [32m1.221572e-05[39m
+ 4 Nonlinear |R| = [32m2.955732e-09[39m
+  Finished Solving                                                                       [[33m 22.15 s[39m] [[33m    1 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m2.593346e-09[39m
+  gr15: [33m1.239669e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   3.361247e+00 |   4.231416e+06 |   2.593742e-01 |   3.290000e+02 |   1.361390e+05 |   1.510540e+05 |   1.300000e+01 |   4.898041e+02 |
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 33, time = 8.13946, dt = 0.37975
+ 0 Nonlinear |R| = [32m1.590698e+00[39m
+ 1 Nonlinear |R| = [32m1.807995e-01[39m
+ 2 Nonlinear |R| = [32m2.629155e-02[39m
+ 3 Nonlinear |R| = [32m9.587115e-04[39m
+ 4 Nonlinear |R| = [32m2.639073e-04[39m
+ 5 Nonlinear |R| = [32m1.254734e-05[39m
+ 6 Nonlinear |R| = [32m6.296764e-08[39m
+ 7 Nonlinear |R| = [32m5.906334e-12[39m
+  Finished Solving                                                                       [[33m 38.97 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr11: [33m3.627636e-12[39m
+  gr12: [33m4.124143e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   3.620621e+00 |   4.252155e+06 |   2.593742e-01 |   3.290000e+02 |   1.369760e+05 |   1.517050e+05 |   1.100000e+01 |   5.250636e+02 |
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 34, time = 8.51921, dt = 0.37975
+ 0 Nonlinear |R| = [32m2.771983e+00[39m
+ 1 Nonlinear |R| = [32m3.582588e-01[39m
+ 2 Nonlinear |R| = [32m3.155273e-02[39m
+ 3 Nonlinear |R| = [32m6.333187e-04[39m
+ 4 Nonlinear |R| = [32m9.101319e-07[39m
+ 5 Nonlinear |R| = [32m6.682593e-11[39m
+  Finished Solving                                                                       [[33m 31.20 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr2: [33m3.533609e-11[39m
+  gr6: [33m4.894384e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   3.879995e+00 |   4.217126e+06 |   2.593742e-01 |   3.290000e+02 |   1.356410e+05 |   1.505640e+05 |   1.300000e+01 |   5.577252e+02 |
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 35, time = 8.89896, dt = 0.37975
+ 0 Nonlinear |R| = [32m2.008667e+00[39m
+ 1 Nonlinear |R| = [32m2.664267e-01[39m
+ 2 Nonlinear |R| = [32m2.798988e-02[39m
+ 3 Nonlinear |R| = [32m5.255446e-04[39m
+ 4 Nonlinear |R| = [32m3.904892e-07[39m
+ 5 Nonlinear |R| = [32m3.426181e-11[39m
+  Finished Solving                                                                       [[33m 30.82 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr9: [33m1.400717e-11[39m
+  gr11: [33m1.331748e-11[39m
+  gr14: [33m2.296048e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   4.139369e+00 |   4.056091e+06 |   2.593742e-01 |   3.290000e+02 |   1.299590e+05 |   1.450790e+05 |   1.500000e+01 |   5.886706e+02 |
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 36, time = 9.27871, dt = 0.37975
+ 0 Nonlinear |R| = [32m1.600865e+00[39m
+ 1 Nonlinear |R| = [32m1.314353e-01[39m
+ 2 Nonlinear |R| = [32m5.292330e-03[39m
+ 3 Nonlinear |R| = [32m4.588279e-05[39m
+ 4 Nonlinear |R| = [32m2.078144e-07[39m
+ 5 Nonlinear |R| = [32m1.047792e-11[39m
+  Finished Solving                                                                       [[33m 27.65 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr2: [33m6.388030e-12[39m
+  gr14: [33m7.584042e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   4.398744e+00 |   4.528357e+06 |   2.593742e-01 |   3.290000e+02 |   1.460180e+05 |   1.614830e+05 |   1.700000e+01 |   6.106513e+02 |
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 37, time = 9.65846, dt = 0.37975
+ 0 Nonlinear |R| = [32m2.206403e+00[39m
+ 1 Nonlinear |R| = [32m2.249990e-01[39m
+ 2 Nonlinear |R| = [32m1.550165e-02[39m
+ 3 Nonlinear |R| = [32m2.773537e-04[39m
+ 4 Nonlinear |R| = [32m4.387267e-07[39m
+ 5 Nonlinear |R| = [32m3.858827e-11[39m
+  Finished Solving                                                                       [[33m 33.08 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr3: [33m2.842490e-11[39m
+  gr11: [33m2.505807e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   4.684055e+00 |   4.191845e+06 |   2.853117e-01 |   3.290000e+02 |   1.346120e+05 |   1.497750e+05 |   2.000000e+01 |   6.336303e+02 |
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 38, time = 10.0382, dt = 0.37975
+ 0 Nonlinear |R| = [32m2.766587e+00[39m
+ 1 Nonlinear |R| = [32m5.661412e-01[39m
+ 2 Nonlinear |R| = [32m3.465203e-01[39m
+ 3 Nonlinear |R| = [32m6.258441e-02[39m
+ 4 Nonlinear |R| = [32m6.673215e-03[39m
+ 5 Nonlinear |R| = [32m1.323969e-04[39m
+ 6 Nonlinear |R| = [32m4.795964e-08[39m
+ 7 Nonlinear |R| = [32m1.732251e-12[39m
+  Finished Solving                                                                       [[33m 40.38 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m1.125879e-12[39m
+  gr4: [33m6.069079e-13[39m
+  gr6: [33m9.022292e-13[39m
+  gr13: [33m5.793623e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   4.997898e+00 |   4.417659e+06 |   3.138428e-01 |   3.290000e+02 |   1.425710e+05 |   1.574710e+05 |   2.900000e+01 |   6.580920e+02 |
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 39, time = 10.418, dt = 0.37975
+ 0 Nonlinear |R| = [32m3.281190e+00[39m
+ 1 Nonlinear |R| = [32m7.414410e-01[39m
+ 2 Nonlinear |R| = [32m1.545103e-01[39m
+ 3 Nonlinear |R| = [32m1.507903e-02[39m
+ 4 Nonlinear |R| = [32m4.479348e-04[39m
+ 5 Nonlinear |R| = [32m3.022686e-06[39m
+ 6 Nonlinear |R| = [32m2.455243e-10[39m
+  Finished Solving                                                                       [[33m 41.32 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr13: [33m1.640655e-10[39m
+  gr14: [33m1.826393e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   5.343125e+00 |   4.119660e+06 |   3.452271e-01 |   3.290000e+02 |   1.321910e+05 |   1.472500e+05 |   4.500000e+01 |   6.886837e+02 |
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 40, time = 10.7977, dt = 0.37975
+ 0 Nonlinear |R| = [32m1.021494e+00[39m
+ 1 Nonlinear |R| = [32m5.865508e-02[39m
+ 2 Nonlinear |R| = [32m4.983021e-03[39m
+ 3 Nonlinear |R| = [32m7.946786e-05[39m
+ 4 Nonlinear |R| = [32m1.707529e-08[39m
+ 5 Nonlinear |R| = [32m5.674878e-13[39m
+  Finished Solving                                                                       [[33m 24.47 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m4.121232e-13[39m
+  gr11: [33m2.137276e-13[39m
+  gr15: [33m2.501755e-13[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   5.688352e+00 |   4.394849e+06 |   3.452271e-01 |   3.290000e+02 |   1.415630e+05 |   1.568010e+05 |   6.500000e+01 |   7.246206e+02 |
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 41, time = 11.1775, dt = 0.37975
+ 0 Nonlinear |R| = [32m9.798619e-01[39m
+ 1 Nonlinear |R| = [32m5.832921e-02[39m
+ 2 Nonlinear |R| = [32m4.112398e-03[39m
+ 3 Nonlinear |R| = [32m5.368937e-05[39m
+ 4 Nonlinear |R| = [32m6.339840e-08[39m
+ 5 Nonlinear |R| = [32m4.423993e-12[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 27.57 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m3.383030e-12[39m
+  gr4: [33m1.894576e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   6.033579e+00 |   4.241949e+06 |   3.452271e-01 |   3.290000e+02 |   1.361150e+05 |   1.516210e+05 |   8.900000e+01 |   7.658961e+02 |
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 42, time = 11.5572, dt = 0.37975
+ 0 Nonlinear |R| = [32m9.861908e-01[39m
+ 1 Nonlinear |R| = [32m7.115249e-02[39m
+ 2 Nonlinear |R| = [32m3.864591e-03[39m
+ 3 Nonlinear |R| = [32m3.074941e-05[39m
+ 4 Nonlinear |R| = [32m4.489914e-09[39m
+  Finished Solving                                                                       [[33m 23.01 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr0: [33m3.634041e-09[39m
+  gr15: [33m1.554738e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   6.378807e+00 |   4.372534e+06 |   3.452271e-01 |   3.290000e+02 |   1.406330e+05 |   1.561160e+05 |   9.800000e+01 |   8.029247e+02 |
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 43, time = 11.9749, dt = 0.417725
+ 0 Nonlinear |R| = [32m1.762872e+00[39m
+ 1 Nonlinear |R| = [32m2.399518e-01[39m
+ 2 Nonlinear |R| = [32m2.724063e-02[39m
+ 3 Nonlinear |R| = [32m1.673956e-03[39m
+ 4 Nonlinear |R| = [32m9.310417e-06[39m
+ 5 Nonlinear |R| = [32m2.443087e-09[39m
+  Finished Solving                                                                       [[33m 37.88 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m1.981713e-09[39m
+  gr14: [33m1.385991e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   6.724034e+00 |   4.290593e+06 |   3.452271e-01 |   3.290000e+02 |   1.379090e+05 |   1.532370e+05 |   6.200000e+01 |   8.405718e+02 |
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 44, time = 12.3927, dt = 0.417725
+ 0 Nonlinear |R| = [32m1.113328e+00[39m
+ 1 Nonlinear |R| = [32m1.064094e-01[39m
+ 2 Nonlinear |R| = [32m6.063444e-03[39m
+ 3 Nonlinear |R| = [32m1.241792e-04[39m
+ 4 Nonlinear |R| = [32m1.703562e-06[39m
+ 5 Nonlinear |R| = [32m1.451032e-10[39m
+  Finished Solving                                                                       [[33m 26.22 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m5.849357e-11[39m
+  gr7: [33m1.167837e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   7.069261e+00 |   4.243171e+06 |   3.452271e-01 |   3.290000e+02 |   1.359560e+05 |   1.517690e+05 |   6.900000e+01 |   8.681995e+02 |
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 45, time = 12.8104, dt = 0.417725
+ 0 Nonlinear |R| = [32m1.496655e+00[39m
+ 1 Nonlinear |R| = [32m2.540122e-01[39m
+ 2 Nonlinear |R| = [32m3.473010e-02[39m
+ 3 Nonlinear |R| = [32m8.081890e-04[39m
+ 4 Nonlinear |R| = [32m7.457113e-04[39m
+ 5 Nonlinear |R| = [32m4.987200e-04[39m
+ 6 Nonlinear |R| = [32m4.531627e-04[39m
+ 7 Nonlinear |R| = [32m4.230692e-04[39m
+ 8 Nonlinear |R| = [32m3.736600e-04[39m
+ 9 Nonlinear |R| = [33m3.625735e-04[39m
+10 Nonlinear |R| = [32m3.377988e-04[39m
+11 Nonlinear |R| = [33m3.257658e-04[39m
+12 Nonlinear |R| = [32m3.036476e-04[39m
+13 Nonlinear |R| = [32m1.137252e-05[39m
+14 Nonlinear |R| = [32m2.056383e-07[39m
+15 Nonlinear |R| = [32m6.333231e-11[39m
+  Finished Solving                                                                       [[33m100.61 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 17
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr7: [33m5.658827e-11[39m
+  gr15: [33m2.834844e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   7.414488e+00 |   4.338399e+06 |   3.452271e-01 |   3.290000e+02 |   1.396040e+05 |   1.548610e+05 |   5.800000e+01 |   9.052132e+02 |
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 46, time = 13.1446, dt = 0.33418
+ 0 Nonlinear |R| = [32m1.368638e+00[39m
+ 1 Nonlinear |R| = [32m1.508702e-01[39m
+ 2 Nonlinear |R| = [32m1.602495e-02[39m
+ 3 Nonlinear |R| = [32m2.893390e-04[39m
+ 4 Nonlinear |R| = [32m5.378953e-07[39m
+ 5 Nonlinear |R| = [32m9.411556e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 27.67 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 17 -> 16--
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+[32mMarking Grain 99 as INACTIVE (variable index: 9)
+[39mFinished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m6.749041e-11[39m
+  gr14: [33m6.311672e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   7.759715e+00 |   4.242222e+06 |   3.452271e-01 |   3.290000e+02 |   1.360340e+05 |   1.516780e+05 |   7.200000e+01 |   9.297656e+02 |
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 47, time = 13.4787, dt = 0.33418
+ 0 Nonlinear |R| = [32m3.155840e+00[39m
+ 1 Nonlinear |R| = [32m5.691527e-01[39m
+ 2 Nonlinear |R| = [32m9.319256e-02[39m
+ 3 Nonlinear |R| = [32m3.933081e-03[39m
+ 4 Nonlinear |R| = [32m1.521935e-05[39m
+ 5 Nonlinear |R| = [32m5.419335e-09[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 31.91 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr14: [31m5.114750e-09[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   8.139465e+00 |   4.425505e+06 |   3.797498e-01 |   3.290000e+02 |   1.426070e+05 |   1.578650e+05 |   7.400000e+01 |   9.711725e+02 |
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
+|   1.347875e+01 |   4.024693e+06 |   3.341799e-01 |   3.280000e+02 |   1.278680e+05 |   1.445270e+05 |   6.700000e+01 |   1.511561e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 48, time = 13.8129, dt = 0.33418
+ 0 Nonlinear |R| = [32m4.445637e+00[39m
+ 1 Nonlinear |R| = [32m5.291191e-01[39m
+ 2 Nonlinear |R| = [32m3.537140e-02[39m
+ 3 Nonlinear |R| = [32m1.216113e-03[39m
+ 4 Nonlinear |R| = [32m3.262681e-06[39m
+ 5 Nonlinear |R| = [32m6.236181e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 38.94 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m4.218568e-10[39m
+  gr14: [33m4.569628e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   8.519215e+00 |   4.426688e+06 |   3.797498e-01 |   3.290000e+02 |   1.425980e+05 |   1.579320e+05 |   8.600000e+01 |   1.004804e+03 |
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
+|   1.347875e+01 |   4.024693e+06 |   3.341799e-01 |   3.280000e+02 |   1.278680e+05 |   1.445270e+05 |   6.700000e+01 |   1.511561e+03 |
+|   1.381293e+01 |   4.438266e+06 |   3.341799e-01 |   3.280000e+02 |   1.425170e+05 |   1.585840e+05 |   5.100000e+01 |   1.553103e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 49, time = 14.1471, dt = 0.33418
+ 0 Nonlinear |R| = [32m1.610315e+00[39m
+ 1 Nonlinear |R| = [32m1.211862e-01[39m
+ 2 Nonlinear |R| = [32m3.431925e-03[39m
+ 3 Nonlinear |R| = [32m3.174965e-05[39m
+ 4 Nonlinear |R| = [32m1.141910e-07[39m
+ 5 Nonlinear |R| = [32m1.126379e-11[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 27.84 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr1: [33m5.454586e-12[39m
+  gr13: [33m5.711635e-12[39m
+  gr14: [33m6.541944e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   8.898965e+00 |   4.307883e+06 |   3.797498e-01 |   3.290000e+02 |   1.387070e+05 |   1.537270e+05 |   7.600000e+01 |   1.038091e+03 |
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
+|   1.347875e+01 |   4.024693e+06 |   3.341799e-01 |   3.280000e+02 |   1.278680e+05 |   1.445270e+05 |   6.700000e+01 |   1.511561e+03 |
+|   1.381293e+01 |   4.438266e+06 |   3.341799e-01 |   3.280000e+02 |   1.425170e+05 |   1.585840e+05 |   5.100000e+01 |   1.553103e+03 |
+|   1.414711e+01 |   4.474707e+06 |   3.341799e-01 |   3.280000e+02 |   1.438070e+05 |   1.598230e+05 |   6.900000e+01 |   1.583503e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 50, time = 14.4813, dt = 0.33418
+ 0 Nonlinear |R| = [32m3.383315e+00[39m
+ 1 Nonlinear |R| = [32m6.600453e-01[39m
+ 2 Nonlinear |R| = [32m1.169014e-01[39m
+ 3 Nonlinear |R| = [32m1.077589e-02[39m
+ 4 Nonlinear |R| = [32m4.280588e-03[39m
+ 5 Nonlinear |R| = [32m1.106658e-04[39m
+ 6 Nonlinear |R| = [32m1.479647e-07[39m
+ 7 Nonlinear |R| = [32m6.016092e-12[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 42.73 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 20
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr9: [33m2.249100e-12[39m
+  gr12: [33m3.905593e-12[39m
+  gr14: [33m2.321818e-12[39m
+  gr16: [33m3.194493e-12[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   9.278714e+00 |   4.379818e+06 |   3.797498e-01 |   3.290000e+02 |   1.408370e+05 |   1.563920e+05 |   7.700000e+01 |   1.068962e+03 |
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
+|   1.347875e+01 |   4.024693e+06 |   3.341799e-01 |   3.280000e+02 |   1.278680e+05 |   1.445270e+05 |   6.700000e+01 |   1.511561e+03 |
+|   1.381293e+01 |   4.438266e+06 |   3.341799e-01 |   3.280000e+02 |   1.425170e+05 |   1.585840e+05 |   5.100000e+01 |   1.553103e+03 |
+|   1.414711e+01 |   4.474707e+06 |   3.341799e-01 |   3.280000e+02 |   1.438070e+05 |   1.598230e+05 |   6.900000e+01 |   1.583503e+03 |
+|   1.448129e+01 |   4.487130e+06 |   3.341799e-01 |   3.280000e+02 |   1.444280e+05 |   1.601500e+05 |   2.500000e+01 |   1.628907e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 51, time = 14.8155, dt = 0.33418
+ 0 Nonlinear |R| = [32m1.846980e+00[39m
+ 1 Nonlinear |R| = [32m2.232918e-01[39m
+ 2 Nonlinear |R| = [32m2.300693e-02[39m
+ 3 Nonlinear |R| = [32m9.223834e-04[39m
+ 4 Nonlinear |R| = [32m3.406726e-06[39m
+ 5 Nonlinear |R| = [32m7.791095e-10[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 26.89 s[39m] [[33m    0 MB[39m]
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 16
+Grains active index 3: 20 -> 19--
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+[32mMarking Grain 255 as INACTIVE (variable index: 3)
+[39mFinished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  gr12: [33m4.262431e-10[39m
+  gr14: [33m6.203582e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | DOFs           | dt             | grain_tracker  | n_elements     | n_nodes        | ngrains        | run_time       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :                :                :                :
+|   9.658464e+00 |   4.285890e+06 |   3.797498e-01 |   3.290000e+02 |   1.378700e+05 |   1.530100e+05 |   8.600000e+01 |   1.104513e+03 |
+|   1.003821e+01 |   4.462386e+06 |   3.797498e-01 |   3.290000e+02 |   1.437890e+05 |   1.591840e+05 |   5.700000e+01 |   1.147313e+03 |
+|   1.041796e+01 |   4.308819e+06 |   3.797498e-01 |   3.290000e+02 |   1.387550e+05 |   1.537510e+05 |   4.400000e+01 |   1.191036e+03 |
+|   1.079771e+01 |   4.083228e+06 |   3.797498e-01 |   3.290000e+02 |   1.305770e+05 |   1.461820e+05 |   4.700000e+01 |   1.218446e+03 |
+|   1.117746e+01 |   4.429074e+06 |   3.797498e-01 |   3.290000e+02 |   1.428290e+05 |   1.579360e+05 |   6.000000e+01 |   1.248911e+03 |
+|   1.155721e+01 |   4.260080e+06 |   3.797498e-01 |   3.290000e+02 |   1.369040e+05 |   1.521600e+05 |   6.200000e+01 |   1.274388e+03 |
+|   1.197494e+01 |   4.336966e+06 |   4.177248e-01 |   3.290000e+02 |   1.394930e+05 |   1.548440e+05 |   7.700000e+01 |   1.314800e+03 |
+|   1.239266e+01 |   4.214439e+06 |   4.177248e-01 |   3.290000e+02 |   1.352450e+05 |   1.506310e+05 |   8.500000e+01 |   1.343435e+03 |
+|   1.281039e+01 |   4.279292e+06 |   4.177248e-01 |   3.290000e+02 |   1.373660e+05 |   1.529280e+05 |   1.210000e+02 |   1.446489e+03 |
+|   1.314457e+01 |   4.236127e+06 |   3.341799e-01 |   3.280000e+02 |   1.360040e+05 |   1.513730e+05 |   1.020000e+02 |   1.477331e+03 |
+|   1.347875e+01 |   4.024693e+06 |   3.341799e-01 |   3.280000e+02 |   1.278680e+05 |   1.445270e+05 |   6.700000e+01 |   1.511561e+03 |
+|   1.381293e+01 |   4.438266e+06 |   3.341799e-01 |   3.280000e+02 |   1.425170e+05 |   1.585840e+05 |   5.100000e+01 |   1.553103e+03 |
+|   1.414711e+01 |   4.474707e+06 |   3.341799e-01 |   3.280000e+02 |   1.438070e+05 |   1.598230e+05 |   6.900000e+01 |   1.583503e+03 |
+|   1.448129e+01 |   4.487130e+06 |   3.341799e-01 |   3.280000e+02 |   1.444280e+05 |   1.601500e+05 |   2.500000e+01 |   1.628907e+03 |
+|   1.481547e+01 |   4.178418e+06 |   3.341799e-01 |   3.270000e+02 |   1.334840e+05 |   1.496620e+05 |   2.200000e+01 |   1.658996e+03 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 52, time = 15.1496, dt = 0.33418
+ 0 Nonlinear |R| = [32m1.382280e+00[39m
+ 1 Nonlinear |R| = [32m1.263740e-01[39m
+ 2 Nonlinear |R| = [32m1.681488e-02[39m
+ 3 Nonlinear |R| = [32m6.018530e-04[39m
+ 4 Nonlinear |R| = [32m8.865999e-07[39m
+ 5 Nonlinear |R| = [32m5.297165e-11[39m
+  Finished Solving                                                                       [[33m 30.29 s[39m] [[33m    0 MB[39m]
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 20 -> 20
+Grains active index 1: 22 -> 22
+Grains active index 2: 16 -> 15--
+Grains active index 3: 19 -> 20++
+Grains active index 4: 20 -> 20
+Grains active index 5: 19 -> 19
+Grains active index 6: 15 -> 15
+Grains active index 7: 20 -> 20
+Grains active index 8: 16 -> 16
+Grains active index 9: 16 -> 16
+Grains active index 10: 18 -> 18
+Grains active index 11: 17 -> 17
+Grains active index 12: 18 -> 18
+Grains active index 13: 18 -> 18
+Grains active index 14: 19 -> 19
+Grains active index 15: 20 -> 20
+Grains active index 16: 16 -> 16
+Grains active index 17: 18 -> 18
+
+[33mNucleating Grain Detected  (variable index: 3)
+[39m[32mMarking Grain 182 as INACTIVE (variable index: 2)
+[39m[33m
+*****************************************************************************
+Couldn't find a matching grain while working on variable index: 3
+Creating new unique grain: 329
+Grain ID: 329
+Ghosted Entities: 
+Local Entities: 
+Halo Entities: 138015 138567 146670 146691 146693 146711 146712 147994 148023 148024 148025 148027 148028 148030 148031 148033 148034 148036 148037 148038 
+Periodic Node IDs: 
+BBoxes:
+Max: (x,y,z)=( 122.867,  151.803,        0) Min: (x,y,z)=( 120.861,  149.799,        0)
+Status:  MARKED
+Orig IDs (rank, index): (87, 7) 
+Var_index: 3
+Min Entity ID: 148026
+
+
+*****************************************************************************
+[39mFinished inside of GrainTracker
+
+
+[31m
+*** ERROR ***
+The following error occurred in the object "ebsd_reader", of type "EBSDReader".
+
+Error! Index out of range in EBSDReader::indexFromIndex(), index: 329 size: 329[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 87
