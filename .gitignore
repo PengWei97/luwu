@@ -14,7 +14,6 @@ luwu-opt
 *-devel
 *.e
 *.nav
-*.log
 *.aux
 *.toc
 *.snm
