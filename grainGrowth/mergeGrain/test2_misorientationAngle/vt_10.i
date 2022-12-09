@@ -178,7 +178,7 @@ my_T = 973.15 # 700du
 
 [VectorPostprocessors]
   [./grain_volumes] 
-    type = FeatureVolumeVectorPostprocessor
+    type = FeatureDataVectorPostprocessor # FeatureVolumeVectorPostprocessor
     flood_counter = grain_tracker # The FeatureFloodCount UserObject to get values from.
     execute_on = 'initial timestep_end'
     output_centroids = true

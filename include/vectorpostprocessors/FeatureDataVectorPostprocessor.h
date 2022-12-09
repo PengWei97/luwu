@@ -19,9 +19,7 @@ public:
 
   FeatureDataVectorPostprocessor(const InputParameters & parameters);
 
-  virtual void initialize() override;
-  virtual void execute() override;
-  virtual void finalize() override;
+  virtual void getCSVData(const std::size_t & num_features) override;
 
 protected:
   VectorPostprocessorValue & _feature_id; // by weipeng
