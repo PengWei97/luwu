@@ -1,4 +1,6 @@
-my_filename = "test1"
+# /home/pengwei/projects/moose/modules/phase_field/include/postprocessors/GrainTracker.h
+
+my_filename = "test1_multiCore"
 
 my_GBmob0 = 2.5e-13
 my_wGB = 0.8
@@ -186,7 +188,7 @@ my_T = 973.15 # 700du
   dtmin = 1.0e-4
 
   start_time = 0.0
-  num_steps =  2
+  num_steps =  10
   # end_time = 30 # 7200
 
   [TimeStepper]
@@ -206,11 +208,11 @@ my_T = 973.15 # 700du
 
 [Outputs]
   file_base = ./${my_filename}/out_${my_filename}
-  [./my_checkpoint]
-    type = Checkpoint
-    # num_files = 10
-    # interval = 5
-  [../]
+  # [./my_checkpoint]
+  #   type = Checkpoint
+  #   # num_files = 10
+  #   # interval = 5
+  # [../]
   [my_exodus]
     type = Exodus # Nemesis Exodus
     # interval = 5
@@ -218,5 +220,5 @@ my_T = 973.15 # 700du
   print_linear_residuals = false
   
   # perf_graph = true
-  # csv = true
+  csv = true
 []

@@ -1,4 +1,6 @@
-my_filename = "test1"
+# /home/pengwei/projects/moose/modules/phase_field/include/postprocessors/GrainTracker.h
+
+my_filename = "test2"
 
 my_GBmob0 = 2.5e-13
 my_wGB = 0.8
@@ -28,6 +30,10 @@ my_T = 973.15 # 700du
 []
 
 [UserObjects]
+  [./euler_angle_file]
+    type = EulerAngleFileReader
+    file_name = grn_10_testure_2D.tex
+  [../]
   [./voronoi]
     type = PolycrystalVoronoi
     rand_seed = 20
@@ -44,6 +50,8 @@ my_T = 973.15 # 700du
     # execute_on = 'initial TIMESTEP_BEGIN'
     polycrystal_ic_uo = voronoi
     compute_var_to_feature_map = true
+
+    euler_angle_provider = euler_angle_file   
   []
 []
 
@@ -76,6 +84,18 @@ my_T = 973.15 # 700du
     family = MONOMIAL
   []
   [var_indices]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [phi1]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [Phi]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [phi2]
     order = CONSTANT
     family = MONOMIAL
   []
@@ -118,6 +138,30 @@ my_T = 973.15 # 700du
     variable = unique_grains
     flood_counter = grain_tracker
     field_display = UNIQUE_REGION
+  []
+  [phi1]
+    type = OutputEulerAngles
+    variable = phi1
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'phi1'
+    execute_on = 'initial TIMESTEP_BEGIN'
+  []
+  [Phi]
+    type = OutputEulerAngles
+    variable = Phi
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'Phi'
+    execute_on = 'initial TIMESTEP_BEGIN'
+  []
+  [phi2]
+    type = OutputEulerAngles
+    variable = phi2
+    euler_angle_provider = euler_angle_file
+    grain_tracker = grain_tracker
+    output_euler_angle = 'phi2'
+    execute_on = 'initial TIMESTEP_BEGIN'
   []
 []
 
@@ -218,5 +262,5 @@ my_T = 973.15 # 700du
   print_linear_residuals = false
   
   # perf_graph = true
-  # csv = true
+  csv = true
 []
